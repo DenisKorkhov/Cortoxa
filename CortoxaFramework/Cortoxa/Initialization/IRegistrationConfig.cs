@@ -23,5 +23,7 @@ namespace Cortoxa.Initialization
         void Configure<T>(Action<T> configurationAction) where T : IRegistrationStratagy;
 
         void Configure<T>(Func<T, T> configurationAction) where T : IRegistrationStratagy;
+
+        string ConfigurationName { get; }
     }
 }

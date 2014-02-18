@@ -18,9 +18,17 @@ using Cortoxa.IoC.Common;
 
 namespace Cortoxa.Initialization
 {
-    public class RegistrationConfig : IRegistrationConfig
+    public abstract class RegistrationConfig : IRegistrationConfig
     {
         private readonly IDictionary<Type, IRegistrationStratagy> stratagies = new Dictionary<Type, IRegistrationStratagy>();
+
+        public string ConfigurationName { get; private set; }
+
+        protected RegistrationConfig(string configurationName)
+        {
+            ConfigurationName = configurationName;
+        }
+
 
         public void Register(IToolContainer container)
         {

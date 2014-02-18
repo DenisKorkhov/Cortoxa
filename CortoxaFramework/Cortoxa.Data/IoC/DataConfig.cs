@@ -17,5 +17,8 @@ namespace Cortoxa.Data.IoC
 {
     public class DataConfig : RegistrationConfig, IDataConfig
     {
+        public DataConfig(string configurationName) : base(configurationName)
+        {
+        }
     }
 }

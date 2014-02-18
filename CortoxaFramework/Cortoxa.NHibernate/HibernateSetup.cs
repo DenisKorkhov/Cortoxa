@@ -28,7 +28,7 @@ namespace Cortoxa.NHibernate
         public static IDataConfig UseHibernate(this IToolSetup<IDataConfig> dataSetup, string connectionString, Assembly sourceAssembly, ToolkitLifeTime lifeTime = ToolkitLifeTime.PerWebRequest, bool buildSchema = false)
         {
             Func<IModelBuilder, ISessionFactory> sessionAction = (schemaBuilder) => SessionFactoryConfiguration.BuildSessionFactory(sourceAssembly, connectionString, "", schemaBuilder);
-            var dataConfig = new DataConfig()
+            var dataConfig = new DataConfig(string.Format("h_{0}", Guid.NewGuid().ToString()))
                 .WithContext<HibernateContext>(lifeTime)
                 .WithRepository(typeof (HibernateRepository<>))
                 .WithSession(sessionAction);

@@ -60,8 +60,7 @@ namespace Cortoxa.NHibernate.Data
         {
             var mapper = new ModelMapper();
 
-            var baseMappingClass = typeof(IClassMapper<>);
-            var maps = sourceAssembly.GetExportedTypes().Where(t => t.IsClass && !t.IsAbstract /*&& t.IsInstanceOfType(baseMappingClass)*/).ToArray();
+            var maps = sourceAssembly.GetExportedTypes().Where(t => t.IsClass && !t.IsAbstract).ToArray();
             mapper.AddMappings(maps);
 
             if (modelBuilder != null)

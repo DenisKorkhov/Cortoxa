@@ -18,12 +18,9 @@ namespace Cortoxa.Data.IoC
 {
     public class ModelBuilderConfiguration : IRegistrationStratagy
     {
-        
-
-
         public void Register(IToolContainer container)
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }
