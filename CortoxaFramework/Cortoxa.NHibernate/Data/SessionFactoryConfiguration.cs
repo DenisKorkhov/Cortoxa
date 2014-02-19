@@ -11,6 +11,7 @@
 //  *
 //  */
 #endregion
+
 using System;
 using System.Linq;
 using System.Reflection;
@@ -21,11 +22,11 @@ using NHibernate.Dialect;
 using NHibernate.Driver;
 using NHibernate.Mapping.ByCode;
 
-namespace Cortoxa.NHibernate.Data
+namespace Cortoxa.Data.NHibernate.Data
 {
     public static class SessionFactoryConfiguration
     {
-        public static ISessionFactory BuildSessionFactory(Assembly sourceAssembly, string connectionString, string providerName = "", IModelBuilder modelBuilder = null)
+        public static ISessionFactory BuildSessionFactory(Assembly sourceAssembly, string connectionString, string providerName = "", bool buildSchema = false)
         {
             var cfg = new Configuration();
             cfg.DataBaseIntegration(c =>
@@ -49,24 +50,22 @@ namespace Cortoxa.NHibernate.Data
 
                 c.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
 
-                c.SchemaAction = SchemaAutoAction.Update;
-
+                if (buildSchema)
+                {
+                    c.SchemaAction = SchemaAutoAction.Update;
+                }
             });
-            cfg.ConfigureMappings(sourceAssembly, modelBuilder);
+            cfg.ConfigureMappings(sourceAssembly);
             return cfg.BuildSessionFactory();
         }
 
-        private static void ConfigureMappings(this Configuration cfg, Assembly sourceAssembly, IModelBuilder modelBuilder)
+        private static void ConfigureMappings(this Configuration cfg, Assembly sourceAssembly)
         {
             var mapper = new ModelMapper();
 
             var maps = sourceAssembly.GetExportedTypes().Where(t => t.IsClass && !t.IsAbstract).ToArray();
             mapper.AddMappings(maps);
 
-            if (modelBuilder != null)
-            {
-                modelBuilder.Build();
-            }
             cfg.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
         }
     }

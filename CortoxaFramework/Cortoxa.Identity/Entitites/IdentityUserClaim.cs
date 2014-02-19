@@ -11,9 +11,8 @@
 //  *
 //  */
 #endregion
-using Cortoxa.Data;
 
-namespace Cortoxa.Identity.Entitites
+namespace Cortoxa.Data.Identity.Entitites
 {
     public class IdentityUserClaim : Entity
     {

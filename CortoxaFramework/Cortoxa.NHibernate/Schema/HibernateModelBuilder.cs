@@ -11,12 +11,12 @@
 //  *
 //  */
 #endregion
+
 using System;
-using Cortoxa.Data;
 using Cortoxa.Data.Schema;
 using Cortoxa.Data.Schema.Models;
 
-namespace Cortoxa.NHibernate.Schema
+namespace Cortoxa.Data.NHibernate.Schema
 {
     public class HibernateModelBuilder :  IModelBuilder
     {

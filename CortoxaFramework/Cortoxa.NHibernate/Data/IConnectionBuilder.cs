@@ -5,26 +5,19 @@
 //  * (LGPL) which accompanies this distribution, and is available at
 //  * http://www.gnu.org/licenses/lgpl.html
 //  *
-//  *  Filename:	IStore.cs
-//  *  Date:		11/02/2014
+//  *  Filename:	IConnectionBuilder.cs
+//  *  Date:		19/02/2014
 //  *  Author:   	Denis Korkhov
 //  *
 //  */
 #endregion
-using System;
-using System.Threading.Tasks;
-using Cortoxa.Common;
 
-namespace Cortoxa.Data.Repository
+using NHibernate;
+
+namespace Cortoxa.Data.NHibernate.Data
 {
-    public interface IStore<T> : IRepository<T> where T : class
+    public interface IConnectionBuilder
     {
-        T Get(Guid id);
-
-        Task<T> GetAsync(Guid id);
-
-        T[] Get(params Guid[] id);
-
-        Task<T[]> GetAsync(params Guid[] id);
+        ISessionFactory BuildFactory();
     }
 }

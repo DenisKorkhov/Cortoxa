@@ -11,9 +11,9 @@
 //  *
 //  */
 #endregion
-using System;
+
+using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.Windsor;
-using Cortoxa.Initialization;
 using Cortoxa.IoC;
 
 namespace Cortoxa.Windsor
@@ -23,6 +23,7 @@ namespace Cortoxa.Windsor
         public static IToolContainer UseWindsor(this IToolSetup<IToolContainer> setup)
         {
             var container = new WindsorContainer();
+            container.Kernel.Resolver.AddSubResolver(new ArrayResolver(container.Kernel));
             return UseWindsor(setup, container);
         }
 

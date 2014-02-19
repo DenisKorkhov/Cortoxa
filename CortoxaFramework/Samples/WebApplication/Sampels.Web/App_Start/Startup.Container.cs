@@ -1,6 +1,10 @@
 ﻿using Cortoxa;
+using Cortoxa.Data.Context;
+using Cortoxa.Data.EntityFramework;
+using Cortoxa.Data.Identity.Entitites;
 using Cortoxa.Data.IoC;
-using Cortoxa.NHibernate;
+using Cortoxa.Data.NHibernate;
+using Cortoxa.Data.Repository;
 using Cortoxa.NLog;
 using Cortoxa.Owin;
 using Cortoxa.Web.MVC;
@@ -15,9 +19,12 @@ namespace Sampels.Web
         public void ConfigureContainer(IAppBuilder app)
         {
             app.UseContainer(x => x.UseWindsor())
-                .InstallTool<IDataConfig>(x => x.UseHibernate("Database", typeof (NHibernateSetup).Assembly))
+                .InstallTool<IStoreSetup>(x => x.UseHibernate("Database", typeof (NHibernateSetup).Assembly))
+                .InstallTool<IStoreSetup>(x => x.UseHibernate("Database2", typeof(NHibernateSetup).Assembly))
                 .InstallNLog("logger")
                 .InstallControllers();
+
+            var stores = app.Container().ResolveAll<IStore<IdentityUser>>();
         }
     }
 }

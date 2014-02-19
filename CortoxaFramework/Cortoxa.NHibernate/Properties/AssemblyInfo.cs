@@ -18,11 +18,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Cortoxa.NHibernate")]
+[assembly: AssemblyTitle("Cortoxa.Data.NHibernate")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Cortoxa.NHibernate")]
+[assembly: AssemblyProduct("Cortoxa.Data.NHibernate")]
 [assembly: AssemblyCopyright("Copyright Oxagile Denis Korkhov©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

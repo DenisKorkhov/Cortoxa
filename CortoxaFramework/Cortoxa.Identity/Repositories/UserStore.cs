@@ -11,6 +11,7 @@
 //  *
 //  */
 #endregion
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -18,11 +19,11 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Cortoxa.Data.Context;
+using Cortoxa.Data.Identity.Entitites;
 using Cortoxa.Data.Repository;
-using Cortoxa.Identity.Entitites;
 using Microsoft.AspNet.Identity;
 
-namespace Cortoxa.Identity.Repositories
+namespace Cortoxa.Data.Identity.Repositories
 {
     public class UserStore<TUser> : IUserLoginStore<TUser>, IUserClaimStore<TUser>, IUserRoleStore<TUser>, IUserPasswordStore<TUser>, IUserSecurityStampStore<TUser> where TUser : IdentityUser
     {
@@ -30,16 +31,17 @@ namespace Cortoxa.Identity.Repositories
         private IStore<TUser> userRepository;
         private readonly IStore<IdentityRole> roleRepository;
         private readonly IStore<IdentityUserClaim> claimsRepository;
-        private IDbContext context;
+        private readonly IDbSession session;
 
         public bool AutoSaveChanges { get; set; }
 
-        public UserStore(IStore<TUser> userRepository, IStore<IdentityRole> roleRepository, IStore<IdentityUserClaim> claimsRepository, IDbContext context)
+        public UserStore(IStore<TUser> userRepository, IStore<IdentityRole> roleRepository, IStore<IdentityUserClaim> claimsRepository, IDbSession session)
         {
             this.userRepository = userRepository;
             this.roleRepository = roleRepository;
             this.claimsRepository = claimsRepository;
-            this.context = context;
+            this.session = session;
+
             AutoSaveChanges = true;
         }
 
@@ -47,7 +49,7 @@ namespace Cortoxa.Identity.Repositories
         {
             if (AutoSaveChanges)
             {
-                await context.SaveChangesAsync();
+                await session.SaveChangesAsync();
             }
         }
 
@@ -111,7 +113,7 @@ namespace Cortoxa.Identity.Repositories
         protected virtual void Dispose(bool disposing)
         {
             disposed = true;
-            context = null;
+            session.Dispose();
             userRepository = null;
         }
 

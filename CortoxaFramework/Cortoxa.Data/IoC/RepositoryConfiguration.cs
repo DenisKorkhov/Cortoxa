@@ -2,8 +2,8 @@
 // /*
 //  * All rights reserved. This program and the accompanying materials
 //  * are made available under the terms of the GNU Lesser General Public License
-//  * (LGPL) version 2.1 which accompanies this distribution, and is available at
-//  * http://www.gnu.org/licenses/lgpl-2.1.html
+//  * (LGPL) which accompanies this distribution, and is available at
+//  * http://www.gnu.org/licenses/lgpl.html
 //  *
 //  *  Filename:	RepositoryConfiguration.cs
 //  *  Date:		17/02/2014
@@ -21,6 +21,12 @@ namespace Cortoxa.Data.IoC
 {
     public class RepositoryConfiguration : IRegistrationStratagy
     {
+        public RepositoryConfiguration(Type type, ToolkitLifeTime lifeTime)
+        {
+            LifeTime = lifeTime;
+            Type = type;
+        }
+
         public ToolkitLifeTime LifeTime { get; set; }
 
         public Type Type { get; set; }

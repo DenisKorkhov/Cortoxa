@@ -11,6 +11,7 @@
 //  *
 //  */
 #endregion
+
 using System;
 using Cortoxa.Data.Schema;
 using Cortoxa.IoC;
@@ -19,20 +20,23 @@ using Cortoxa.IoC.Common;
 using Cortoxa.IoC.Registration.Extentions;
 using NHibernate;
 
-namespace Cortoxa.NHibernate.IoC
+namespace Cortoxa.Data.NHibernate.IoC
 {
     public class SessionConfiguration : IRegistrationStratagy
     {
         public ToolkitLifeTime LifeTime { get; set; }
 
-        public Func<IModelBuilder, ISessionFactory> SessionFactory { get; set; }
+        public Func<ISessionFactory> SessionFactory { get; set; }
 
         public void Register(IToolContainer container)
         {
-            container.Register(r => r.For<ISessionFactory>().ToFactory(x => SessionFactory(null)).LifeTime(ToolkitLifeTime.Singleton));
+//            var sessionFactoryName = string.Format("SF_{0}", configurationScope ?? string.Empty);
+//            var sessionName = string.Format("session_{0}", configurationScope ?? string.Empty);
+            container.Register(r => r.For<ISessionFactory>().ToFactory(x => SessionFactory()).LifeTime(ToolkitLifeTime.Singleton));
             container.Register(r => r.For<ISession>().ToFactory(x =>
             {
                 var c = container;
+//                var sfName = sessionFactoryName;
                 var factory = c.Resolve<ISessionFactory>();
                 return factory.OpenSession();
             }).LifeTime(LifeTime));

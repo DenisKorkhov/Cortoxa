@@ -2,8 +2,8 @@
 // /*
 //  * All rights reserved. This program and the accompanying materials
 //  * are made available under the terms of the GNU Lesser General Public License
-//  * (LGPL) version 2.1 which accompanies this distribution, and is available at
-//  * http://www.gnu.org/licenses/lgpl-2.1.html
+//  * (LGPL) which accompanies this distribution, and is available at
+//  * http://www.gnu.org/licenses/lgpl.html
 //  *
 //  *  Filename:	Store.cs
 //  *  Date:		11/02/2014
@@ -20,13 +20,13 @@ using Cortoxa.Data.Context;
 
 namespace Cortoxa.Data.Repository
 {
-    public abstract class Store<T> : IStore<T> where T : class, IEntity
+    public class Store<T> : IStore<T> where T : class, IEntity
     {
-        private IDbContext context;
+        private IDbSession session;
 
-        protected Store(IDbContext context)
+        public Store(IDbSession session)
         {
-            this.context = context;
+            this.session = session;
         }
 
         public void Dispose()
@@ -39,20 +39,18 @@ namespace Cortoxa.Data.Repository
         {
             if (disposing)
             {
-                if (context != null)
+                if (session != null)
                 {
-                    context.Dispose();
-                    context = null;
+                    session.Dispose();
+                    session = null;
                 }
             }
         }
 
-        public IDbContext Context
+        public virtual IQueryable<T> GetQuery()
         {
-            get { return context; }
+            return session.Query<T>();
         }
-
-        public abstract IQueryable<T> GetQuery();
 
         public virtual T First(Expression<Func<T, bool>> predicate)
         {
@@ -89,22 +87,31 @@ namespace Cortoxa.Data.Repository
             return GetQuery().ToList();
         }
 
-        public abstract void Add(T entity);
+        public virtual void Add(T entity)
+        {
+            session.Delete(entity);
+        }
 
         public Task AddAsync(T entity)
         {
             return Task.Run(() => Add(entity));
         }
 
-        public abstract void Update(T entity);
+        public virtual void Update(T entity)
+        {
+            session.Update(entity);
+        }
 
         public virtual Task UpdateAsync(T entity)
         {
             return Task.Run(() => Update(entity));
         }
 
+        public virtual void Delete(T entity)
+        {
+            session.Delete(entity);
+        }
 
-        public abstract void Delete(T entity);
         public Task DeleteAsync(T entity)
         {
             return Task.Run(() => Delete(entity));
@@ -112,7 +119,7 @@ namespace Cortoxa.Data.Repository
 
         public virtual void SaveChanges()
         {
-            Context.SaveChanges();
+            session.SaveChanges();
         }
 
         public virtual T Get(Guid id)

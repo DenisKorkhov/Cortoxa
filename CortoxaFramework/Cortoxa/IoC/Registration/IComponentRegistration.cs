@@ -26,5 +26,9 @@ namespace Cortoxa.IoC.Registration
         IComponentRegistration ToSelf();
 
         IComponentRegistration With(object attributies);
+
+        IComponentRegistration DependsOn<T>(string serviceName);
+
+        IComponentRegistration DependsOn(Type service, string serviceName);
     }
 }

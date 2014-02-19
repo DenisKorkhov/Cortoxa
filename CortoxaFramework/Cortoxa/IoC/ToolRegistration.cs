@@ -114,6 +114,17 @@ namespace Cortoxa.IoC
             return this;
         }
 
+        public IComponentRegistration DependsOn<T>(string serviceName)
+        {
+            return DependsOn(typeof (T), serviceName);
+        }
+
+        public IComponentRegistration DependsOn(Type service, string serviceName)
+        {
+            _context.Dependencies.Add(service, serviceName);
+            return this;
+        }
+
         public IToolRegistration LifeTime(ToolkitLifeTime lifeTime)
         {
             _context.Lifetime = lifeTime;

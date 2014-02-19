@@ -11,17 +11,17 @@
 //  *
 //  */
 #endregion
+
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Threading.Tasks;
-using Cortoxa.Data;
 using Cortoxa.Data.Context;
 using Cortoxa.Data.Schema;
 
-namespace Cortoxa.EntityFramework.Data
+namespace Cortoxa.Data.EntityFramework.Data
 {
-    public class EntityContext : DbContext, IDbContext
+    public class EntityContext : DbContext//, IDbContext
     {
         private readonly IModelBuilder modelBuilder;
 
@@ -43,6 +43,11 @@ namespace Cortoxa.EntityFramework.Data
         public IQueryable<TEntity> Query<TEntity>() where TEntity : class
         {
             return Set<TEntity>();
+        }
+
+        public void BuildModel()
+        {
+            throw new System.NotImplementedException();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

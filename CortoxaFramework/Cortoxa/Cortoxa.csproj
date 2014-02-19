@@ -43,6 +43,7 @@
     <Compile Include="Common\Fluent\FluentBuilder.cs" />
     <Compile Include="Common\Log\ILogger.cs" />
     <Compile Include="Common\IRepository.cs" />
+    <Compile Include="Common\StingExtentions.cs" />
     <Compile Include="Initialization\IRegistrationConfig.cs" />
     <Compile Include="Initialization\RegistrationBuilder.cs" />
     <Compile Include="Initialization\RegistrationConfig.cs" />

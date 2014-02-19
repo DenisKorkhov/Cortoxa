@@ -12,11 +12,12 @@
 //  */
 #endregion
 using System;
+using Cortoxa.IoC;
 using Cortoxa.IoC.Common;
 
 namespace Cortoxa.Initialization
 {
-    public interface IRegistrationConfig : IRegistrationStratagy
+    public interface IRegistrationConfig 
     {
         void Configure(IRegistrationStratagy stratagy);
 
@@ -24,6 +25,8 @@ namespace Cortoxa.Initialization
 
         void Configure<T>(Func<T, T> configurationAction) where T : IRegistrationStratagy;
 
-        string ConfigurationName { get; }
+//        string ConfigurationScope { get; }
+
+        void Register(IToolContainer container);
     }
 }

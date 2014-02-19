@@ -22,19 +22,25 @@ namespace Cortoxa.Initialization
     {
         private readonly IDictionary<Type, IRegistrationStratagy> stratagies = new Dictionary<Type, IRegistrationStratagy>();
 
-        public string ConfigurationName { get; private set; }
+        public string ConfigurationScope { get; private set; }
 
-        protected RegistrationConfig(string configurationName)
+        protected RegistrationConfig()
         {
-            ConfigurationName = configurationName;
+            ConfigurationScope = null;
         }
 
+        protected RegistrationConfig(string configurationScope)
+        {
+            ConfigurationScope = configurationScope;
+        }
+
+        public string Scope { get; set; }
 
         public void Register(IToolContainer container)
         {
             foreach (var stratagy in stratagies.Values)
             {
-                stratagy.Register(container);
+                stratagy.Register(container/*, ConfigurationScope*/);
             }
         }
 

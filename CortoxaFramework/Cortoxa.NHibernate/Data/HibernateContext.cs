@@ -11,15 +11,15 @@
 //  *
 //  */
 #endregion
+
 using System.Linq;
 using System.Threading.Tasks;
-using Cortoxa.Data.Context;
 using NHibernate;
 using NHibernate.Linq;
 
-namespace Cortoxa.NHibernate.Data
+namespace Cortoxa.Data.NHibernate.Data
 {
-    public class HibernateContext : IDbContext
+    public class HibernateContext //: IDbContext
     {
         private readonly ISession session; 
         
@@ -36,6 +36,10 @@ namespace Cortoxa.NHibernate.Data
         public IQueryable<TEntity> Query<TEntity>() where TEntity : class
         {
             return session.Query<TEntity>();
+        }
+
+        public void BuildModel()
+        {
         }
 
         public void OnBuildSchama()

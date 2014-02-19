@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cortoxa", "Cortoxa\Cortoxa.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cortoxa.Windsor", "Cortoxa.Windsor\Cortoxa.Windsor.csproj", "{34F71A84-2C75-468C-AEE2-61246F6B1353}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cortoxa.NHibernate", "Cortoxa.NHibernate\Cortoxa.NHibernate.csproj", "{F36A7BCF-6A17-4174-9FFA-E462F19A644A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cortoxa.Data.NHibernate", "Cortoxa.NHibernate\Cortoxa.Data.NHibernate.csproj", "{F36A7BCF-6A17-4174-9FFA-E462F19A644A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cortoxa.Web", "Cortoxa.Web\Cortoxa.Web.csproj", "{8F8156B2-1AF2-42F8-B7BC-C869C7B15745}"
 EndProject
@@ -23,13 +23,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IoC", "IoC", "{09618881-733
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{FBBF81AB-50F9-4275-B313-6032C32644EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cortoxa.EntityFramework", "Cortoxa.EntityFramework\Cortoxa.EntityFramework.csproj", "{5110928C-CA26-480F-B3B9-B1C07728D8AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cortoxa.Data.EntityFramework", "Cortoxa.EntityFramework\Cortoxa.Data.EntityFramework.csproj", "{5110928C-CA26-480F-B3B9-B1C07728D8AE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{9D85B79E-8BC4-4E6D-B074-B48B6FBD7BEE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cortoxa.Ninject", "Cortoxa.Ninject\Cortoxa.Ninject.csproj", "{58FDFEF1-D2B0-48B7-83F0-C6A123797EE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cortoxa.Identity", "Cortoxa.Identity\Cortoxa.Identity.csproj", "{92912F87-74FC-4F5F-9AF6-00E537BC888E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cortoxa.Data.Identity", "Cortoxa.Identity\Cortoxa.Data.Identity.csproj", "{92912F87-74FC-4F5F-9AF6-00E537BC888E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cortoxa.Data", "Cortoxa.Data\Cortoxa.Data.csproj", "{06C7E715-B86C-41E0-8879-CAC35C112A8D}"
 EndProject

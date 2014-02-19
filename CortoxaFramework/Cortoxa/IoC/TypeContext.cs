@@ -23,6 +23,7 @@ namespace Cortoxa.IoC
     {
         private readonly IList<Assembly> assemblies = new List<Assembly>();
         private readonly IList<MethodInteception> interceptors = new List<MethodInteception>();
+        private readonly IDictionary<Type, string> dependencies = new Dictionary<Type, string>();
         
         public Type For { get; set; }
 
@@ -31,6 +32,8 @@ namespace Cortoxa.IoC
         public Type To { get; set; }
 
         public Func<FactoryContext, object> ToFactory{ get; set; }
+
+        public IDictionary<Type, string> Dependencies { get { return dependencies; } }
 
         public object Attributies { get; set; }
 

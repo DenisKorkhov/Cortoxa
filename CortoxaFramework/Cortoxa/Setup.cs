@@ -14,6 +14,7 @@
 using System;
 using Cortoxa.Initialization;
 using Cortoxa.IoC;
+using Cortoxa.IoC.Common;
 
 namespace Cortoxa
 {
@@ -28,7 +29,7 @@ namespace Cortoxa
 
     public static class SetupExtentions
     {
-        public static IToolContainer InstallTool<T>(this IToolContainer container, Func<IToolSetup<T>, T> setupAction) where T : IRegistrationConfig
+        public static IToolContainer InstallTool<T>(this IToolContainer container, Func<IToolSetup<T>, T> setupAction) where T : IRegistrationStratagy
         {
             var config = setupAction(null);
             config.Register(container);

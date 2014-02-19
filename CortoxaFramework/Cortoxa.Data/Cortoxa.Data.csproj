@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cortoxa.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Cortoxa.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,15 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\IDbContext.cs" />
+    <Compile Include="Context\IDbSession.cs" />
+    <Compile Include="Context\IModelFactory.cs" />
+    <Compile Include="IoC\IStoreConfig.cs" />
+    <Compile Include="StoreSetup.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="IoC\DataConfig.cs" />
     <Compile Include="IoC\ContextConfiguration.cs" />
     <Compile Include="IoC\IDataConfig.cs" />
     <Compile Include="DataSetupExtentions.cs" />
+    <Compile Include="IoC\IStoreSetup.cs" />
     <Compile Include="IoC\ModelBuilderConfiguration.cs" />
     <Compile Include="IoC\RepositoryConfiguration.cs" />
+    <Compile Include="IoC\SessionConfiguration.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Repository\Store.cs" />
     <Compile Include="Repository\IStore.cs" />

@@ -242,13 +242,17 @@
       <Project>{06c7e715-b86c-41e0-8879-cac35c112a8d}</Project>
       <Name>Cortoxa.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Cortoxa.Identity\Cortoxa.Identity.csproj">
-      <Project>{92912F87-74FC-4F5F-9AF6-00E537BC888E}</Project>
-      <Name>Cortoxa.Identity</Name>
+    <ProjectReference Include="..\..\..\Cortoxa.EntityFramework\Cortoxa.Data.EntityFramework.csproj">
+      <Project>{5110928c-ca26-480f-b3b9-b1c07728d8ae}</Project>
+      <Name>Cortoxa.Data.EntityFramework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Cortoxa.NHibernate\Cortoxa.NHibernate.csproj">
+    <ProjectReference Include="..\..\..\Cortoxa.Identity\Cortoxa.Data.Identity.csproj">
+      <Project>{92912F87-74FC-4F5F-9AF6-00E537BC888E}</Project>
+      <Name>Cortoxa.Data.Identity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Cortoxa.NHibernate\Cortoxa.Data.NHibernate.csproj">
       <Project>{f36a7bcf-6a17-4174-9ffa-e462f19a644a}</Project>
-      <Name>Cortoxa.NHibernate</Name>
+      <Name>Cortoxa.Data.NHibernate</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Cortoxa.NLog\Cortoxa.NLog.csproj">
       <Project>{9041babe-e6b7-4cee-bf08-ee56c4dc43e7}</Project>

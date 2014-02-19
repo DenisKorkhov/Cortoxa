@@ -5,29 +5,26 @@
 //  * (LGPL) which accompanies this distribution, and is available at
 //  * http://www.gnu.org/licenses/lgpl.html
 //  *
-//  *  Filename:	DataConfig.cs
-//  *  Date:		17/02/2014
+//  *  Filename:	IStoreSetup.cs
+//  *  Date:		19/02/2014
 //  *  Author:   	Denis Korkhov
 //  *
 //  */
 #endregion
-using Cortoxa.Initialization;
-using Cortoxa.IoC;
+
+using System;
+using Cortoxa.Data.Context;
 using Cortoxa.IoC.Attributes;
+using Cortoxa.IoC.Common;
 
 namespace Cortoxa.Data.IoC
 {
-    public class DataConfig : RegistrationConfig, IDataConfig
+    public interface IStoreSetup : IRegistrationStratagy
     {
-        public DataConfig(string configurationName) : base(configurationName)
-        {
-        }
+        IStoreSetup WithSession<T>(ToolkitLifeTime lifeTime = ToolkitLifeTime.Transient) where T : IDbSession;
 
+        IStoreSetup WithRepository<T>(ToolkitLifeTime lifeTime = ToolkitLifeTime.Transient);
 
-        public IDataConfig WithSession<T>(ToolkitLifeTime lifeTime = ToolkitLifeTime.Transient)
-        {
-            this.Configure(new SessionConfiguration(typeof(T), lifeTime));
-            return this;
-        }
+        IStoreSetup WithRepository(Type type, ToolkitLifeTime lifeTime = ToolkitLifeTime.Transient);
     }
 }

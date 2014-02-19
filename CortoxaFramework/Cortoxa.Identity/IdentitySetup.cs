@@ -11,13 +11,14 @@
 //  *
 //  */
 #endregion
+
+using Cortoxa.Data.Identity.Entitites;
+using Cortoxa.Data.Identity.IoC;
 using Cortoxa.Data.IoC;
 using Cortoxa.Data.Schema;
 using Cortoxa.Data.Schema.Models;
-using Cortoxa.Identity.Entitites;
-using Cortoxa.Identity.IoC;
 
-namespace Cortoxa.Identity
+namespace Cortoxa.Data.Identity
 {
     public static class IdentitySetup
     {

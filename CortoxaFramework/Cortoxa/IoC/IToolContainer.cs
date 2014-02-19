@@ -32,6 +32,18 @@ namespace Cortoxa.IoC
 
         T Resolve<T>(Type controllerType, object arguments = null);
 
+        T Resolve<T>(string key, object arguments = null);
+
+        T[] ResolveAll<T>(object arguments = null);
+
+        object[] ResolveAll(Type controllerType, object arguments = null);
+
+        T[] ResolveAll<T>(Type controllerType, object arguments = null);
+
+        T[] ResolveAll<T>(string key, object arguments = null);
+
         void Release(object instance);
+
+
     }
 }

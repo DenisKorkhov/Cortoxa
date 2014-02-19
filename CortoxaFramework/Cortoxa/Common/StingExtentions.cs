@@ -5,26 +5,19 @@
 //  * (LGPL) which accompanies this distribution, and is available at
 //  * http://www.gnu.org/licenses/lgpl.html
 //  *
-//  *  Filename:	IStore.cs
-//  *  Date:		11/02/2014
+//  *  Filename:	StingExtentions.cs
+//  *  Date:		19/02/2014
 //  *  Author:   	Denis Korkhov
 //  *
 //  */
 #endregion
-using System;
-using System.Threading.Tasks;
-using Cortoxa.Common;
-
-namespace Cortoxa.Data.Repository
+namespace Cortoxa.Common
 {
-    public interface IStore<T> : IRepository<T> where T : class
+    public static class StingExtentions
     {
-        T Get(Guid id);
-
-        Task<T> GetAsync(Guid id);
-
-        T[] Get(params Guid[] id);
-
-        Task<T[]> GetAsync(params Guid[] id);
+        public static string Format(this string value, params object[] args)
+        {
+            return string.Format(value, args);
+        }
     }
 }

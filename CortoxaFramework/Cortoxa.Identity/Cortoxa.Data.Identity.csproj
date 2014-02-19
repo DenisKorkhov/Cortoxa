@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5110928C-CA26-480F-B3B9-B1C07728D8AE}</ProjectGuid>
+    <ProjectGuid>{92912F87-74FC-4F5F-9AF6-00E537BC888E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cortoxa.EntityFramework</RootNamespace>
-    <AssemblyName>Cortoxa.EntityFramework</AssemblyName>
+    <RootNamespace>Cortoxa.Data.Identity</RootNamespace>
+    <AssemblyName>Cortoxa.Data.Identity</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -29,15 +32,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,8 +48,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\EntityContext.cs" />
+    <Compile Include="Entitites\IdentityRole.cs" />
+    <Compile Include="Entitites\IdentityUser.cs" />
+    <Compile Include="Entitites\IdentityUserClaim.cs" />
+    <Compile Include="Entitites\IdentityUserRole.cs" />
+    <Compile Include="IdentitySetup.cs" />
+    <Compile Include="IoC\IdentityConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\UserStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -55,7 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cortoxa.Data\Cortoxa.Data.csproj">
-      <Project>{06C7E715-B86C-41E0-8879-CAC35C112A8D}</Project>
+      <Project>{06c7e715-b86c-41e0-8879-cac35c112a8d}</Project>
       <Name>Cortoxa.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Cortoxa\Cortoxa.csproj">

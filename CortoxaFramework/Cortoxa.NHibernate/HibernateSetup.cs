@@ -11,38 +11,27 @@
 //  *
 //  */
 #endregion
+
 using System;
 using System.Reflection;
-using Cortoxa.Data;
+using Cortoxa.Common;
 using Cortoxa.Data.IoC;
-using Cortoxa.Data.Schema;
+using Cortoxa.Data.NHibernate.Context;
+using Cortoxa.Data.NHibernate.Data;
+using Cortoxa.Data.NHibernate.IoC;
+using Cortoxa.Data.Repository;
 using Cortoxa.IoC.Attributes;
-using Cortoxa.NHibernate.Data;
-using Cortoxa.NHibernate.IoC;
 using NHibernate;
 
-namespace Cortoxa.NHibernate
+namespace Cortoxa.Data.NHibernate
 {
     public static class HibernateSetup
     {
-        public static IDataConfig UseHibernate(this IToolSetup<IDataConfig> dataSetup, string connectionString, Assembly sourceAssembly, ToolkitLifeTime lifeTime = ToolkitLifeTime.PerWebRequest, bool buildSchema = false)
+        public static IStoreSetup UseHibernate(this IToolSetup<IStoreSetup> dataSetup, string connectionString, Assembly sourceAssembly, ToolkitLifeTime lifeTime = ToolkitLifeTime.PerWebRequest, bool buildSchema = false)
         {
-            Func<IModelBuilder, ISessionFactory> sessionAction = (schemaBuilder) => SessionFactoryConfiguration.BuildSessionFactory(sourceAssembly, connectionString, "", schemaBuilder);
-            var dataConfig = new DataConfig(string.Format("h_{0}", Guid.NewGuid().ToString()))
-                .WithContext<HibernateContext>(lifeTime)
-                .WithRepository(typeof (HibernateRepository<>))
-                .WithSession(sessionAction);
-            return dataConfig;
-        }
-
-        public static IDataConfig WithSession(this IDataConfig config, Func<IModelBuilder, ISessionFactory> sessionAction, ToolkitLifeTime lifeTime = ToolkitLifeTime.Transient)
-        {
-            config.Configure<SessionConfiguration>(c =>
-            {
-                c.SessionFactory = sessionAction;
-                c.LifeTime = lifeTime;
-            });
-            return config;
+            return new HibernateStoreSetup("hibernate_{0}".Format(Guid.NewGuid()), connectionString, sourceAssembly)
+                .WithSession<HibernateSession>()
+                .WithRepository(typeof (Store<>));
         }
     }
 }

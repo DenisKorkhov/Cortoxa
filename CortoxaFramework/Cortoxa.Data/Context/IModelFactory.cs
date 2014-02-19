@@ -5,26 +5,20 @@
 //  * (LGPL) which accompanies this distribution, and is available at
 //  * http://www.gnu.org/licenses/lgpl.html
 //  *
-//  *  Filename:	IStore.cs
-//  *  Date:		11/02/2014
+//  *  Filename:	IModelFactory.cs
+//  *  Date:		19/02/2014
 //  *  Author:   	Denis Korkhov
 //  *
 //  */
 #endregion
-using System;
-using System.Threading.Tasks;
-using Cortoxa.Common;
-
-namespace Cortoxa.Data.Repository
+namespace Cortoxa.Data.Context
 {
-    public interface IStore<T> : IRepository<T> where T : class
+    public interface IModelFactory<T> where T :class
     {
-        T Get(Guid id);
+        void Configure();
 
-        Task<T> GetAsync(Guid id);
+        T GetSession();
 
-        T[] Get(params Guid[] id);
-
-        Task<T[]> GetAsync(params Guid[] id);
+        void BuildModel();
     }
 }

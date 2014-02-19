@@ -58,6 +58,34 @@ namespace Cortoxa.Windsor
             return (T)result;
         }
 
+        public T Resolve<T>(string key, object arguments = null)
+        {
+            return container.Resolve<T>(key, arguments);
+        }
+
+        public T[] ResolveAll<T>(object arguments = null)
+        {
+            return arguments != null ? container.ResolveAll<T>(arguments) : container.ResolveAll<T>();
+        }
+
+        public object[] ResolveAll(Type type, object arguments = null)
+        {
+            var tmp = container.ResolveAll(type);
+
+            return arguments != null ? container.ResolveAll(type, arguments).Cast<object>().ToArray() : container.ResolveAll(type).Cast<object>().ToArray();
+        }
+
+        public T[] ResolveAll<T>(Type type, object arguments = null)
+        {
+            return arguments != null ? container.ResolveAll(type, arguments).Cast<T>().ToArray() : container.ResolveAll(type).Cast<T>().ToArray();
+            
+        }
+
+        public T[] ResolveAll<T>(string key, object arguments = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public IToolContainer Register(Action<IToolRegistration> registration)
         {
             var instance = ToolRegistration.Types;
@@ -105,6 +133,12 @@ namespace Cortoxa.Windsor
                             component = component.Named(context.Name);
                         }
 
+                        if (context.Dependencies.Any())
+                        {
+
+                            var allDependencies = context.Dependencies.Select(dependency=>Dependency.OnComponent(dependency.Key, dependency.Value)).ToArray();
+                            component.DependsOn(allDependencies);
+                        }
                     
                         if (context.Interceptors.Any())
                         {

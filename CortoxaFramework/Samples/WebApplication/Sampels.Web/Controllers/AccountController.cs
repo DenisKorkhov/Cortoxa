@@ -2,7 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 using Cortoxa.Common.Log;
-using Cortoxa.Identity.Entitites;
+using Cortoxa.Data.Identity.Entitites;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Sampels.Web.Models;

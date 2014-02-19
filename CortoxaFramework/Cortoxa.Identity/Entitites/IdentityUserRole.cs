@@ -11,7 +11,8 @@
 //  *
 //  */
 #endregion
-namespace Cortoxa.Identity.Entitites
+
+namespace Cortoxa.Data.Identity.Entitites
 {
     public class IdentityUserRole
     {

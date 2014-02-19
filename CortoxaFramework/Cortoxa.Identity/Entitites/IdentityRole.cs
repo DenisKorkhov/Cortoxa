@@ -11,12 +11,12 @@
 //  *
 //  */
 #endregion
+
 using System;
 using System.Collections.Generic;
-using Cortoxa.Data;
 using Microsoft.AspNet.Identity;
 
-namespace Cortoxa.Identity.Entitites
+namespace Cortoxa.Data.Identity.Entitites
 {
     public class IdentityRole : Entity, IRole
     {

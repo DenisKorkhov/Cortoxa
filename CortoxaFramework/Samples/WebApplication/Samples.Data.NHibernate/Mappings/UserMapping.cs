@@ -1,4 +1,4 @@
-﻿using Cortoxa.Identity.Entitites;
+﻿using Cortoxa.Data.Identity.Entitites;
 using NHibernate.Mapping.ByCode;
 using Samples.Data.Entities;
 

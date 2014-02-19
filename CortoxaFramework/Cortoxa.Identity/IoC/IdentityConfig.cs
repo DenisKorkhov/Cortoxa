@@ -11,15 +11,15 @@
 //  *
 //  */
 #endregion
+
 using System;
-using Cortoxa.Identity.Entitites;
-using Cortoxa.Identity.Repositories;
+using Cortoxa.Data.Identity.Repositories;
 using Cortoxa.IoC;
 using Cortoxa.IoC.Attributes;
 using Cortoxa.IoC.Common;
 using Microsoft.AspNet.Identity;
 
-namespace Cortoxa.Identity.IoC
+namespace Cortoxa.Data.Identity.IoC
 {
     public class IdentityConfig : IRegistrationStratagy
     {

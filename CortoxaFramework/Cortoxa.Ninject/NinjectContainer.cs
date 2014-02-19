@@ -64,6 +64,31 @@ namespace Cortoxa.Ninject
             throw new NotImplementedException();
         }
 
+        public T Resolve<T>(string key, object arguments = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T[] ResolveAll<T>(object arguments = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object[] ResolveAll(Type controllerType, object arguments = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T[] ResolveAll<T>(Type controllerType, object arguments = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T[] ResolveAll<T>(string key, object arguments = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Release(object instance)
         {
             throw new NotImplementedException();

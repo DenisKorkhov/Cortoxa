@@ -5,29 +5,35 @@
 //  * (LGPL) which accompanies this distribution, and is available at
 //  * http://www.gnu.org/licenses/lgpl.html
 //  *
-//  *  Filename:	ContextConfiguration.cs
-//  *  Date:		17/02/2014
+//  *  Filename:	EntityModelFactory.cs
+//  *  Date:		19/02/2014
 //  *  Author:   	Denis Korkhov
 //  *
 //  */
 #endregion
-using System;
+
+using System.Data.Entity;
 using Cortoxa.Data.Context;
-using Cortoxa.IoC;
-using Cortoxa.IoC.Attributes;
-using Cortoxa.IoC.Common;
 
-namespace Cortoxa.Data.IoC
+namespace Cortoxa.Data.EntityFramework.Context
 {
-    public class ContextConfiguration : IRegistrationStratagy
+    public class EntityModelFactory :  IModelFactory<DbContext>
     {
-        public ToolkitLifeTime LifeTime { get; set; }
-
-        public Type Type { get; set; }
-
-        public void Register(IToolContainer container)
+        public virtual void Configure()
         {
-//            container.Register(r => r.For<IDbContext>().To(Type).LifeTime(LifeTime));
+            //Do nothing
+        }
+
+        public DbContext GetSession()
+        {
+          //  return this;
+            return null;
+        }
+
+
+        public virtual void BuildModel()
+        {
+
         }
     }
 }
