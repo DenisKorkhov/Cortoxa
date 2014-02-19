@@ -12,11 +12,12 @@
 //  */
 #endregion
 using System;
+using Cortoxa.IoC.Dependency;
 using Cortoxa.IoC.Registration;
 
 namespace Cortoxa.IoC
 {
-    public interface IToolContainer
+    public interface IToolContainer : IDependencyContainer
     {
         T GetContainer<T>();
 

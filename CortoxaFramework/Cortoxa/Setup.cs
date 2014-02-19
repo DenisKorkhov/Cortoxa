@@ -39,5 +39,9 @@ namespace Cortoxa
 
     public interface IToolSetup<T>
     {
+        string Name { get; set; }
+
+
+
     }
 }

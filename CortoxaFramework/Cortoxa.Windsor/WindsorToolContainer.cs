@@ -12,10 +12,12 @@
 //  */
 #endregion
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Cortoxa.IoC;
+using Cortoxa.IoC.Dependency;
 using Cortoxa.IoC.Registration;
 using Cortoxa.Windsor.Interceptions;
 
@@ -24,6 +26,7 @@ namespace Cortoxa.Windsor
     internal sealed class WindsorToolContainer : IToolContainer
     {
         private readonly IWindsorContainer container;
+        private readonly IList<IDependencyProvider> providers = new List<IDependencyProvider>();
 
         public WindsorToolContainer(IWindsorContainer container)
         {
@@ -169,6 +172,11 @@ namespace Cortoxa.Windsor
         public void Release(object instance)
         {
             container.Release(instance);
+        }
+
+        public void AddDependencyProvider(IDependencyProvider provider)
+        {
+            providers.Add(provider);
         }
     }
 }

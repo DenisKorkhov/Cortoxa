@@ -54,6 +54,8 @@
     <Compile Include="IoC\Common\IRegistrationStratagy.cs" />
     <Compile Include="IoC\FactoryContext.cs" />
     <Compile Include="Common\Fluent\IFluentBuilder.cs" />
+    <Compile Include="IoC\Dependency\IDependencyContainer.cs" />
+    <Compile Include="IoC\Dependency\IDependencyProvider.cs" />
     <Compile Include="IoC\Registration\BaseConfiguration.cs" />
     <Compile Include="IoC\ContainerExtentions.cs" />
     <Compile Include="IoC\Interception\InterceptionContext.cs" />

@@ -54,10 +54,6 @@ namespace Cortoxa.Data
             return this;
         }
 
-        public virtual IStoreSetup WithRepository<T>(ToolkitLifeTime lifeTime = ToolkitLifeTime.Transient)
-        {
-            return WithRepository(typeof (T), lifeTime);
-        }
 
         public IStoreSetup WithRepository(Type type, ToolkitLifeTime lifeTime = ToolkitLifeTime.Transient)
         {

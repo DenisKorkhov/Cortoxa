@@ -5,25 +5,17 @@
 //  * (LGPL) which accompanies this distribution, and is available at
 //  * http://www.gnu.org/licenses/lgpl.html
 //  *
-//  *  Filename:	IStoreSetup.cs
+//  *  Filename:	IDependencyContainer.cs
 //  *  Date:		19/02/2014
 //  *  Author:   	Denis Korkhov
 //  *
 //  */
 #endregion
 
-using System;
-using Cortoxa.Data.Context;
-using Cortoxa.IoC.Attributes;
-using Cortoxa.IoC.Common;
-
-namespace Cortoxa.Data.IoC
+namespace Cortoxa.IoC.Dependency
 {
-    public interface IStoreSetup : IRegistrationStratagy
+    public interface IDependencyContainer
     {
-        IStoreSetup WithSession<T>(ToolkitLifeTime lifeTime = ToolkitLifeTime.Transient) where T : IDbSession;
-
-
-        IStoreSetup WithRepository(Type type, ToolkitLifeTime lifeTime = ToolkitLifeTime.Transient);
+        void AddDependencyProvider(IDependencyProvider provider);
     }
 }
