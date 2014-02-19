@@ -17,11 +17,9 @@ using System.Reflection;
 using Cortoxa.Common;
 using Cortoxa.Data.IoC;
 using Cortoxa.Data.NHibernate.Context;
-using Cortoxa.Data.NHibernate.Data;
 using Cortoxa.Data.NHibernate.IoC;
 using Cortoxa.Data.Repository;
 using Cortoxa.IoC.Attributes;
-using NHibernate;
 
 namespace Cortoxa.Data.NHibernate
 {

@@ -20,7 +20,7 @@ namespace Sampels.Web
         {
             app.UseContainer(x => x.UseWindsor())
                 .InstallTool<IStoreSetup>(x => x.UseHibernate("Database", typeof (NHibernateSetup).Assembly))
-                .InstallTool<IStoreSetup>(x => x.UseHibernate("Database2", typeof(NHibernateSetup).Assembly))
+//                .InstallTool<IStoreSetup>(x => x.UseHibernate("Database2", typeof(NHibernateSetup).Assembly))
                 .InstallNLog("logger")
                 .InstallControllers();
 

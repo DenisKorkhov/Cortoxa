@@ -42,6 +42,7 @@ namespace Cortoxa.Data.NHibernate.IoC
             var factoryName = string.Format("session.factory.{0}", Scope);
 
             container.Register(r => r.For<ISessionFactory>().ToFactory(x => SessionFactoryConfiguration.BuildSessionFactory(sourceAssembly, connectionString)).Name(factoryName).LifeTime(ToolkitLifeTime.Singleton));
+
             container.Register(r => r.For<ISession>().ToFactory(x =>
             {
                 var c = container;
@@ -49,16 +50,8 @@ namespace Cortoxa.Data.NHibernate.IoC
                 return factory.OpenSession();
             }).Name(hibernateSessionName).LifeTime(ToolkitLifeTime.Transient));
 
-            container.Register(r => r.For<IDbSession>().To(SessionConfig.Type)
-                .Name(sessionName)
-                .DependsOn<ISession>(hibernateSessionName)
-                .LifeTime(StoreConfig.LifeTime));
-
-            container.Register(r => r.For(typeof(IStore<>)).To(StoreConfig.Type).Name(respositoryName)
-                .DependsOn<IDbSession>(sessionName)
-                .LifeTime(StoreConfig.LifeTime));
-            
-//            base.Register(container);
+            container.Register(r => r.For<IDbSession>().To(SessionConfig.Type).Name(sessionName).DependsOn<ISession>(hibernateSessionName).LifeTime(StoreConfig.LifeTime));
+            container.Register(r => r.For(typeof(IStore<>)).To(StoreConfig.Type).Name(respositoryName).DependsOn<IDbSession>(sessionName).LifeTime(StoreConfig.LifeTime));
         }
     }
 }
