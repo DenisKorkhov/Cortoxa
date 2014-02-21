@@ -15,12 +15,19 @@ using System;
 using Cortoxa.Initialization;
 using Cortoxa.IoC;
 using Cortoxa.IoC.Common;
+using Cortoxa.IoC2;
 
 namespace Cortoxa
 {
     public static class Setup
     {
         public static IToolContainer InitContainer(Func<IToolSetup<IToolContainer>, IToolContainer> setupAction)
+        {
+            var container = setupAction(null);
+            return container;
+        }
+
+        public static IToolContainer2 InitContainer2(Func<IToolSetup<IToolContainer2>, IToolContainer2> setupAction)
         {
             var container = setupAction(null);
             return container;

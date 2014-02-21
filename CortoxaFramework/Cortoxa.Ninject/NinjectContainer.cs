@@ -13,6 +13,7 @@
 #endregion
 using System;
 using Cortoxa.IoC;
+using Cortoxa.IoC.Dependency;
 using Cortoxa.IoC.Registration;
 using Ninject;
 
@@ -100,6 +101,11 @@ namespace Cortoxa.Ninject
         }
 
         public void Release<T>()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddDependencyProvider(IDependencyProvider provider)
         {
             throw new NotImplementedException();
         }

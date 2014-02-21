@@ -5,15 +5,16 @@
 //  * (LGPL) which accompanies this distribution, and is available at
 //  * http://www.gnu.org/licenses/lgpl.html
 //  *
-//  *  Filename:	IOneToManyModel.cs
-//  *  Date:		18/02/2014
+//  *  Filename:	ISubBuilder.cs
+//  *  Date:		21/02/2014
 //  *  Author:   	Denis Korkhov
 //  *
 //  */
 #endregion
-namespace Cortoxa.Data.Schema.Models
+namespace Cortoxa.IoC2.Fluent
 {
-    public interface IOneToManyModel<T> where T : IEntity
+    public interface ISubBuilder<T>
     {
+        T Done();
     }
 }

@@ -2,8 +2,8 @@
 // /*
 //  * All rights reserved. This program and the accompanying materials
 //  * are made available under the terms of the GNU Lesser General Public License
-//  * (LGPL) version 2.1 which accompanies this distribution, and is available at
-//  * http://www.gnu.org/licenses/lgpl-2.1.html
+//  * (LGPL) which accompanies this distribution, and is available at
+//  * http://www.gnu.org/licenses/lgpl.html
 //  *
 //  *  Filename:	AssemblyInfo.cs
 //  *  Date:		11/02/2014

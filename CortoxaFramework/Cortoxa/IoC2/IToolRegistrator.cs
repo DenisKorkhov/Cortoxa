@@ -5,15 +5,24 @@
 //  * (LGPL) which accompanies this distribution, and is available at
 //  * http://www.gnu.org/licenses/lgpl.html
 //  *
-//  *  Filename:	IOneToManyModel.cs
-//  *  Date:		18/02/2014
+//  *  Filename:	IToolRegistrator.cs
+//  *  Date:		21/02/2014
 //  *  Author:   	Denis Korkhov
 //  *
 //  */
 #endregion
-namespace Cortoxa.Data.Schema.Models
+
+using System;
+using Cortoxa.IoC2.Fluent;
+
+namespace Cortoxa.IoC2
 {
-    public interface IOneToManyModel<T> where T : IEntity
+    public interface IToolRegistrator
     {
+        IToolRegistrator Service<T>(Action<IServiceRegistration> service);
+
+        IToolRegistrator Service(Type type, Action<IServiceRegistration> service);
+        
+        IToolContainer2 Component(IToolComponent component);
     }
 }

@@ -47,6 +47,16 @@
     <Compile Include="Initialization\IRegistrationConfig.cs" />
     <Compile Include="Initialization\RegistrationBuilder.cs" />
     <Compile Include="Initialization\RegistrationConfig.cs" />
+    <Compile Include="IoC2\Fluent\ISubBuilder.cs" />
+    <Compile Include="IoC2\IServiceDependency.cs" />
+    <Compile Include="IoC2\IServiceInterception.cs" />
+    <Compile Include="IoC2\IServiceRegistration.cs" />
+    <Compile Include="IoC2\IToolComponent.cs" />
+    <Compile Include="IoC2\IToolContainer2.cs" />
+    <Compile Include="IoC2\IToolRegistrator.cs" />
+    <Compile Include="IoC2\IToolResolver.cs" />
+    <Compile Include="IoC2\RegistrationContext.cs" />
+    <Compile Include="IoC2\ToolContainer.cs" />
     <Compile Include="IoC\Attributes\InjectAttribte.cs" />
     <Compile Include="IoC\Attributes\InterceptionAttribute.cs" />
     <Compile Include="IoC\Attributes\ServiceInjectAttribute.cs" />

@@ -49,6 +49,10 @@
     <Compile Include="Interceptions\RegistrationInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IocSetup.cs" />
+    <Compile Include="Service\ServiceRegistration.cs" />
+    <Compile Include="Tool\ToolContainer.cs" />
+    <Compile Include="Tool\ToolRegistrator.cs" />
+    <Compile Include="Tool\ToolResolver.cs" />
     <Compile Include="WindsorExtentions.cs" />
     <Compile Include="WindsorToolContainer.cs" />
   </ItemGroup>
