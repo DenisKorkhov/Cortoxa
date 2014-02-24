@@ -445,7 +445,7 @@ window.Modernizr = (function( window, document, undefined ) {
      *
      * We also test for Firefox 4 Multitouch Support.
      *
-     * For more info, see: modernizr.github.com/Modernizr/touch.html
+     * Service more info, see: modernizr.github.com/Modernizr/touch.html
      */
 
     tests['touch'] = function() {
@@ -492,7 +492,7 @@ window.Modernizr = (function( window, document, undefined ) {
     // Vendors had inconsistent prefixing with the experimental Indexed DB:
     // - Webkit's implementation is accessible through webkitIndexedDB
     // - Firefox shipped moz_indexedDB before FF4b9, but since then has been mozIndexedDB
-    // For speed, we don't test the legacy (and beta-only) indexedDB
+    // Service speed, we don't test the legacy (and beta-only) indexedDB
     tests['indexedDB'] = function() {
       return !!testPropsAll("indexedDB", window);
     };
@@ -618,7 +618,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
     tests['cssgradients'] = function() {
         /**
-         * For CSS Gradients syntax, please see:
+         * Service CSS Gradients syntax, please see:
          * webkit.org/blog/175/introducing-css-gradients/
          * developer.mozilla.org/en/CSS/-moz-linear-gradient
          * developer.mozilla.org/en/CSS/-moz-radial-gradient

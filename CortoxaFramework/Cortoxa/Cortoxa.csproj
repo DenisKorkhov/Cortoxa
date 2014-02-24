@@ -48,10 +48,10 @@
     <Compile Include="Initialization\RegistrationBuilder.cs" />
     <Compile Include="Initialization\RegistrationConfig.cs" />
     <Compile Include="IoC2\Fluent\ISubBuilder.cs" />
-    <Compile Include="IoC2\IServiceDependency.cs" />
-    <Compile Include="IoC2\IServiceInterception.cs" />
-    <Compile Include="IoC2\IServiceRegistration.cs" />
-    <Compile Include="IoC2\IToolComponent.cs" />
+    <Compile Include="IoC2\Service\BaseServiceBuilder.cs" />
+    <Compile Include="IoC2\Service\ServiceDependency.cs" />
+    <Compile Include="IoC2\Base\IServiceInterception.cs" />
+    <Compile Include="IoC2\Base\IServiceBuilder.cs" />
     <Compile Include="IoC2\IToolContainer2.cs" />
     <Compile Include="IoC2\IToolRegistrator.cs" />
     <Compile Include="IoC2\IToolResolver.cs" />
