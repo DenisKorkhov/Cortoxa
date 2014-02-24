@@ -27,7 +27,7 @@ namespace Cortoxa.Data.IoC
 
         public void Register(IToolContainer container)
         {
-//            container.Register(r => r.For<IDbContext>().To(Type).LifeTime(LifeTime));
+//            container.Register(r => r.Service<IDbContext>().To(Type).LifeTime(LifeTime));
         }
     }
 }
