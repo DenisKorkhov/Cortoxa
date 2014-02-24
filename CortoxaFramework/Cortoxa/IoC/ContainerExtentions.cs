@@ -29,7 +29,7 @@ namespace Cortoxa.IoC
 
 //        public static IToolContainer InstallData<T>(this IToolContainer container, Action<T> action) where T : DataAccess, new ()
 //        {
-////            container.Register(r => r.For<T>().ToSelf().With(container));
+////            container.Register(r => r.Service<T>().ToSelf().With(container));
 ////            var builder = container.Resolve<T>();
 //            var builder = (T)Activator.CreateInstance(typeof(T), container);
 //            action(builder);
