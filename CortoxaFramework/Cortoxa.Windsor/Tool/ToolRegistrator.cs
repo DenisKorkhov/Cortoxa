@@ -15,6 +15,8 @@
 using System;
 using Castle.Windsor;
 using Cortoxa.IoC2;
+using Cortoxa.IoC2.Base;
+using Cortoxa.IoC2.Service;
 using Cortoxa.Windsor.Service;
 
 namespace Cortoxa.Windsor
@@ -28,22 +30,22 @@ namespace Cortoxa.Windsor
             this.container = container;
         }
 
-        public IToolRegistrator Service<T>(Action<IServiceRegistration> serviceAction)
+        public IToolRegistrator Service<T>(Action<IServiceBuilder> serviceAction)
         {
             return this.Service(typeof (T), serviceAction);
         }
 
-        public IToolRegistrator Service(Type type, Action<IServiceRegistration> serviceAction)
+        public IToolRegistrator Service(Type type, Action<IServiceBuilder> serviceAction)
         {
-            var service = ServiceRegistration.For(type, container);
-            serviceAction(service);
+//            var service = ServiceBuilder.For(type, container);
+//            serviceAction(service);
 //            service.Done();
             return this;
         }
 
-        public IToolContainer2 Component(IToolComponent component)
-        {
-            throw new NotImplementedException();
-        }
+//        public IToolContainer2 Component(IToolComponent component)
+//        {
+//            throw new NotImplementedException();
+//        }
     }
 }
