@@ -5,30 +5,27 @@
 //  * (LGPL) which accompanies this distribution, and is available at
 //  * http://www.gnu.org/licenses/lgpl.html
 //  *
-//  *  Filename:	IServiceRegistration.cs
+//  *  Filename:	IServiceDependency.cs
 //  *  Date:		21/02/2014
 //  *  Author:   	Denis Korkhov
 //  *
 //  */
 #endregion
 
-using System;
-using Cortoxa.IoC2.Fluent;
+using Cortoxa.IoC2.Base;
 
-namespace Cortoxa.IoC2
+namespace Cortoxa.IoC2.Service
 {
-    public interface IServiceRegistration//: ISubBuilder<IToolContainer2>
+    public static class ServiceDependency
     {
-        IServiceInterception Intercept { get; }
+        public static IServiceBuilder On<T>(this IServiceBuilder service, string dependencyName)
+        {
+            return service;
+        }
 
-        IServiceDependency Depend { get; }
-
-        IServiceRegistration To<T>();
-
-        IServiceRegistration To(Type type);
-
-        IServiceRegistration ToSelf();
-
-        IServiceRegistration Name(string name);
+        public static IServiceBuilder On<T>(this IServiceBuilder service, string serviceName, string dependencyName)
+        {
+            return service;
+        }
     }
 }

@@ -15,29 +15,33 @@
 using System;
 using System.Linq.Expressions;
 using Cortoxa.IoC.Interception;
-using Cortoxa.IoC2.Fluent;
 
-namespace Cortoxa.IoC2
+namespace Cortoxa.IoC2.Base
 {
-    public interface IServiceInterception : ISubBuilder<IServiceRegistration>
+    public interface IServiceInterception //: ISubBuilder<IServiceBuilder>
     {
-
+        #region Replace
         IServiceInterception Replace<T>(Expression<Action<T>> methodExpr, Func<InterceptionContext, object> action);
 
         IServiceInterception Replace(string methodName, Func<InterceptionContext, object> action);
 
-        IServiceInterception Replace(Func<InterceptionContext, object> action);
+        IServiceInterception Replace(Func<InterceptionContext, object> action); 
+        #endregion
 
+        #region Before
         IServiceInterception Before<T>(Expression<Action<T>> methodExpr, Func<InterceptionContext, object> action);
 
         IServiceInterception Before(string methodName, Func<InterceptionContext, object> action);
 
-        IServiceInterception Before(Func<InterceptionContext, object> action);
+        IServiceInterception Before(Func<InterceptionContext, object> action); 
+        #endregion
 
+        #region After
         IServiceInterception After<T>(Expression<Action<T>> methodExpr, Func<InterceptionContext, object> action);
 
         IServiceInterception After(string methodName, Func<InterceptionContext, object> action);
 
-        IServiceInterception After(Func<InterceptionContext, object> action);
+        IServiceInterception After(Func<InterceptionContext, object> action); 
+        #endregion
     }
 }

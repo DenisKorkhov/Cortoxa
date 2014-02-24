@@ -21,11 +21,15 @@ using Cortoxa.IoC.Interception;
 
 namespace Cortoxa.IoC2
 {
-    public class RegistrationContext
+    public sealed class RegistrationContext
     {
         private readonly IList<MethodInteception> interceptors = new List<MethodInteception>();
-        private readonly IDictionary<Type, string> dependencies = new Dictionary<Type, string>(); 
-        
+        private readonly IDictionary<Type, string> dependencies = new Dictionary<Type, string>();
+
+        internal RegistrationContext()
+        {
+        }
+
         public Type For { get; set; }
 
         public Type To { get; set; }

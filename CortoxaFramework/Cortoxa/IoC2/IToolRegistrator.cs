@@ -13,16 +13,18 @@
 #endregion
 
 using System;
+using Cortoxa.IoC2.Base;
 using Cortoxa.IoC2.Fluent;
+using Cortoxa.IoC2.Service;
 
 namespace Cortoxa.IoC2
 {
     public interface IToolRegistrator
     {
-        IToolRegistrator Service<T>(Action<IServiceRegistration> service);
+        IToolRegistrator Service<T>(Action<IServiceBuilder> service);
 
-        IToolRegistrator Service(Type type, Action<IServiceRegistration> service);
+        IToolRegistrator Service(Type type, Action<IServiceBuilder> service);
         
-        IToolContainer2 Component(IToolComponent component);
+//        IToolContainer2 Component(IToolComponent component);
     }
 }
