@@ -13,7 +13,6 @@
 #endregion
 using System.Collections.Generic;
 using Cortoxa.IoC;
-using Cortoxa.IoC.Common;
 
 namespace Cortoxa.Initialization
 {

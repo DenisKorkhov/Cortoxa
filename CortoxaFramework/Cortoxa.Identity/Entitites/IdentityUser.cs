@@ -14,6 +14,7 @@
 
 using System;
 using System.Collections.Generic;
+using Cortoxa.Data.Model;
 using Microsoft.AspNet.Identity;
 
 namespace Cortoxa.Data.Identity.Entitites

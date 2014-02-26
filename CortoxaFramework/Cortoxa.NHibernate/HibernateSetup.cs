@@ -19,13 +19,13 @@ using Cortoxa.Data.IoC;
 using Cortoxa.Data.NHibernate.Context;
 using Cortoxa.Data.NHibernate.IoC;
 using Cortoxa.Data.Repository;
-using Cortoxa.IoC.Attributes;
+using Cortoxa.IoC.Base;
 
 namespace Cortoxa.Data.NHibernate
 {
     public static class HibernateSetup
     {
-        public static IStoreSetup UseHibernate(this IToolSetup<IStoreSetup> dataSetup, string connectionString, Assembly sourceAssembly, ToolkitLifeTime lifeTime = ToolkitLifeTime.PerWebRequest, bool buildSchema = false)
+        public static IStoreSetup UseHibernate(this IToolSetup<IStoreSetup> dataSetup, string connectionString, Assembly sourceAssembly, LifeTime lifeTime = LifeTime.PerWebRequest, bool buildSchema = false)
         {
             return new HibernateStoreSetup("hibernate_{0}".Format(Guid.NewGuid()), connectionString, sourceAssembly)
                 .WithSession<HibernateSession>()

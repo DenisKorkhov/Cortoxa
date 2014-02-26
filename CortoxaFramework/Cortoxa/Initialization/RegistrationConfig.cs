@@ -14,7 +14,7 @@
 using System;
 using System.Collections.Generic;
 using Cortoxa.IoC;
-using Cortoxa.IoC.Common;
+using Cortoxa.IoC.Base;
 
 namespace Cortoxa.Initialization
 {
@@ -38,10 +38,10 @@ namespace Cortoxa.Initialization
 
         public void Register(IToolContainer container)
         {
-            foreach (var stratagy in stratagies.Values)
-            {
-                stratagy.Register(container/*, ConfigurationScope*/);
-            }
+//            foreach (var stratagy in stratagies.Values)
+//            {
+//                stratagy.Register(container/*, ConfigurationScope*/);
+//            }
         }
 
         public void Configure(IRegistrationStratagy stratagy)

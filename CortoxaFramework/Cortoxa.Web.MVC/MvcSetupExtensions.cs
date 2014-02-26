@@ -15,25 +15,24 @@ using System;
 using System.Reflection;
 using System.Web.Mvc;
 using Cortoxa.IoC;
-using Cortoxa.IoC.Attributes;
-using Cortoxa.IoC.Registration.Extentions;
+using Cortoxa.IoC.Base;
 using Cortoxa.Web.MVC.Factories;
 
 namespace Cortoxa.Web.MVC
 {
     public static class MvcSetupExtensions
     {
-            public static IToolContainer InstallControllers(this IToolContainer container, ToolkitLifeTime lifeTime = ToolkitLifeTime.Transient)
+            public static IToolContainer InstallControllers(this IToolContainer container, LifeTime lifeTime = LifeTime.Transient)
             {
                 return container.InstallControllers(typeof(Controller), lifeTime, Assembly.GetCallingAssembly());
             }
 
-            public static IToolContainer InstallControllers(this IToolContainer container, Type controllerType, ToolkitLifeTime lifeTime = ToolkitLifeTime.PerWebRequest, params Assembly[] assemblies)
+            public static IToolContainer InstallControllers(this IToolContainer container, Type controllerType, LifeTime lifeTime = LifeTime.PerWebRequest, params Assembly[] assemblies)
             {
                 var currentFactory = ControllerBuilder.Current.GetControllerFactory();
                 if (currentFactory == null || currentFactory.GetType() != typeof(ControllerFactory))
                 {
-                    ControllerBuilder.Current.SetControllerFactory(new ControllerFactory(container));
+                    ControllerBuilder.Current.SetControllerFactory(new ControllerFactory(container.Resolve));
                 }
         
                 if (controllerType == null)
@@ -49,7 +48,7 @@ namespace Cortoxa.Web.MVC
                     };
                 }
 
-                container.Register(r => r.From(assemblies).BasedOn(controllerType).LifeTime(lifeTime));
+//                container.Register(r => r.From(assemblies).BasedOn(controllerType).LifeTime(lifeTime));
                 return container;
             }
     }

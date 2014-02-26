@@ -6,7 +6,7 @@
 //  * (LGPL) which accompanies this distribution, and is available at
 //  * http://www.gnu.org/licenses/lgpl.html
 //  *
-//  *  Filename:	IToolContainer.cs
+//  *  Filename:	IToolRegistrator.cs
 //  *  Date:		21/02/2014
 //  *  Author:   	Denis Korkhov
 //  *
@@ -14,14 +14,16 @@
 
 #endregion
 
-using Cortoxa.IoC.Base;
+using System;
+using Cortoxa.Components;
+using Cortoxa.IoC.Service;
 
-namespace Cortoxa.IoC
+namespace Cortoxa.IoC.Base
 {
-    public interface IToolContainer
+    public interface IToolRegistrator
     {
-        IToolRegistrator Register { get; }
+        IToolRegistrator Service(params ServiceContext[] services);
 
-        IToolResolver Resolve { get; }
+        IToolRegistrator Component<T>(Action<IToolComponent<T>> action);
     }
 }

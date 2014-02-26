@@ -1,4 +1,5 @@
 ﻿#region Copyright © 2014 Denis Korkhov, Oxagile (http://www.oxagile.com/)
+
 // /*
 //  * All rights reserved. This program and the accompanying materials
 //  * are made available under the terms of the GNU Lesser General Public License
@@ -10,9 +11,10 @@
 //  *  Author:   	Denis Korkhov
 //  *
 //  */
+
 #endregion
+
 using System;
-using System.Collections.Generic;
 using System.Reflection;
 
 namespace Cortoxa.IoC.Interception
@@ -23,9 +25,8 @@ namespace Cortoxa.IoC.Interception
 
         private readonly Delegate action;
 
+        private readonly MethodInfo method;
         private readonly MethodInteceptionType mode;
-
-        private readonly MethodInfo method; 
 
         #endregion
 
@@ -59,7 +60,6 @@ namespace Cortoxa.IoC.Interception
     public enum MethodInteceptionType
     {
         Before,
-        Replace,
         After,
         Process
     }

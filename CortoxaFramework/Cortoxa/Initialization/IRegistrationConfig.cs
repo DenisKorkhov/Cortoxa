@@ -13,7 +13,7 @@
 #endregion
 using System;
 using Cortoxa.IoC;
-using Cortoxa.IoC.Common;
+using Cortoxa.IoC.Base;
 
 namespace Cortoxa.Initialization
 {

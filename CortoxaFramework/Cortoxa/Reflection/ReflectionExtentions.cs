@@ -11,11 +11,28 @@
 //  *
 //  */
 #endregion
+
+using System;
+using System.Linq.Expressions;
 using System.Reflection;
 
 namespace Cortoxa.Reflection
 {
     public static class ReflectionExtentions
     {
+        public static MethodInfo MethodFromExpression<T>(this Expression<Action<T>> methodExpr)
+        {
+            var call = methodExpr.Body as MethodCallExpression;
+            if (call == null)
+            {
+                throw new InvalidOperationException("Expression must be a method call");
+            }
+
+            if (call.Object != methodExpr.Parameters[0])
+            {
+                throw new InvalidOperationException("Method call must target lambda argument");
+            }
+            return call.Method;
+        }
     }
 }

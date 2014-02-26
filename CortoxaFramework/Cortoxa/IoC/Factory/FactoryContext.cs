@@ -1,27 +1,27 @@
 ﻿#region Copyright © 2014 Denis Korkhov, Oxagile (http://www.oxagile.com/)
+
 // /*
 //  * All rights reserved. This program and the accompanying materials
 //  * are made available under the terms of the GNU Lesser General Public License
 //  * (LGPL) version 2.1 which accompanies this distribution, and is available at
 //  * http://www.gnu.org/licenses/lgpl-2.1.html
 //  *
-//  *  Filename:	IdentityUserClaim.cs
-//  *  Date:		17/02/2014
+//  *  Filename:	FactoryContext.cs
+//  *  Date:		05/02/2014
 //  *  Author:   	Denis Korkhov
 //  *
 //  */
+
 #endregion
 
-using Cortoxa.Data.Model;
+using System;
 
-namespace Cortoxa.Data.Identity.Entitites
+namespace Cortoxa.IoC.Factory
 {
-    public class IdentityUserClaim : Entity
+    public class FactoryContext
     {
-        public virtual string ClaimType { get; set; }
+        public Type RequestedType { get; set; }
 
-        public virtual string ClaimValue { get; set; }
-        
-        public virtual IdentityUser User { get; set; }
+        public object[] Arguments { get; set; }
     }
 }

@@ -14,7 +14,9 @@
 
 using System.Linq;
 using System.Threading.Tasks;
+using Cortoxa.Data.Common;
 using Cortoxa.Data.Context;
+using Cortoxa.Data.Model;
 using NHibernate;
 using NHibernate.Linq;
 

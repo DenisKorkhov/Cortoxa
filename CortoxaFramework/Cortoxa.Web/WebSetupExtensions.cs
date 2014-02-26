@@ -16,22 +16,21 @@ using System.Reflection;
 using System.Web.Http;
 using System.Web.Http.Dispatcher;
 using Cortoxa.IoC;
-using Cortoxa.IoC.Attributes;
-using Cortoxa.IoC.Registration.Extentions;
+using Cortoxa.IoC.Base;
 using Cortoxa.Web.Factories;
 
 namespace Cortoxa.Web
 {
     public static class WebSetupExtensions
     {
-        public static IToolContainer InstallApiControllers(this IToolContainer container, ToolkitLifeTime lifeTime = ToolkitLifeTime.Transient)
+        public static IToolContainer InstallApiControllers(this IToolContainer container, LifeTime lifeTime = LifeTime.Transient)
         {
             return container.InstallApiControllers(typeof(ApiController), lifeTime, Assembly.GetCallingAssembly());
         }
 
-        public static IToolContainer InstallApiControllers(this IToolContainer container, Type controllerType, ToolkitLifeTime lifeTime = ToolkitLifeTime.PerWebRequest, params Assembly[] assemblies)
+        public static IToolContainer InstallApiControllers(this IToolContainer container, Type controllerType, LifeTime lifeTime = LifeTime.PerWebRequest, params Assembly[] assemblies)
         {
-            GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator),new WebCompositionRoot(container));
+            GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator),new WebCompositionRoot(container.Resolve));
 
             if (controllerType == null)
             {
@@ -46,7 +45,7 @@ namespace Cortoxa.Web
                 };
             }
             
-            container.Register(r => r.From(assemblies).BasedOn(controllerType).LifeTime(lifeTime));
+//            container.Register(r => r.From(assemblies).BasedOn(controllerType).LifeTime(lifeTime));
             return container;
         }
     }

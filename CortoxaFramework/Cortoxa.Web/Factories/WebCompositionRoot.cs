@@ -15,38 +15,38 @@ using System;
 using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
-using Cortoxa.IoC;
+using Cortoxa.IoC.Base;
 
 namespace Cortoxa.Web.Factories
 {
     public class WebCompositionRoot : IHttpControllerActivator
     {
-        private readonly IToolContainer container;
+        private readonly IToolResolver resolver;
 
-        public WebCompositionRoot(IToolContainer container)
+        public WebCompositionRoot(IToolResolver resolver)
         {
-            this.container = container;
+            this.resolver = resolver;
         }
 
         public IHttpController Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
         {
-            var controller = (IHttpController)container.Resolve(controllerType);
-            request.RegisterForDispose(new Release(() => container.Release(controller.GetType())));
+            var controller = (IHttpController)resolver.One(controllerType);
+            request.RegisterForDispose(new Release(() => resolver.Release(controller)));
             return controller;
         }
 
         private class Release : IDisposable
         {
-            private readonly Action _release;
+            private readonly Action release;
 
             public Release(Action release)
             {
-                _release = release;
+                this.release = release;
             }
 
             public void Dispose()
             {
-                _release();
+                release();
             }
         }
     }

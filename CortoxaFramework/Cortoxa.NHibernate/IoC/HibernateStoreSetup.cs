@@ -17,8 +17,7 @@ using Cortoxa.Data.Context;
 using Cortoxa.Data.NHibernate.Data;
 using Cortoxa.Data.Repository;
 using Cortoxa.IoC;
-using Cortoxa.IoC.Attributes;
-using Cortoxa.IoC.Registration.Extentions;
+using Cortoxa.IoC.Base;
 using NHibernate;
 
 namespace Cortoxa.Data.NHibernate.IoC
@@ -34,24 +33,24 @@ namespace Cortoxa.Data.NHibernate.IoC
             this.sourceAssembly = sourceAssembly;
         }
 
-        public override void Register(IToolContainer container)
+        public override void Register(IToolRegistrator container)
         {
             var respositoryName = string.Format("repository.{0}", Scope);
             var sessionName = string.Format("session.{0}", Scope);
             var hibernateSessionName = string.Format("hib.session.{0}", Scope);
             var factoryName = string.Format("session.factory.{0}", Scope);
 
-            container.Register(r => r.For<ISessionFactory>().ToFactory(x => SessionFactoryConfiguration.BuildSessionFactory(sourceAssembly, connectionString)).Name(factoryName).LifeTime(ToolkitLifeTime.Singleton));
-
-            container.Register(r => r.For<ISession>().ToFactory(x =>
-            {
-                var c = container;
-                var factory = c.Resolve<ISessionFactory>();
-                return factory.OpenSession();
-            }).Name(hibernateSessionName).LifeTime(ToolkitLifeTime.Transient));
-
-            container.Register(r => r.For<IDbSession>().To(SessionConfig.Type).Name(sessionName).DependsOn<ISession>(hibernateSessionName).LifeTime(StoreConfig.LifeTime));
-            container.Register(r => r.For(typeof(IStore<>)).To(StoreConfig.Type).Name(respositoryName).DependsOn<IDbSession>(sessionName).LifeTime(StoreConfig.LifeTime));
+//            container.Register(r => r.For<ISessionFactory>().ToFactory(x => SessionFactoryConfiguration.BuildSessionFactory(sourceAssembly, connectionString)).Name(factoryName).LifeTime(LifeTime.Singleton));
+//
+//            container.Register(r => r.For<ISession>().ToFactory(x =>
+//            {
+//                var c = container;
+//                var factory = c.Resolve<ISessionFactory>();
+//                return factory.OpenSession();
+//            }).Name(hibernateSessionName).LifeTime(LifeTime.Transient));
+//
+//            container.Register(r => r.For<IDbSession>().To(SessionConfig.Type).Name(sessionName).DependsOn<ISession>(hibernateSessionName).LifeTime(StoreConfig.LifeTime));
+//            container.Register(r => r.For(typeof(IStore<>)).To(StoreConfig.Type).Name(respositoryName).DependsOn<IDbSession>(sessionName).LifeTime(StoreConfig.LifeTime));
         }
     }
 }
