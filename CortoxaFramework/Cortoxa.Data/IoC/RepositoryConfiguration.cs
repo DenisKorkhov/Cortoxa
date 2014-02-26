@@ -14,26 +14,25 @@
 using System;
 using Cortoxa.Data.Repository;
 using Cortoxa.IoC;
-using Cortoxa.IoC.Attributes;
-using Cortoxa.IoC.Common;
+using Cortoxa.IoC.Base;
 
 namespace Cortoxa.Data.IoC
 {
     public class RepositoryConfiguration : IRegistrationStratagy
     {
-        public RepositoryConfiguration(Type type, ToolkitLifeTime lifeTime)
+        public RepositoryConfiguration(Type type, LifeTime lifeTime)
         {
             LifeTime = lifeTime;
             Type = type;
         }
 
-        public ToolkitLifeTime LifeTime { get; set; }
+        public LifeTime LifeTime { get; set; }
 
         public Type Type { get; set; }
 
-        public void Register(IToolContainer container)
+        public void Register(IToolRegistrator container)
         {
-            container.Register(r => r.For(typeof(IStore<>)).To(Type).LifeTime(LifeTime));
+//            container.Register(r => r.For(typeof(IStore<>)).To(Type).LifeTime(LifeTime));
         }
     }
 }

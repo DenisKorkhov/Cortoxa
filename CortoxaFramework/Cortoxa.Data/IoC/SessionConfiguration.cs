@@ -15,8 +15,7 @@
 using System;
 using Cortoxa.Data.Context;
 using Cortoxa.IoC;
-using Cortoxa.IoC.Attributes;
-using Cortoxa.IoC.Common;
+using Cortoxa.IoC.Base;
 
 namespace Cortoxa.Data.IoC
 {
@@ -24,18 +23,18 @@ namespace Cortoxa.Data.IoC
     {
         public Type Type { get; set; }
 
-        public ToolkitLifeTime LifeTime { get; set; }
+        public LifeTime LifeTime { get; set; }
 
-        public SessionConfiguration(Type type, ToolkitLifeTime lifeTime)
+        public SessionConfiguration(Type type, LifeTime lifeTime)
         {
             Type = type;
             LifeTime = lifeTime;
         }
 
-        public void Register(IToolContainer container)
+        public void Register(IToolRegistrator container)
         {
 //            var sessionName = string.Format("dbsession.{0}", configurationScope ?? string.Empty);
-            container.Register(r => r.For<IDbSession>().To(Type).LifeTime(LifeTime));
+//            container.Register(r => r.For<IDbSession>().To(Type).LifeTime(LifeTime));
         }
     }
 }

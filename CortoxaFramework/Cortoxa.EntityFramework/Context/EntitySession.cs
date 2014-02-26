@@ -16,8 +16,8 @@ using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using Cortoxa.Data.Common;
 using Cortoxa.Data.Context;
-using NHibernate;
 
 namespace Cortoxa.Data.EntityFramework.Context
 {

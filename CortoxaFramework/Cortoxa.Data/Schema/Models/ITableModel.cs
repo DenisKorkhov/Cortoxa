@@ -13,6 +13,8 @@
 #endregion
 using System;
 using System.Linq.Expressions;
+using Cortoxa.Data.Common;
+using Cortoxa.Data.Model;
 
 namespace Cortoxa.Data.Schema.Models
 {

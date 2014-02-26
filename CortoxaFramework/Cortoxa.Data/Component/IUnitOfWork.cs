@@ -11,9 +11,10 @@
 //  *
 //  */
 #endregion
+
 using System.Threading.Tasks;
 
-namespace Cortoxa.Data
+namespace Cortoxa.Data.Component
 {
     public interface IUnitOfWork
     {

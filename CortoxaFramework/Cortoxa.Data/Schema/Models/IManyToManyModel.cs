@@ -11,6 +11,10 @@
 //  *
 //  */
 #endregion
+
+using Cortoxa.Data.Common;
+using Cortoxa.Data.Model;
+
 namespace Cortoxa.Data.Schema.Models
 {
     public interface IManyToManyModel<T> where T : IEntity

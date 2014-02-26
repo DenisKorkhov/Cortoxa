@@ -14,18 +14,17 @@
 using System;
 using Cortoxa.Data.Context;
 using Cortoxa.IoC;
-using Cortoxa.IoC.Attributes;
-using Cortoxa.IoC.Common;
+using Cortoxa.IoC.Base;
 
 namespace Cortoxa.Data.IoC
 {
     public class ContextConfiguration : IRegistrationStratagy
     {
-        public ToolkitLifeTime LifeTime { get; set; }
+        public LifeTime LifeTime { get; set; }
 
         public Type Type { get; set; }
 
-        public void Register(IToolContainer container)
+        public void Register(IToolRegistrator container)
         {
 //            container.Register(r => r.Service<IDbContext>().To(Type).LifeTime(LifeTime));
         }

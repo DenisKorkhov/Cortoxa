@@ -13,7 +13,7 @@
 #endregion
 using Cortoxa.Initialization;
 using Cortoxa.IoC;
-using Cortoxa.IoC.Attributes;
+using Cortoxa.IoC.Base;
 
 namespace Cortoxa.Data.IoC
 {
@@ -24,7 +24,7 @@ namespace Cortoxa.Data.IoC
         }
 
 
-        public IDataConfig WithSession<T>(ToolkitLifeTime lifeTime = ToolkitLifeTime.Transient)
+        public IDataConfig WithSession<T>(LifeTime lifeTime = LifeTime.Transient)
         {
             this.Configure(new SessionConfiguration(typeof(T), lifeTime));
             return this;

@@ -17,8 +17,7 @@ using Cortoxa.Data.Context;
 using Cortoxa.Data.IoC;
 using Cortoxa.Data.Repository;
 using Cortoxa.IoC;
-using Cortoxa.IoC.Attributes;
-using Cortoxa.IoC.Common;
+using Cortoxa.IoC.Base;
 
 namespace Cortoxa.Data
 {
@@ -48,26 +47,26 @@ namespace Cortoxa.Data
             get { return scope; }
         }
 
-        public virtual IStoreSetup WithSession<T>(ToolkitLifeTime lifeTime = ToolkitLifeTime.Transient) where T : IDbSession
+        public virtual IStoreSetup WithSession<T>(LifeTime lifeTime = LifeTime.Transient) where T : IDbSession
         {
             sessionConfig = new SessionConfiguration(typeof(T), lifeTime);
             return this;
         }
 
 
-        public IStoreSetup WithRepository(Type type, ToolkitLifeTime lifeTime = ToolkitLifeTime.Transient)
+        public IStoreSetup WithRepository(Type type, LifeTime lifeTime = LifeTime.Transient)
         {
             storeConfig = new RepositoryConfiguration(type, lifeTime);
             return this;
         }
 
-        public virtual void Register(IToolContainer container)
+        public virtual void Register(IToolRegistrator container)
         {
             var respositoryName = string.Format("repository.{0}", scope);
             var sessionName = string.Format("session.{0}", scope);
 
-            container.Register(r => r.For(typeof(IStore<>)).To(storeConfig.Type).Name(respositoryName).DependsOn<IDbSession>(sessionName).LifeTime(storeConfig.LifeTime));
-            container.Register(r => r.For<IDbSession>().To(sessionConfig.Type).Name(sessionName).LifeTime(storeConfig.LifeTime));
+//            container.Register(r => r.For(typeof(IStore<>)).To(storeConfig.Type).Name(respositoryName).DependsOn<IDbSession>(sessionName).LifeTime(storeConfig.LifeTime));
+//            container.Register(r => r.For<IDbSession>().To(sessionConfig.Type).Name(sessionName).LifeTime(storeConfig.LifeTime));
         }
     }
 }

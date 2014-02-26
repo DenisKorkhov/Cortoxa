@@ -13,18 +13,18 @@
 #endregion
 using System;
 using Cortoxa.Data.IoC;
-using Cortoxa.IoC.Attributes;
+using Cortoxa.IoC.Base;
 
 namespace Cortoxa.Data
 {
     public static class DataSetupExtentions 
     {
-        public static IDataConfig WithContext<T>(this IDataConfig config, ToolkitLifeTime lifeTime = ToolkitLifeTime.Transient)
+        public static IDataConfig WithContext<T>(this IDataConfig config, LifeTime lifeTime = LifeTime.Transient)
         {
             return WithContext(config, typeof (T), lifeTime);
         }
 
-        public static IDataConfig WithContext(this IDataConfig config, Type type, ToolkitLifeTime lifeTime = ToolkitLifeTime.Transient)
+        public static IDataConfig WithContext(this IDataConfig config, Type type, LifeTime lifeTime = LifeTime.Transient)
         {
             config.Configure<ContextConfiguration>(c =>
             {
@@ -34,12 +34,12 @@ namespace Cortoxa.Data
             return config;
         }
 
-        public static IDataConfig WithRepository<T>(this IDataConfig config, ToolkitLifeTime lifeTime = ToolkitLifeTime.Transient)
+        public static IDataConfig WithRepository<T>(this IDataConfig config, LifeTime lifeTime = LifeTime.Transient)
         {
             return WithRepository(config, typeof(T), lifeTime);
         }
 
-        public static IDataConfig WithRepository(this IDataConfig config, Type type, ToolkitLifeTime lifeTime = ToolkitLifeTime.Transient)
+        public static IDataConfig WithRepository(this IDataConfig config, Type type, LifeTime lifeTime = LifeTime.Transient)
         {
             config.Configure<RepositoryConfiguration>(c =>
             {

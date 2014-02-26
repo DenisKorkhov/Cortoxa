@@ -14,16 +14,15 @@
 
 using System;
 using Cortoxa.Data.Context;
-using Cortoxa.IoC.Attributes;
-using Cortoxa.IoC.Common;
+using Cortoxa.IoC.Base;
 
 namespace Cortoxa.Data.IoC
 {
     public interface IStoreSetup : IRegistrationStratagy
     {
-        IStoreSetup WithSession<T>(ToolkitLifeTime lifeTime = ToolkitLifeTime.Transient) where T : IDbSession;
+        IStoreSetup WithSession<T>(LifeTime lifeTime = LifeTime.Transient) where T : IDbSession;
 
 
-        IStoreSetup WithRepository(Type type, ToolkitLifeTime lifeTime = ToolkitLifeTime.Transient);
+        IStoreSetup WithRepository(Type type, LifeTime lifeTime = LifeTime.Transient);
     }
 }

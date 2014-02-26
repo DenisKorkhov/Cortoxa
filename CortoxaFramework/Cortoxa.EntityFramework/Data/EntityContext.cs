@@ -16,12 +16,11 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Threading.Tasks;
-using Cortoxa.Data.Context;
 using Cortoxa.Data.Schema;
 
 namespace Cortoxa.Data.EntityFramework.Data
 {
-    public class EntityContext : DbContext//, IDbContext
+    public class EntityContext : DbContext
     {
         private readonly IModelBuilder modelBuilder;
 

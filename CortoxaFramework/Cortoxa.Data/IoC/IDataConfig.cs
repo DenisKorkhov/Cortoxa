@@ -12,12 +12,12 @@
 //  */
 #endregion
 using Cortoxa.Initialization;
-using Cortoxa.IoC.Attributes;
+using Cortoxa.IoC.Base;
 
 namespace Cortoxa.Data.IoC
 {
     public interface IDataConfig : IRegistrationConfig
     {
-        IDataConfig WithSession<T>(ToolkitLifeTime lifeTime = ToolkitLifeTime.Transient);
+        IDataConfig WithSession<T>(LifeTime lifeTime = LifeTime.Transient);
     }
 }

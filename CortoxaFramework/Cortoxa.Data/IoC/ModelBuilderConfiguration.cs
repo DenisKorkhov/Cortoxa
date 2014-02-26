@@ -12,13 +12,13 @@
 //  */
 #endregion
 using Cortoxa.IoC;
-using Cortoxa.IoC.Common;
+using Cortoxa.IoC.Base;
 
 namespace Cortoxa.Data.IoC
 {
     public class ModelBuilderConfiguration : IRegistrationStratagy
     {
-        public void Register(IToolContainer container)
+        public void Register(IToolRegistrator container)
         {
             
         }

@@ -5,18 +5,20 @@
 //  * (LGPL) which accompanies this distribution, and is available at
 //  * http://www.gnu.org/licenses/lgpl.html
 //  *
-//  *  Filename:	IEntity.cs
+//  *  Filename:	Entity.cs
 //  *  Date:		11/02/2014
 //  *  Author:   	Denis Korkhov
 //  *
 //  */
 #endregion
-using System;
 
-namespace Cortoxa.Data
+using System;
+using Cortoxa.Data.Common;
+
+namespace Cortoxa.Data.Model
 {
-    public interface IEntity
+    public class Entity : IEntity
     {
-        Guid Id { get; set; }
+        public virtual Guid Id { get; set; }
     }
 }

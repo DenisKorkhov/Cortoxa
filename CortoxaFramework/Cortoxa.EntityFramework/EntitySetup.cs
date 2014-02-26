@@ -12,25 +12,31 @@
 //  */
 #endregion
 
-using System;
-using System.Reflection;
-using Cortoxa.Common;
-using Cortoxa.Data.EntityFramework.Context;
-using Cortoxa.Data.EntityFramework.IoC;
-using Cortoxa.Data.IoC;
+using System.Data.Entity;
+using Cortoxa.Components;
+using Cortoxa.Data.Component;
+using Cortoxa.Data.EntityFramework.Component;
 using Cortoxa.Data.Repository;
-using Cortoxa.IoC.Attributes;
+using Cortoxa.IoC.Base;
+using Cortoxa.IoC.Service;
 
 namespace Cortoxa.Data.EntityFramework
 {
     public static class EntitySetup
     {
 
-        public static IStoreSetup UseEntityFramework(this IToolSetup<IStoreSetup> dataSetup, Type contextType, ToolkitLifeTime lifeTime = ToolkitLifeTime.PerWebRequest, bool buildSchema = false)
+        public static IToolComponent<IDataSource> EntityDataSource<TContext>(this IToolComponent<IDataSource> toolComponent, LifeTime lifetTime = LifeTime.Transient) where TContext : DbContext
         {
-            return new EntityStoreSetup("entity_{0}".Format(Guid.NewGuid()), contextType)
-                .WithSession<EntitySession>()
-                .WithRepository(typeof(Store<>));
+            var contextName = string.Format("context_{0}", "");
+
+//            toolComponent.AddRegistration();
+
+            toolComponent.OnRegister(x => x
+                .Service<DbContext>(s => s.To<TContext>().LifeTime(lifetTime))
+                .Service<IDataSource, IUnitOfWork>(s => s.To<EntityDataSource>().LifeTime(lifetTime).DependOn(typeof(DbContext), ""))
+                .Service(s => s.To(typeof(Store<>)).Transient(), typeof(IStore<>))
+            );
+            return toolComponent;
         }
     }
 }

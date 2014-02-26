@@ -17,8 +17,7 @@ using System.Data.Entity;
 using Cortoxa.Data.Context;
 using Cortoxa.Data.Repository;
 using Cortoxa.IoC;
-using Cortoxa.IoC.Attributes;
-using Cortoxa.IoC.Registration.Extentions;
+using Cortoxa.IoC.Base;
 
 namespace Cortoxa.Data.EntityFramework.IoC
 {
@@ -28,15 +27,15 @@ namespace Cortoxa.Data.EntityFramework.IoC
         {
         }
 
-        public override void Register(IToolContainer container)
+        public override void Register(IToolRegistrator container)
         {
-            container.Register(r => r.For<DbContext>().ToFactory(x => null).LifeTime(ToolkitLifeTime.Transient));
-
-            var respositoryName = string.Format("repository.{0}", Scope);
-            var sessionName = string.Format("session.{0}", Scope);
-
-            container.Register(r => r.For(typeof(IStore<>)).To(StoreConfig.Type).Name(respositoryName).DependsOn<IDbSession>(sessionName).LifeTime(StoreConfig.LifeTime));
-            container.Register(r => r.For<IDbSession>().To(SessionConfig.Type).Name(sessionName).LifeTime(StoreConfig.LifeTime));
+//            container.Register(r => r.For<DbContext>().ToFactory(x => null).LifeTime(LifeTime.Transient));
+//
+//            var respositoryName = string.Format("repository.{0}", Scope);
+//            var sessionName = string.Format("session.{0}", Scope);
+//
+//            container.Register(r => r.For(typeof(IStore<>)).To(StoreConfig.Type).Name(respositoryName).DependsOn<IDbSession>(sessionName).LifeTime(StoreConfig.LifeTime));
+//            container.Register(r => r.For<IDbSession>().To(SessionConfig.Type).Name(sessionName).LifeTime(StoreConfig.LifeTime));
 
 //            base.Register(container);
         }
