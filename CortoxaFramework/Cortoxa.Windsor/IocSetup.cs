@@ -15,7 +15,6 @@
 using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.Windsor;
 using Cortoxa.IoC;
-using Cortoxa.IoC2;
 using Cortoxa.Windsor.Tool;
 
 namespace Cortoxa.Windsor
@@ -31,19 +30,7 @@ namespace Cortoxa.Windsor
 
         public static IToolContainer UseWindsor(this IToolSetup<IToolContainer> setup, IWindsorContainer instance)
         {
-            return new WindsorToolContainer(instance);
-        }
-
-        public static IToolContainer2 UseWindsor(this IToolSetup<IToolContainer2> setup)
-        {
-            var container = new WindsorContainer();
-            container.Kernel.Resolver.AddSubResolver(new ArrayResolver(container.Kernel));
-            return UseWindsor(setup, container);
-        }
-
-        public static IToolContainer2 UseWindsor(this IToolSetup<IToolContainer2> setup, IWindsorContainer instance)
-        {
-            return new ToolContainer(instance);
+            return new ToolContainer(new ToolRegistrator(instance), new ToolResolver(instance));
         }
 
 

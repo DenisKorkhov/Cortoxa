@@ -15,11 +15,11 @@
 using System;
 using System.Linq;
 using Castle.Windsor;
-using Cortoxa.IoC2;
+using Cortoxa.IoC.Base;
 
 namespace Cortoxa.Windsor.Tool
 {
-    public class ToolResolver : IToolResolver
+    internal class ToolResolver : IToolResolver
     {
         private readonly IWindsorContainer container;
 
@@ -64,6 +64,20 @@ namespace Cortoxa.Windsor.Tool
         {
             var result = arguments != null ? container.ResolveAll(type, arguments) : container.ResolveAll(type);
             return result.Cast<T>().ToArray();
+        }
+
+        public void Release(Type type)
+        {
+            var instance = One(type);
+            if (instance != null)
+            {
+                container.Release(instance);
+            }
+        }
+
+        public void Release(object instance)
+        {
+            container.Release(instance);
         }
     }
 }

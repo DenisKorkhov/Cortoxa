@@ -11,47 +11,45 @@
 //  *
 //  */
 #endregion
-using System;
-using Castle.MicroKernel.Registration;
-using Castle.Windsor;
-using Cortoxa.IoC;
-using Cortoxa.IoC.Attributes;
 
-namespace Cortoxa.Windsor
+using Castle.MicroKernel.Registration;
+using Cortoxa.IoC.Base;
+
+namespace Cortoxa.Windsor.Helpers
 {
     public static class WindsorExtentions
     {
-        public static BasedOnDescriptor ToWindsorLifeTime(this BasedOnDescriptor container, ToolkitLifeTime lifeTime)
+        public static BasedOnDescriptor ToWindsorLifeTime(this BasedOnDescriptor container, LifeTime lifeTime)
         {
             switch (lifeTime)
             {
-                case ToolkitLifeTime.Singleton:
+                case LifeTime.Singleton:
                     return container.LifestyleSingleton();
-                case ToolkitLifeTime.PerWebRequest:
+                case LifeTime.PerWebRequest:
                     return container.LifestylePerWebRequest();
-                case ToolkitLifeTime.PerThread:
+                case LifeTime.PerThread:
                     return container.LifestylePerThread();
                 default:
                     return container.LifestyleTransient();
             }
         }
 
-        public static ComponentRegistration<T> ToWindsorLifeTime<T>(this ComponentRegistration<T> container,ToolkitLifeTime lifeTime) where T : class
+        public static ComponentRegistration<T> ToWindsorLifeTime<T>(this ComponentRegistration<T> container,LifeTime lifeTime) where T : class
         {
             switch (lifeTime)
             {
-                case ToolkitLifeTime.Singleton:
+                case LifeTime.Singleton:
                     return container.LifeStyle.Singleton;
-                case ToolkitLifeTime.PerWebRequest:
+                case LifeTime.PerWebRequest:
                     return container.LifeStyle.PerWebRequest;
-                case ToolkitLifeTime.PerThread:
+                case LifeTime.PerThread:
                     return container.LifeStyle.PerThread;
                 default:
                     return container.LifeStyle.Transient;
             }
         }
 
-        public static ComponentRegistration<object> ToWindsorLifeTime(this ComponentRegistration<object> container, ToolkitLifeTime lifeTime)
+        public static ComponentRegistration<object> ToWindsorLifeTime(this ComponentRegistration<object> container, LifeTime lifeTime)
         {
             return ToWindsorLifeTime<object>(container, lifeTime);
         }

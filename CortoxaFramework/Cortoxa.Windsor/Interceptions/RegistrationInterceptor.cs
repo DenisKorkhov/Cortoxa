@@ -24,14 +24,14 @@ namespace Cortoxa.Windsor.Interceptions
 {
     public class RegistrationInterceptor : IInterceptor
     {
-        private readonly IToolContainer container;
+//        private readonly IToolContainer container;
         private readonly IEnumerable<MethodInteception> interceptions;
         private readonly CreationContext context;
         private readonly IDictionary<string, object> metadata = new Dictionary<string, object>();
 
-        public RegistrationInterceptor(IToolContainer container, IEnumerable<MethodInteception> interceptions, CreationContext context)
+        public RegistrationInterceptor(IEnumerable<MethodInteception> interceptions, CreationContext context)
         {
-            this.container = container;
+//            this.container = container;
             this.interceptions = interceptions;
             this.context = context;
         }
@@ -49,7 +49,7 @@ namespace Cortoxa.Windsor.Interceptions
             };
             foreach (var action in actions)
             {
-                action.DynamicInvoke(new object[] { container, interceptionContext });
+                action.DynamicInvoke(new object[] { interceptionContext });
             }
 
             interceptionContext.Procced = invocation.Proceed;
@@ -67,7 +67,7 @@ namespace Cortoxa.Windsor.Interceptions
             actions = GetAfterActions(invocation.Method);
             foreach (var action in actions)
             {
-                action.DynamicInvoke(new object[] { container, interceptionContext });
+                action.DynamicInvoke(new object[] { interceptionContext });
             }
         }
 
@@ -83,7 +83,7 @@ namespace Cortoxa.Windsor.Interceptions
                 {
                     var clousureAction = prevAction;
                     interceptionContext.Procced = clousureAction;
-                    interceptionContext.Result = interceptor.Action.DynamicInvoke(new object[] { container, interceptionContext });
+                    interceptionContext.Result = interceptor.Action.DynamicInvoke(new object[] { interceptionContext });
                 };
             }
             return result;
@@ -98,16 +98,6 @@ namespace Cortoxa.Windsor.Interceptions
         {
             return interceptions.Where(x => x.Mode == MethodInteceptionType.After && (x.Method == null || AreMethodsEqual(x.Method, method))).Select(x => x.Action).ToArray();
         }
-
-//        private Delegate GetReplaceAction(MethodInfo method)
-//        {
-//            var beforeActions = interceptions.Where(x => x.Mode == MethodInteceptionType.Replace && (x.Method == null || AreMethodsEqual(x.Method, method))).ToList();
-//            if (beforeActions.Count() > 1)
-//            {
-//                throw new Exception(string.Format("More then one replacing action for method {0}", method.Name));
-//            }
-//            return beforeActions.Select(x => x.Action).SingleOrDefault();
-//        }
 
         public bool AreMethodsEqual(MethodInfo first, MethodInfo second)
         {
