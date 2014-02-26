@@ -16,26 +16,16 @@ using System.Data.Entity;
 using Cortoxa.Components;
 using Cortoxa.Data.Component;
 using Cortoxa.Data.EntityFramework.Component;
-using Cortoxa.Data.Repository;
 using Cortoxa.IoC.Base;
-using Cortoxa.IoC.Service;
 
 namespace Cortoxa.Data.EntityFramework
 {
     public static class EntitySetup
     {
-
-        public static IToolComponent<IDataSource> EntityDataSource<TContext>(this IToolComponent<IDataSource> toolComponent, LifeTime lifetTime = LifeTime.Transient) where TContext : DbContext
+        public static IToolComponent<IDataComponent> EntityDataSource<TContext>(this IToolComponent<IDataComponent> toolComponent, LifeTime lifetTime = LifeTime.Transient) where TContext : DbContext
         {
-            var contextName = string.Format("context_{0}", "");
-
-//            toolComponent.AddRegistration();
-
-            toolComponent.OnRegister(x => x
-                .Service<DbContext>(s => s.To<TContext>().LifeTime(lifetTime))
-                .Service<IDataSource, IUnitOfWork>(s => s.To<EntityDataSource>().LifeTime(lifetTime).DependOn(typeof(DbContext), ""))
-                .Service(s => s.To(typeof(Store<>)).Transient(), typeof(IStore<>))
-            );
+            toolComponent.Add(s => s.For<DbContext>().To<TContext>().LifeTime(lifetTime));
+            toolComponent.Add(s => s.For<IDataSource, IUnitOfWork>().To<EntityDataSource>().LifeTime(lifetTime));
             return toolComponent;
         }
     }

@@ -28,17 +28,12 @@ namespace Cortoxa.IoC.Service
 
         private readonly IList<MethodInteception> interceptors = new List<MethodInteception>();
 
-        private readonly List<Type> servicesFor = new List<Type>();
-
         internal ServiceContext()
         {
         }
 
-        public List<Type> For
-        {
-            get { return servicesFor; }
-        }
-
+        public Type[] For { get; set; }
+    
         public Type To { get; set; }
 
         public Func<FactoryContext, object> ToFactory { get; set; }

@@ -16,6 +16,7 @@
 
 using System;
 using System.Linq.Expressions;
+using Cortoxa.IoC.Base.ServiceFamily;
 using Cortoxa.IoC.Interception;
 
 namespace Cortoxa.IoC.Base

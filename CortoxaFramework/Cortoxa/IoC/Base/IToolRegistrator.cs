@@ -15,15 +15,12 @@
 #endregion
 
 using System;
-using Cortoxa.Components;
 using Cortoxa.IoC.Service;
 
 namespace Cortoxa.IoC.Base
 {
     public interface IToolRegistrator
     {
-        IToolRegistrator Service(params ServiceContext[] services);
-
-        IToolRegistrator Component<T>(Action<IToolComponent<T>> action);
+        void Service(ServiceContext context);
     }
 }

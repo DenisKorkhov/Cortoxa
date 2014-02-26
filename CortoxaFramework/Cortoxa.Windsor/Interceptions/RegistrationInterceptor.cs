@@ -24,14 +24,12 @@ namespace Cortoxa.Windsor.Interceptions
 {
     public class RegistrationInterceptor : IInterceptor
     {
-//        private readonly IToolContainer container;
         private readonly IEnumerable<MethodInteception> interceptions;
         private readonly CreationContext context;
         private readonly IDictionary<string, object> metadata = new Dictionary<string, object>();
 
         public RegistrationInterceptor(IEnumerable<MethodInteception> interceptions, CreationContext context)
         {
-//            this.container = container;
             this.interceptions = interceptions;
             this.context = context;
         }

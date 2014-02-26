@@ -17,6 +17,7 @@
 using System;
 using System.Linq;
 using Cortoxa.IoC.Base;
+using Cortoxa.IoC.Base.ServiceFamily;
 using Cortoxa.IoC.Interception;
 
 namespace Cortoxa.IoC.Service
@@ -26,10 +27,8 @@ namespace Cortoxa.IoC.Service
         private readonly ServiceContext context = new ServiceContext();
         private readonly IServiceInterception interceptor;
 
-
-        public ServiceBuilder(params Type[] typeFor)
+        public ServiceBuilder()
         {
-            context.For.AddRange(typeFor);
             interceptor = new ServiceInterception(this);
         }
 
@@ -40,18 +39,18 @@ namespace Cortoxa.IoC.Service
 
         public IServiceDependency Depend { get; private set; }
 
-        public virtual IServiceBuilder To<T>()
+        public virtual IServiceBuilderRest To<T>()
         {
             return To(typeof (T));
         }
 
-        public virtual IServiceBuilder To(Type type)
+        public virtual IServiceBuilderRest To(Type type)
         {
             context.To = type;
             return this;
         }
 
-        public virtual IServiceBuilder ToSelf()
+        public virtual IServiceBuilderRest ToSelf()
         {
             return To(context.For.First());
         }
@@ -74,6 +73,11 @@ namespace Cortoxa.IoC.Service
             return this;
         }
 
+        public IServiceBuilder DependOn(string name)
+        {
+            throw new NotImplementedException();
+        }
+
         public IServiceBuilder DependOn(Type type, string dependencyName)
         {
             context.Dependencies.Add(type, dependencyName);
@@ -85,29 +89,40 @@ namespace Cortoxa.IoC.Service
             get { return interceptor; }
         }
 
-        public static ServiceBuilder For<T>()
+        public IServiceBuilderTo For(Type[] serviceTypes)
         {
-            return For(typeof (T));
+            Context.For = serviceTypes;
+            return this;
         }
 
-        public static ServiceBuilder For<T, T2>()
+        public IServiceBuilderTo For(Type serviceType)
         {
-            return For(typeof(T), typeof(T2));
+            return For(new[] { serviceType });
         }
 
-        public static ServiceBuilder For<T, T2, T3>()
+        public IServiceBuilderTo For<T>()
         {
-            return For(typeof(T), typeof(T2), typeof(T3));
+            return For(new[] { typeof(T) });
         }
 
-        public static ServiceBuilder For<T, T2, T3, T4>()
+        public IServiceBuilderTo For<T, T2>()
         {
-            return For(typeof(T), typeof(T2), typeof(T3), typeof(T4));
+            return For(new[] { typeof(T), typeof(T2) });
         }
 
-        public static ServiceBuilder For(params Type[] typeFor)
+        public IServiceBuilderTo For<T, T2, T3>()
         {
-            return new ServiceBuilder(typeFor);
+            return For(new[] { typeof(T), typeof(T2), typeof(T3) });
+        }
+
+        public IServiceBuilderTo For<T, T2, T3, T4>()
+        {
+            return For(new[] { typeof(T), typeof(T2), typeof(T3), typeof(T4) });
+        }
+
+        public void Register(IToolRegistrator registrator)
+        {
+            registrator.Service(context);
         }
     }
 }

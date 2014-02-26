@@ -2,7 +2,6 @@
 using Cortoxa.Components.Log;
 using Cortoxa.Data.Component;
 using Cortoxa.Data.EntityFramework;
-using Cortoxa.Data.EntityFramework.Data;
 using Cortoxa.IoC.Service;
 using Cortoxa.NLog;
 using Cortoxa.Windsor;
@@ -14,18 +13,14 @@ namespace Samples.Console
     {
         static void Main(string[] args)
         {
-            var container = Setup.InitContainer2(x => x.UseWindsor());
+            var container = Setup.InitContainer2(x => x.UseWindsor())
+                .Register(s => s.For<Test>().ToSelf().Name("test").Transient())
+                .Register<ILoggerComponent>(c => c.NLog("Test"))
+                .Register<IDataComponent>(c => c.EntityDataSource<SamplesContext>());
 
-            container.Register.Service<Test>(s => s.ToSelf().Name("test").Transient());
-            container.Register.Component<ILogger>(c => c.NLog("Logger"));
-            container.Register.Component<IDataSource>(c => c.EntityDataSource<SamplesContext>());
-
-
-            var dataSource = container.Resolve.One<IDataSource>();
             var t = container.Resolve.One<Test>();
             t.DoSomthing();
         }
-        
     }
     public class Test
     {
@@ -42,3 +37,4 @@ namespace Samples.Console
         }
     }
 }
+

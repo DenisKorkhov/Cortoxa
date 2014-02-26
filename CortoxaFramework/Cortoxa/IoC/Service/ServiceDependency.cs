@@ -1,4 +1,5 @@
 ﻿using Cortoxa.IoC.Base;
+using Cortoxa.IoC.Base.ServiceFamily;
 
 namespace Cortoxa.IoC.Service
 {

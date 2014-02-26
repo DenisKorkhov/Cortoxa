@@ -30,7 +30,8 @@ namespace Cortoxa.Windsor
 
         public static IToolContainer UseWindsor(this IToolSetup<IToolContainer> setup, IWindsorContainer instance)
         {
-            return new ToolContainer(new ToolRegistrator(instance), new ToolResolver(instance));
+            var windsorTool = new WindsorTool(instance);
+            return new ToolContainer(windsorTool, windsorTool);
         }
 
 

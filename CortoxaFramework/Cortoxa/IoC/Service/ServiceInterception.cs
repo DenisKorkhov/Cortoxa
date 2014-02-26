@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using Cortoxa.IoC.Base;
+using Cortoxa.IoC.Base.ServiceFamily;
 using Cortoxa.IoC.Interception;
 using Cortoxa.Reflection;
 

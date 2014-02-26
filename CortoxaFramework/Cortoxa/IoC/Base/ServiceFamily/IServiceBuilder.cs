@@ -6,7 +6,7 @@
 //  * (LGPL) which accompanies this distribution, and is available at
 //  * http://www.gnu.org/licenses/lgpl.html
 //  *
-//  *  Filename:	IToolContainer.cs
+//  *  Filename:	IServiceBuilder.cs
 //  *  Date:		21/02/2014
 //  *  Author:   	Denis Korkhov
 //  *
@@ -14,20 +14,11 @@
 
 #endregion
 
-using System;
-using Cortoxa.Components;
-using Cortoxa.IoC.Base;
-
-namespace Cortoxa.IoC
+namespace Cortoxa.IoC.Base.ServiceFamily
 {
-    public interface IToolContainer
+    public interface IServiceBuilder : IServiceBuilderFor, IServiceBuilderTo, IServiceBuilderRest, IRegistrationStratagy
     {
-//        IToolRegistrator Register { get; }
 
-        IToolContainer Register(Action<IServiceBuilderFor> serviceAction);
-
-        IToolContainer Register<T>(Action<IToolComponent<T>> componentAction) where T : IServiceComponent;
-
-        IToolResolver Resolve { get; }
+    
     }
 }

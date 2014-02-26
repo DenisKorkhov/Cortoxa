@@ -14,7 +14,10 @@
 
 #endregion
 
+using System;
+using Cortoxa.Components;
 using Cortoxa.IoC.Base;
+using Cortoxa.IoC.Service;
 
 namespace Cortoxa.IoC
 {
@@ -30,9 +33,20 @@ namespace Cortoxa.IoC
             this.resolver = resolver;
         }
 
-        public IToolRegistrator Register
+        public IToolContainer Register(Action<IServiceBuilderFor> serviceAction)
         {
-            get { return registrator; }
+            var builder = new ServiceBuilder();
+            serviceAction(builder);
+            builder.Register(registrator);
+            return this;
+        }
+
+        public IToolContainer Register<T>(Action<IToolComponent<T>> componentAction) where T : IServiceComponent
+        {
+            var component = new ToolComponent<T>();
+            componentAction(component);
+            component.Register(registrator);
+            return this;
         }
 
         public IToolResolver Resolve

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Component\IDataComponent.cs" />
     <Compile Include="Component\IDataSource.cs" />
     <Compile Include="Common\IModelBuilder.cs" />
     <Compile Include="Context\IDbSession.cs" />
