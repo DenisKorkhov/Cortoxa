@@ -20,13 +20,13 @@ namespace Cortoxa
 {
     public static class Setup
     {
-        public static IToolContainer InitContainer(Func<IToolSetup<IToolContainer>, IToolContainer> setupAction)
-        {
-            var container = setupAction(null);
-            return container;
-        }
+//        public static IToolContainer InitContainer(Func<IToolSetup<IToolContainer>, IToolContainer> setupAction)
+//        {
+//            var container = setupAction(null);
+//            return container;
+//        }
 
-        public static IToolContainer InitContainer2(Func<IToolSetup<IToolContainer>, IToolContainer> setupAction)
+        public static IToolContainer InitContainer(Func<IToolSetup<IToolContainer>, IToolContainer> setupAction)
         {
             var container = setupAction(null);
             return container;

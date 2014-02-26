@@ -13,7 +13,7 @@ namespace Samples.Console
     {
         static void Main(string[] args)
         {
-            var container = Setup.InitContainer2(x => x.UseWindsor())
+            var container = Setup.InitContainer(x => x.UseWindsor())
                 .Register(s => s.For<Test>().ToSelf().Name("test").Transient())
                 .Register<ILoggerComponent>(c => c.NLog("Test"))
                 .Register<IDataComponent>(c => c.EntityDataSource<SamplesContext>());
