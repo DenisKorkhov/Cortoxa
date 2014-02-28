@@ -16,17 +16,20 @@ using System.Data.Entity;
 using Cortoxa.Components;
 using Cortoxa.Data.Component;
 using Cortoxa.Data.EntityFramework.Component;
+using Cortoxa.IoC;
 using Cortoxa.IoC.Base;
 
 namespace Cortoxa.Data.EntityFramework
 {
     public static class EntitySetup
     {
-        public static IToolComponent<IDataComponent> EntityDataSource<TContext>(this IToolComponent<IDataComponent> toolComponent, LifeTime lifetTime = LifeTime.Transient) where TContext : DbContext
+        public static IToolComponent<EntityComponent> EntityDataSource<TContext>(this IComponentSetup toolComponent) where TContext : DbContext
         {
-            toolComponent.Add(s => s.For<DbContext>().To<TContext>().LifeTime(lifetTime));
-            toolComponent.Add(s => s.For<IDataSource, IUnitOfWork>().To<EntityDataSource>().LifeTime(lifetTime));
-            return toolComponent;
+            var component = new ToolComponent<EntityComponent>();
+            component.Configure(c=>c.DbContext.For<DbContext>().To<TContext>().LifeTime(LifeTime.PerWebRequest));
+            component.Configure(c=>c.DbContext.For<IDataSource, IUnitOfWork>().To<EntityDataSource>().LifeTime(LifeTime.PerWebRequest));
+//            component.Register();
+            return null;
         }
     }
 }

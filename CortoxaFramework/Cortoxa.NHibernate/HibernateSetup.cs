@@ -25,7 +25,7 @@ namespace Cortoxa.Data.NHibernate
 {
     public static class HibernateSetup
     {
-        public static IStoreSetup UseHibernate(this IToolSetup<IStoreSetup> dataSetup, string connectionString, Assembly sourceAssembly, LifeTime lifeTime = LifeTime.PerWebRequest, bool buildSchema = false)
+        public static IStoreSetup UseHibernate(this IToolSetup dataSetup, string connectionString, Assembly sourceAssembly, LifeTime lifeTime = LifeTime.PerWebRequest, bool buildSchema = false)
         {
             return new HibernateStoreSetup("hibernate_{0}".Format(Guid.NewGuid()), connectionString, sourceAssembly)
                 .WithSession<HibernateSession>()

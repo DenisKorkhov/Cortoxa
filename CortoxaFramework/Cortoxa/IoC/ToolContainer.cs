@@ -33,20 +33,33 @@ namespace Cortoxa.IoC
             this.resolver = resolver;
         }
 
-        public IToolContainer Register(Action<IServiceBuilderFor> serviceAction)
-        {
-            var builder = new ServiceBuilder();
-            serviceAction(builder);
-            builder.Register(registrator);
-            return this;
-        }
+//        public IToolContainer Register(Action<IServiceBuilderFor> serviceAction)
+//        {
+//            var builder = new ServiceBuilder();
+//            serviceAction(builder);
+//            builder.Register(registrator);
+//            return this;
+//        }
 
-        public IToolContainer Register<T>(Action<IToolComponent<T>> componentAction) where T : IServiceComponent
+//        public IToolContainer Register(Action<IComponentSetup> componentAction)
+//        {
+//            var component = new ToolComponent<T>();
+//            componentAction(component);
+//            component.Register(registrator);
+            /*return this;
+        }*/
+
+//        public IToolContainer Register<T>(Action<IToolComponent<T>> componentAction) where T : IServiceComponent
+//        {
+//            var component = new ToolComponent<T>();
+//            componentAction(component);
+//            component.Register(registrator);
+//            return this;
+//        }
+
+        public IToolRegistrator Register 
         {
-            var component = new ToolComponent<T>();
-            componentAction(component);
-            component.Register(registrator);
-            return this;
+            get { return registrator; }
         }
 
         public IToolResolver Resolve

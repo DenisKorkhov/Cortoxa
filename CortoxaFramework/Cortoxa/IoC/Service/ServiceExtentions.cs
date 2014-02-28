@@ -1,4 +1,5 @@
 ﻿using System;
+using Cortoxa.Components;
 using Cortoxa.IoC.Base;
 using Cortoxa.IoC.Base.ServiceFamily;
 
@@ -7,6 +8,22 @@ namespace Cortoxa.IoC.Service
     public static class ServiceExtentions
     {
         #region Service
+
+        public static IToolRegistrator Service(this IToolRegistrator registrator, Action<IServiceBuilderFor> serviceAction)
+        {
+            var builder = new ServiceBuilder();
+            serviceAction(builder);
+            builder.Register(registrator);
+            return registrator;
+        }
+
+        public static IToolRegistrator Component(this IToolRegistrator registrator, Action<IComponentSetup> componentAction)
+        {
+
+            
+            return registrator;
+        }
+
 
 //        public static IToolRegistrator Service<T>(this IToolRegistrator registrator, Action<IServiceBuilder> serviceAction)
 //        {

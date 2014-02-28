@@ -6,7 +6,7 @@ using Cortoxa.IoC.Service;
 
 namespace Cortoxa.IoC
 {
-    public class ToolComponent<T> : IToolComponent<T> where T : IServiceComponent
+    public class ToolComponent<T> : IToolComponent<T> where T : class, new()
     {
         private readonly IList<IRegistrationStratagy> stratagies = new List<IRegistrationStratagy>();
 
@@ -14,8 +14,11 @@ namespace Cortoxa.IoC
         
         private string name;
 
+        private T config;
+
         public ToolComponent()
         {
+            config = new T();
 //            dependency = new ToolDependency();
         }
 
@@ -51,6 +54,16 @@ namespace Cortoxa.IoC
             stratagies.Add(service);
             serviceAction(service);
         }
+
+        public IToolComponent<T> Configure(Action<T> configurationAction)
+        {
+            throw new NotImplementedException();
+        }
+
+//        public void Configure(Action<T> configurationAction)
+//        {
+//            throw new NotImplementedException();
+//        }
 
 //        public void DependOn<TS>(string dependencyName)
 //        {

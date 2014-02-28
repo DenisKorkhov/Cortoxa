@@ -21,7 +21,7 @@ namespace Cortoxa.Owin
     {
         private const string CortoxaContainerName = "cortoxa_root";
 
-        public static IToolContainer UseContainer(this IAppBuilder appBuilder, Func<IToolSetup<IToolContainer>, IToolContainer> setupAction)
+        public static IToolContainer UseContainer(this IAppBuilder appBuilder, Func<IToolSetup, IToolContainer> setupAction)
         {
             var container = setupAction(null);
             appBuilder.Properties[CortoxaContainerName] = container;

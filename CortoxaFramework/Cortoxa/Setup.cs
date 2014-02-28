@@ -12,28 +12,20 @@
 //  */
 #endregion
 using System;
-using Cortoxa.Initialization;
 using Cortoxa.IoC;
-using Cortoxa.IoC.Base;
 
 namespace Cortoxa
 {
     public static class Setup
     {
-//        public static IToolContainer InitContainer(Func<IToolSetup<IToolContainer>, IToolContainer> setupAction)
-//        {
-//            var container = setupAction(null);
-//            return container;
-//        }
-
-        public static IToolContainer InitContainer(Func<IToolSetup<IToolContainer>, IToolContainer> setupAction)
+        public static IToolContainer InitContainer(Func<IToolSetup, IToolContainer> setupAction)
         {
             var container = setupAction(null);
             return container;
         }
     }
 
-    public interface IToolSetup<T>
+    public interface IToolSetup
     {
         string Name { get; set; }
     }
