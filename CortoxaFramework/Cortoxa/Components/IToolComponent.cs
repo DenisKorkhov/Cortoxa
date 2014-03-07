@@ -1,6 +1,8 @@
 ﻿using System;
+using Cortoxa.IoC;
 using Cortoxa.IoC.Base;
 using Cortoxa.IoC.Base.ServiceFamily;
+using Cortoxa.IoC.Common;
 
 namespace Cortoxa.Components
 {
@@ -18,12 +20,12 @@ namespace Cortoxa.Components
 
     public interface IComponentSetup
     {
-        IToolRegistrator Register { get; }
+        IToolContainer Register { get; }
     }
 
     public interface IServiceComponent
     {
-//        IServiceBuilder Service { get; set; }
+//        IServiceBuilder Register { get; set; }
 
 //        void Register();
     }

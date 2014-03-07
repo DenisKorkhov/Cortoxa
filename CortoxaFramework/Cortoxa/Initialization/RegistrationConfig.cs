@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using Cortoxa.IoC;
 using Cortoxa.IoC.Base;
+using Cortoxa.IoC.Common;
 
 namespace Cortoxa.Initialization
 {
