@@ -16,6 +16,7 @@ using System;
 using Cortoxa.Data.Identity.Repositories;
 using Cortoxa.IoC;
 using Cortoxa.IoC.Base;
+using Cortoxa.IoC.Common;
 using Microsoft.AspNet.Identity;
 
 namespace Cortoxa.Data.Identity.IoC
@@ -29,7 +30,7 @@ namespace Cortoxa.Data.Identity.IoC
             this.userType = userType;
         }
 
-        public void Register(IToolRegistrator container)
+        public void Register(IToolContainer container)
         {
 
             Type userStoreInterface = typeof(IUserStore<>).MakeGenericType(userType);

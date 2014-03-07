@@ -2,8 +2,10 @@
 using System.Linq.Expressions;
 using Cortoxa.IoC.Base;
 using Cortoxa.IoC.Base.ServiceFamily;
+using Cortoxa.IoC.Common;
 using Cortoxa.IoC.Interception;
 using Cortoxa.Reflection;
+using IServiceBuilder = Cortoxa.IoC.Base.ServiceFamily.IServiceBuilder;
 
 namespace Cortoxa.IoC.Service
 {

@@ -15,6 +15,7 @@ using System;
 using Cortoxa.Data.Context;
 using Cortoxa.IoC;
 using Cortoxa.IoC.Base;
+using Cortoxa.IoC.Common;
 
 namespace Cortoxa.Data.IoC
 {
@@ -24,9 +25,9 @@ namespace Cortoxa.Data.IoC
 
         public Type Type { get; set; }
 
-        public void Register(IToolRegistrator container)
+        public void Register(IToolContainer container)
         {
-//            container.Register(r => r.Service<IDbContext>().To(Type).LifeTime(LifeTime));
+//            container.Register(r => r.Register<IDbContext>().To(Type).LifeTime(LifeTime));
         }
     }
 }

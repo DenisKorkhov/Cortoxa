@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Cortoxa.Components;
 using Cortoxa.IoC.Base;
+using Cortoxa.IoC.Common;
 using Cortoxa.IoC.Service;
 
 namespace Cortoxa.IoC
@@ -10,8 +11,6 @@ namespace Cortoxa.IoC
     {
         private readonly IList<IRegistrationStratagy> stratagies = new List<IRegistrationStratagy>();
 
-        private readonly IToolDependency dependency;
-        
         private string name;
 
         private T config;
@@ -35,12 +34,7 @@ namespace Cortoxa.IoC
             return this;
         }
 
-        public IToolDependency Depend
-        {
-            get { return dependency; }
-        }
-
-        public void Register(IToolRegistrator container)
+      public void Register(IToolContainer container)
         {
             foreach (var registrationStratagy in stratagies)
             {

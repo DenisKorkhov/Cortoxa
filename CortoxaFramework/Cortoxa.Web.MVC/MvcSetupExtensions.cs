@@ -32,7 +32,7 @@ namespace Cortoxa.Web.MVC
                 var currentFactory = ControllerBuilder.Current.GetControllerFactory();
                 if (currentFactory == null || currentFactory.GetType() != typeof(ControllerFactory))
                 {
-                    ControllerBuilder.Current.SetControllerFactory(new ControllerFactory(container.Resolve));
+                    ControllerBuilder.Current.SetControllerFactory(new ControllerFactory(container));
                 }
         
                 if (controllerType == null)

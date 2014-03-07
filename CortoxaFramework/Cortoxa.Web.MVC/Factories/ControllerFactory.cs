@@ -15,19 +15,20 @@ using System;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Cortoxa.IoC;
 using Cortoxa.IoC.Base;
 
 namespace Cortoxa.Web.MVC.Factories
 {
     public class ControllerFactory : DefaultControllerFactory
     {
-        private readonly IToolResolver resolver;
+        private readonly IToolContainer resolver;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="resolver"></param>
-        public ControllerFactory(IToolResolver resolver)
+        public ControllerFactory(IToolContainer resolver)
         {
             this.resolver = resolver;
         }
@@ -48,7 +49,7 @@ namespace Cortoxa.Web.MVC.Factories
                 throw new HttpException(404, string.Format("The controller for path '{0}' could not be found.", requestContext.HttpContext.Request.Path));
             }
 
-            return (Controller)resolver.One(controllerType);
+            return (Controller)resolver.Resolve(controllerType);
         }
     }
 }

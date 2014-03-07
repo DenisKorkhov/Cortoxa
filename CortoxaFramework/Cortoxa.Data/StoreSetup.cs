@@ -60,7 +60,7 @@ namespace Cortoxa.Data
             return this;
         }
 
-        public virtual void Register(IToolRegistrator container)
+        public virtual void Register(IToolContainer container)
         {
             var respositoryName = string.Format("repository.{0}", scope);
             var sessionName = string.Format("session.{0}", scope);

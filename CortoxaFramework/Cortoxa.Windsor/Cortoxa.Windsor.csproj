@@ -50,7 +50,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IocSetup.cs" />
     <Compile Include="Helpers\WindsorExtentions.cs" />
-    <Compile Include="Tool\WindsorTool.cs" />
+    <Compile Include="Registrators\WindsorServiceRegistrator.cs" />
+    <Compile Include="Registrators\WindsorTypeRegistrator.cs" />
+    <Compile Include="Tool\WindsorRegistrator.cs" />
+    <Compile Include="Tool\WindsorToolContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cortoxa\Cortoxa.csproj">

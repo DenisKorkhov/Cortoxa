@@ -14,20 +14,35 @@
 
 #endregion
 
-using Cortoxa.IoC.Base;
+using System;
+using Cortoxa.IoC.Common;
+using Cortoxa.IoC.Service;
 
 namespace Cortoxa.IoC
 {
     public interface IToolContainer
     {
-//        IToolRegistrator Register { get; }
+//        IToolContainer Register(ServiceConfiguration service);
 
-//        IToolContainer Register(Action<IServiceBuilderFor> serviceAction);
-//
-//        IToolContainer Register<T>(Action<IToolComponent<T>> componentAction) where T : class, new ();
+        IToolContainer Register(Action<IRegistration> registrationAction);
 
-        IToolRegistrator Register { get; }
+//        IToolResolver Resolve { get; }
+        T Resolve<T>(object arguments = null);
 
-        IToolResolver Resolve { get; }
+        object Resolve(Type type, object arguments = null);
+
+        T Resolve<T>(Type type, object arguments = null);
+
+        T Resolve<T>(string key, object arguments = null);
+
+        T[] ResolveAll<T>(object arguments = null);
+
+        object[] ResolveAll(Type type, object arguments = null);
+
+        T[] ResolveAll<T>(Type type, object arguments = null);
+
+        void Release(Type type);
+
+        void Release(object instance);
     }
 }

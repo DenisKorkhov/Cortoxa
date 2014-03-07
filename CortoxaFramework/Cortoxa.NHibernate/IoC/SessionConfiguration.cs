@@ -16,6 +16,7 @@ using System;
 
 using Cortoxa.IoC;
 using Cortoxa.IoC.Base;
+using Cortoxa.IoC.Common;
 using NHibernate;
 
 namespace Cortoxa.Data.NHibernate.IoC
@@ -26,7 +27,7 @@ namespace Cortoxa.Data.NHibernate.IoC
 
         public Func<ISessionFactory> SessionFactory { get; set; }
 
-        public void Register(IToolRegistrator container)
+        public void Register(IToolContainer container)
         {
 //            var sessionFactoryName = string.Format("SF_{0}", configurationScope ?? string.Empty);
 ////            var sessionName = string.Format("session_{0}", configurationScope ?? string.Empty);

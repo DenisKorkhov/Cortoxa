@@ -1,18 +1,19 @@
 ﻿using System;
 using Cortoxa.IoC.Base;
+using Cortoxa.IoC.Common;
 
 namespace Cortoxa.IoC.Service
 {
     public class RegistrationStratagy : IRegistrationStratagy
     {
-        private readonly Action<IToolRegistrator> registrationAction;
+        private readonly Action<IToolContainer> registrationAction;
 
-        public RegistrationStratagy(Action<IToolRegistrator> registrationAction)
+        public RegistrationStratagy(Action<IToolContainer> registrationAction)
         {
             this.registrationAction = registrationAction;
         }
 
-        public void Register(IToolRegistrator registrator)
+        public void Register(IToolContainer registrator)
         {
             registrationAction(registrator);
         }

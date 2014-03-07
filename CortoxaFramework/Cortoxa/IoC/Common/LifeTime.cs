@@ -6,18 +6,21 @@
 //  * (LGPL) version 2.1 which accompanies this distribution, and is available at
 //  * http://www.gnu.org/licenses/lgpl-2.1.html
 //  *
-//  *  Filename:	IRegistrationStratagy.cs
-//  *  Date:		11/02/2014
+//  *  Filename:	LifeTime.cs
+//  *  Date:		05/02/2014
 //  *  Author:   	Denis Korkhov
 //  *
 //  */
 
 #endregion
 
-namespace Cortoxa.IoC.Common
+namespace Cortoxa.IoC.Base
 {
-    public interface IRegistrationStratagy
+    public enum LifeTime
     {
-        void Register(IToolContainer registrator);
+        Transient,
+        Singleton,
+        PerWebRequest,
+        PerThread
     }
 }

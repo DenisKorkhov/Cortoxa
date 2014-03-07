@@ -15,6 +15,7 @@
 using System;
 using Cortoxa.Data.Context;
 using Cortoxa.IoC.Base;
+using Cortoxa.IoC.Common;
 
 namespace Cortoxa.Data.IoC
 {

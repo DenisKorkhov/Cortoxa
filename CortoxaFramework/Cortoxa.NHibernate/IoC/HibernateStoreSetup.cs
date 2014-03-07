@@ -33,7 +33,7 @@ namespace Cortoxa.Data.NHibernate.IoC
             this.sourceAssembly = sourceAssembly;
         }
 
-        public override void Register(IToolRegistrator container)
+        public override void Register(IToolContainer container)
         {
             var respositoryName = string.Format("repository.{0}", Scope);
             var sessionName = string.Format("session.{0}", Scope);

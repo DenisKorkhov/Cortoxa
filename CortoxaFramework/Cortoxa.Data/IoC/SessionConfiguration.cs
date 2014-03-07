@@ -16,6 +16,7 @@ using System;
 using Cortoxa.Data.Context;
 using Cortoxa.IoC;
 using Cortoxa.IoC.Base;
+using Cortoxa.IoC.Common;
 
 namespace Cortoxa.Data.IoC
 {
@@ -31,7 +32,7 @@ namespace Cortoxa.Data.IoC
             LifeTime = lifeTime;
         }
 
-        public void Register(IToolRegistrator container)
+        public void Register(IToolContainer container)
         {
 //            var sessionName = string.Format("dbsession.{0}", configurationScope ?? string.Empty);
 //            container.Register(r => r.For<IDbSession>().To(Type).LifeTime(LifeTime));

@@ -27,7 +27,7 @@ namespace Cortoxa.Data.EntityFramework.IoC
         {
         }
 
-        public override void Register(IToolRegistrator container)
+        public override void Register(IToolContainer container)
         {
 //            container.Register(r => r.For<DbContext>().ToFactory(x => null).LifeTime(LifeTime.Transient));
 //

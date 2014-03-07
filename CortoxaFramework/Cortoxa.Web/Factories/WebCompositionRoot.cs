@@ -15,22 +15,23 @@ using System;
 using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
+using Cortoxa.IoC;
 using Cortoxa.IoC.Base;
 
 namespace Cortoxa.Web.Factories
 {
     public class WebCompositionRoot : IHttpControllerActivator
     {
-        private readonly IToolResolver resolver;
+        private readonly IToolContainer resolver;
 
-        public WebCompositionRoot(IToolResolver resolver)
+        public WebCompositionRoot(IToolContainer resolver)
         {
             this.resolver = resolver;
         }
 
         public IHttpController Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
         {
-            var controller = (IHttpController)resolver.One(controllerType);
+            var controller = (IHttpController)resolver.Resolve(controllerType);
             request.RegisterForDispose(new Release(() => resolver.Release(controller)));
             return controller;
         }

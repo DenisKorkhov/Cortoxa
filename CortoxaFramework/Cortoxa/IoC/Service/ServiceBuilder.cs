@@ -18,13 +18,15 @@ using System;
 using System.Linq;
 using Cortoxa.IoC.Base;
 using Cortoxa.IoC.Base.ServiceFamily;
+using Cortoxa.IoC.Common;
 using Cortoxa.IoC.Interception;
+using IServiceBuilder = Cortoxa.IoC.Base.ServiceFamily.IServiceBuilder;
 
 namespace Cortoxa.IoC.Service
 {
-    public class ServiceBuilder : IServiceBuilder
+    public class ServiceBuilder : IServiceBuilder 
     {
-        private readonly ServiceContext context = new ServiceContext();
+        private readonly ServiceConfiguration context = new ServiceConfiguration();
         private readonly IServiceInterception interceptor;
 
         public ServiceBuilder()
@@ -32,25 +34,25 @@ namespace Cortoxa.IoC.Service
             interceptor = new ServiceInterception(this);
         }
 
-        public virtual ServiceContext Context
+        public virtual ServiceConfiguration Context
         {
             get { return context; }
         }
 
         public IServiceDependency Depend { get; private set; }
 
-        public virtual IServiceBuilderRest To<T>()
+        public virtual IServiceBuilderCommon To<T>()
         {
             return To(typeof (T));
         }
 
-        public virtual IServiceBuilderRest To(Type type)
+        public virtual IServiceBuilderCommon To(Type type)
         {
             context.To = type;
             return this;
         }
 
-        public virtual IServiceBuilderRest ToSelf()
+        public virtual IServiceBuilderCommon ToSelf()
         {
             return To(context.For.First());
         }
@@ -120,9 +122,9 @@ namespace Cortoxa.IoC.Service
             return For(new[] { typeof(T), typeof(T2), typeof(T3), typeof(T4) });
         }
 
-        public void Register(IToolRegistrator registrator)
+        public void Register(IToolContainer registrator)
         {
-            registrator.Service(context);
+//            registrator.Register(context);
         }
     }
 }
