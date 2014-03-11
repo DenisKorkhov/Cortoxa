@@ -13,7 +13,7 @@
 #endregion
 
 using Castle.MicroKernel.Registration;
-using Cortoxa.IoC.Base;
+using Cortoxa.Container.Common;
 
 namespace Cortoxa.Windsor.Helpers
 {

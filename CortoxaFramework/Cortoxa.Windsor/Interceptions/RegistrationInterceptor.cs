@@ -17,8 +17,7 @@ using System.Linq;
 using System.Reflection;
 using Castle.DynamicProxy;
 using Castle.MicroKernel.Context;
-using Cortoxa.IoC;
-using Cortoxa.IoC.Interception;
+using Cortoxa.Container.Services;
 
 namespace Cortoxa.Windsor.Interceptions
 {

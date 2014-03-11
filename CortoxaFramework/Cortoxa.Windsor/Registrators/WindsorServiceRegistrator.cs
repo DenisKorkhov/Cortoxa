@@ -2,39 +2,29 @@
 using System.Linq;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
-using Cortoxa.IoC.Common;
-using Cortoxa.IoC.Factory;
-using Cortoxa.IoC.Service;
+using Cortoxa.Common.Configuration;
+using Cortoxa.Container.Services;
 using Cortoxa.Windsor.Helpers;
 using Cortoxa.Windsor.Interceptions;
 
 namespace Cortoxa.Windsor.Registrators
 {
-    public class WindsorServiceRegistrator
+    public class WindsorServiceRegistrator : IConfigurationStrategy<ServiceContext>
     {
         private readonly IWindsorContainer container;
-
+        
         public WindsorServiceRegistrator(IWindsorContainer container)
         {
             this.container = container;
         }
 
-        public static Action<IRegistrationContext> RegistrationAction(IWindsorContainer container)
+        public void Configure(ServiceContext context)
         {
-            return c =>
-            {
-                var reg = new WindsorServiceRegistrator(container);
-                reg.Register((ServiceConfiguration)c);
-            };
-        }
+            ComponentRegistration<object> component = Component.For(context.For);
 
-        protected virtual void Register(ServiceConfiguration service)
-        {
-            ComponentRegistration<object> component = Component.For(service.For);
-
-            if (service.ToFactory != null)
+            if (context.ToFactory != null)
             {
-                ServiceConfiguration ctx = service;
+                ServiceContext ctx = context;
                 component = component.UsingFactoryMethod((k, cm, c) => ctx.ToFactory(new FactoryContext
                 {
                     RequestedType = c.RequestedType,
@@ -43,25 +33,25 @@ namespace Cortoxa.Windsor.Registrators
             }
             else
             {
-                component = component.ImplementedBy(service.To);
+                component = component.ImplementedBy(context.To);
             }
 
-            component = component.ToWindsorLifeTime(service.Lifetime);
+            component = component.ToWindsorLifeTime(context.Lifetime);
 
-            if (!string.IsNullOrEmpty(service.Name))
+            if (!string.IsNullOrEmpty(context.Name))
             {
-                component = component.Named(service.Name);
+                component = component.Named(context.Name);
             }
 
-            if (service.Dependencies.Any())
+            if (context.Dependencies.Any())
             {
-                var allDependencies = service.Dependencies.Select(dependency => Dependency.OnComponent(dependency.Key, dependency.Value)).ToArray();
+                var allDependencies = context.Dependencies.Select(dependency => Dependency.OnComponent(dependency.Key, dependency.Value)).ToArray();
                 component.DependsOn(allDependencies);
             }
 
-            if (service.Interceptors.Any())
+            if (context.Interceptors.Any())
             {
-                var interceptorName = string.Format("interceptor_{0}_{1}", service.For.First().Name, Guid.NewGuid().ToString().Replace("-", string.Empty));
+                var interceptorName = string.Format("interceptor_{0}_{1}", context.For.First().Name, Guid.NewGuid().ToString().Replace("-", string.Empty));
                 //Register interceptor itself by name
                 container.Register(Component.For<RegistrationInterceptor>().Named(interceptorName)
                     .DynamicParameters((k, c, p) =>
@@ -70,7 +60,7 @@ namespace Cortoxa.Windsor.Registrators
                         return null;
                     })
                     .DependsOn(
-                        Dependency.OnValue("interceptions", service.Interceptors),
+                        Dependency.OnValue("interceptions", context.Interceptors),
                         Dependency.OnValue("container", container),
                         Dependency.OnValue("context", null)
                     ).LifestyleTransient()

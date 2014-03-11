@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Castle.Windsor;
-using Cortoxa.IoC;
-using Cortoxa.IoC.Common;
-using Cortoxa.IoC.Registration;
+using Cortoxa.Container;
+using Cortoxa.Container.Registrator;
 using Cortoxa.Windsor.Registrators;
 
 namespace Cortoxa.Windsor.Tool
@@ -19,9 +18,9 @@ namespace Cortoxa.Windsor.Tool
 
         public IToolContainer Register(Action<IRegistration> registrationAction)
         {
-            var registrator = new ToolRegistration(WindsorServiceRegistrator.RegistrationAction(container));
-            registrationAction(registrator);
-            registrator.Build();
+            var configurator = new ContainerConfigurator(new WindsorServiceRegistrator(container), new WindsorTypeRegistrator(container));
+            registrationAction(configurator);
+            configurator.Configure();
             return this;
         }
 
@@ -37,7 +36,7 @@ namespace Cortoxa.Windsor.Tool
 
         public T Resolve<T>(Type type, object arguments = null)
         {
-            var result = arguments != null ? (T)container.Resolve(type, arguments) : container.Resolve(type);
+            object result = arguments != null ? (T)container.Resolve(type, arguments) : container.Resolve(type);
             return (T)result;
         }
 
@@ -53,13 +52,13 @@ namespace Cortoxa.Windsor.Tool
 
         public object[] ResolveAll(Type type, object arguments = null)
         {
-            var result = arguments != null ? container.ResolveAll(type, arguments) : container.ResolveAll(type);
+            Array result = arguments != null ? container.ResolveAll(type, arguments) : container.ResolveAll(type);
             return result.Cast<object>().ToArray();
         }
 
         public T[] ResolveAll<T>(Type type, object arguments = null)
         {
-            var result = arguments != null ? container.ResolveAll(type, arguments) : container.ResolveAll(type);
+            Array result = arguments != null ? container.ResolveAll(type, arguments) : container.ResolveAll(type);
             return result.Cast<T>().ToArray();
         }
 
@@ -68,7 +67,7 @@ namespace Cortoxa.Windsor.Tool
             var instance = Resolve(type);
             if (instance != null)
             {
-                container.Release(instance);
+                Release(instance);
             }
         }
 

@@ -1,12 +1,19 @@
-﻿using System.ComponentModel.Design;
-using Castle.Windsor;
-using Cortoxa.IoC.Common;
+﻿using Castle.Windsor;
+using Cortoxa.Common.Configuration;
+using Cortoxa.Container.Types;
 
 namespace Cortoxa.Windsor.Registrators
 {
-    public class WindsorTypeRegistrator 
+    public class WindsorTypeRegistrator : IConfigurationStrategy<TypeContext>//: IRegistratorBuilder<string>
     {
-        public static object RegistrationAction(IWindsorContainer container)
+        private readonly IWindsorContainer container;
+
+        public WindsorTypeRegistrator(IWindsorContainer container)
+        {
+            this.container = container;
+        }
+
+        public void Configure(TypeContext context)
         {
             throw new System.NotImplementedException();
         }
