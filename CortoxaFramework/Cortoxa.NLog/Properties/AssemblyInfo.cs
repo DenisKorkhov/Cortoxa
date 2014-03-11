@@ -1,15 +1,16 @@
 ﻿#region Copyright © 2014 Denis Korkhov, Oxagile (http://www.oxagile.com/)
-// /*
-//  * All rights reserved. This program and the accompanying materials
-//  * are made available under the terms of the GNU Lesser General Public License
-//  * (LGPL) version 2.1 which accompanies this distribution, and is available at
-//  * http://www.gnu.org/licenses/lgpl-2.1.html
-//  *
-//  *  Filename:	AssemblyInfo.cs
-//  *  Date:		07/02/2014
-//  *  Author:   	Denis Korkhov
-//  *
-//  */
+// 
+// // /*
+// //  * All rights reserved. This program and the accompanying materials
+// //  * are made available under the terms of the GNU Lesser General Public License
+// //  * (LGPL) version 2.1 which accompanies this distribution, and is available at
+// //  * http://www.gnu.org/licenses/lgpl-2.1.html
+// //  *
+// //  *  Filename:	AssemblyInfo.cs
+// //  *  Date:		11/03/2014
+// //  *  Author:   	Denis Korkhov
+// //  *
+// //  */
 #endregion
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -39,10 +40,10 @@ using System.Runtime.InteropServices;
 //
 //      Major Version
 //      Minor Version 
-//      Build Number
+//      Register Number
 //      Revision
 //
-// You can specify all the values or you can default the Build and Revision Numbers 
+// You can specify all the values or you can default the Register and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
