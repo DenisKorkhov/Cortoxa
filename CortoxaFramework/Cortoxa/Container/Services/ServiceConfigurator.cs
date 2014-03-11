@@ -49,5 +49,11 @@ namespace Cortoxa.Container.Services
             Context.Interceptors.Add(methodInteception);
             return this;
         }
+
+        public IServiceConfigurator ToFactory(Func<FactoryContext, object> action)
+        {
+            Context.ToFactory = action;
+            return this;
+        }
     }
 }
