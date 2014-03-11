@@ -34,5 +34,22 @@ namespace Cortoxa.Reflection
             }
             return call.Method;
         }
+
+        public static MemberExpression MemberInfo<T, P>(this Expression<Func<T, P>> method)
+        {
+            var lambda = method as LambdaExpression;
+            if (lambda == null)
+                throw new ArgumentNullException("method");
+
+            switch (lambda.Body.NodeType)
+            {
+                case ExpressionType.Convert:
+                    return ((UnaryExpression)lambda.Body).Operand as MemberExpression;
+                case ExpressionType.MemberAccess:
+                    return lambda.Body as MemberExpression;
+                default:
+                    throw new ArgumentException("method");
+            }
+        }
     }
 }

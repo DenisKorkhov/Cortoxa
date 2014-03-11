@@ -42,9 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IComponentSetup.cs" />
     <Compile Include="LoggerComponent.cs" />
-    <Compile Include="LoggerSetup.cs" />
+    <Compile Include="LoggerConfigurator.cs" />
+    <Compile Include="NLogSetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

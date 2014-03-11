@@ -1,12 +1,11 @@
-﻿using Cortoxa.IoC.Base.ServiceFamily;
+﻿using Cortoxa.Components;
+using Cortoxa.Container.Services;
 
 namespace Cortoxa.NLog
 {
-    public class LoggerComponent
+    public class LoggerComponent : IComponent
     {
+        public IServiceConfigurator Logger { get; set; }
 
-      //  public IServiceBuilder Logger
-
-         
     }
 }

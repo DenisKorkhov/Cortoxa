@@ -14,26 +14,24 @@
 
 using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.Windsor;
-using Cortoxa.IoC;
-using Cortoxa.IoC.Base;
-using Cortoxa.IoC.Common;
+using Cortoxa.Container;
+using Cortoxa.Container.Common;
 using Cortoxa.Windsor.Tool;
 
 namespace Cortoxa.Windsor
 {
     public static class IocSetup
     {
-        public static ISetupConfigurator<IToolContainer> UseWindsor(this ISetupConfigurator<IToolContainer> setup)
+        public static void UseWindsor(this ISetupConfigurator<IToolContainer> setup)
         {
             var container = new WindsorContainer();
             container.Kernel.Resolver.AddSubResolver(new ArrayResolver(container.Kernel));
-            return UseWindsor(setup, container);
+            UseWindsor(setup, container);
         }
 
-        public static ISetupConfigurator<IToolContainer> UseWindsor(this ISetupConfigurator<IToolContainer> setup, IWindsorContainer instance)
+        public static void UseWindsor(this ISetupConfigurator<IToolContainer> setup, IWindsorContainer instance)
         {
             setup.Create(()=>new WindsorToolContainer(instance));
-            return setup;
         }
     }
 }

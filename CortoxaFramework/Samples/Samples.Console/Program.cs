@@ -1,7 +1,8 @@
 ﻿using Cortoxa;
-using Cortoxa.Components.Log;
-using Cortoxa.IoC.Base;
-using Cortoxa.IoC.Extentions;
+using Cortoxa.Common;
+using Cortoxa.Container.Common;
+using Cortoxa.Container.Components;
+using Cortoxa.Container.Services;
 using Cortoxa.NLog;
 using Cortoxa.Windsor;
 
@@ -13,22 +14,11 @@ namespace Samples.Console
         {
             var container = Setup.Container(s => s.UseWindsor())
                 .Register(r => r.For<Test>().To<Test>().Name("test").LifeTime(LifeTime.Transient))
-//                .Register(r => r.Component(c => c.NLog()))
-                ;
-//                .Register(r => r.t);
+                .Register(r => r.Component(c => c.Nlog()
+                    .Update(x=>x.Logger.Name("logger_name"))));
 
-            var instance = container.Resolve<Test>();
-            instance.DoSomthing();
-
-//                .Register(r => r.For<Test>().ToSelf().Name("test").Transient())
-//
-//                .Register(r=>r.Service<T>.fo);
-
-////                    .Component(c => c.NLog())
-//                    .Component(c => c.EntityDataSource<SamplesContext>()
-//                            .Configure(x => x.DbContext.LifeTime(LifeTime.Transient))
-//                            .Configure(x => x.DataSource.Name("db_datasource"))
-//                        );
+            var test = container.Resolve<Test>();
+            test.DoSomthing();
         }
     }
 
