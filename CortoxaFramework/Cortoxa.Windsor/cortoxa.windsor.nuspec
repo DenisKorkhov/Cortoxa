@@ -9,12 +9,9 @@
         <licenseUrl>http://opensource.org/licenses/LGPL-3.0</licenseUrl>
         <projectUrl>https://github.com/DenisKorkhov/Cortoxa</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>
-          Windsor Implementation of the "Dependency Injection" pattern for Cortoxa Framework.
-Cortoxa Framework is a Powerful Framework for faster and easier building .Net applications based on Dependency Injection patterns. Contains implementation of common "Design Patterns".
-        </description>
+        <description>Windsor Implementation of the "Dependency Injection" pattern for Cortoxa Framework. Cortoxa Framework is a Powerful Framework for faster and easier building .Net applications based on Dependency Injection patterns. Contains implementation of common "Design Patterns".</description>
         <summary>Windsor Implementation of the "Dependency Injection" pattern for Cortoxa Framework.</summary>
-        <copyright>Copyright© Denis Korkhov at 2014</copyright>
+        <copyright>Copyright© Denis Korkhov at Oxagile 2014</copyright>
         <tags>Cortoxa Windsor</tags>
         <dependencies>
             <group targetFramework=".NETFramework3.5">
