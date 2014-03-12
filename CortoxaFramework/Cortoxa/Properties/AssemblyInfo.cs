@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Cortoxa")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Oxagile")]
 [assembly: AssemblyProduct("Cortoxa")]
 [assembly: AssemblyCopyright("Copyright Oxagile Denis Korkhov©  2013")]
 [assembly: AssemblyTrademark("Cortoxa Framework")]

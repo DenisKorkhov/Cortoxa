@@ -30,7 +30,11 @@ namespace Cortoxa.Common.Fluent
 
             var propertyInfo = (PropertyInfo)body.Member;
             var settingsObject = Get<T>();
+            #if NET35 || NET40
+                propertyInfo.SetValue(settingsObject, value, null);
+            #else
             propertyInfo.SetValue(settingsObject, value);
+            #endif
         }
 
         public TR Get<T, TR>(Expression<Func<T, object>> expression) where T : class, new()
@@ -38,7 +42,12 @@ namespace Cortoxa.Common.Fluent
             var body = expression.Body as MemberExpression ?? ((UnaryExpression)expression.Body).Operand as MemberExpression;
             var propertyInfo = (PropertyInfo)body.Member;
             var settingsObject = Get<T>();
+            
+            #if NET35 || NET40
+            return (TR)propertyInfo.GetValue(settingsObject, null);
+            #else
             return (TR)propertyInfo.GetValue(settingsObject);
+            #endif
         }
 
         public T Get<T>() where T : class, new()

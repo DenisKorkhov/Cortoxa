@@ -31,7 +31,11 @@ namespace Cortoxa.Container.Components
             if (property != null)
             {
                 var configurationValue = registrationAction(registrator);
+                #if NET35 || NET40
+                property.SetValue(component, configurationValue, null);
+                #else
                 property.SetValue(component, configurationValue);
+#endif
             }
             var configurator = new ComponentConfigurator<T>(component);
             return configurator;
