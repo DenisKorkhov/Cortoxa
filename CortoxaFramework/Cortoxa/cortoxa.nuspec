@@ -10,10 +10,11 @@
         <description>Description</description>
         <copyright>Copyright Denis Korkhov©  2013</copyright>
     </metadata>
-    <files>
+    <!--<files>
         <file src="bin\NET35\Release\Cortoxa.dll" target="lib\net35\Cortoxa.dll" />
         <file src="bin\NET40\Release\Cortoxa.dll" target="lib\net40\Cortoxa.dll" />
         <file src="bin\NET45\Release\Cortoxa.dll" target="lib\net45\Cortoxa.dll" />
         <file src="bin\NET451\Release\Cortoxa.dll" target="lib\net451\Cortoxa.dll" />
     </files>
+    -->
 </package>
