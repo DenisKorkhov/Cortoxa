@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Cortoxa</id>
+        <version>1.0.0.0</version>
+        <title>Cortoxa</title>
+        <authors>Denis Korkhov</authors>
+        <owners>Denis Korkhov</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Description</description>
+        <copyright>Copyright Oxagile Denis Korkhov©  2013</copyright>
+    </metadata>
+    <files>
+    </files>
+</package>
