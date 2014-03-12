@@ -1,26 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
-        <id>Cortoxa</id>
+        <id>Cortoxa.Windsor</id>
         <version>1.0.0.0</version>
-        <title>Cortoxa</title>
+        <title>Cortoxa Windsor</title>
         <authors>Denis Korkhov</authors>
         <owners>Denis Korkhov</owners>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Description</description>
+        <description>Implementation of the "Dependency Injection" pattern for Cortoxa Framework</description>
+        <summary>Powerful Framework for faster and easier building .Net applications based on Dependency Injection patterns. Contains implementation of common "Design Patterns".</summary>
         <copyright>Copyright Denis Korkhov©  2013</copyright>
+        <tags>Cortoxa Windsor</tags>
         <dependencies>
             <group targetFramework=".NETFramework3.5">
                 <dependency id="Castle.Windsor" version="3.2.1" />
+                <dependency id="Cortoxa" version="1.0.0.2" />
             </group>
             <group targetFramework=".NETFramework4.0">
                 <dependency id="Castle.Windsor" version="3.2.1" />
+                <dependency id="Cortoxa" version="1.0.0.2" />
             </group>
             <group targetFramework=".NETFramework4.5">
                 <dependency id="Castle.Windsor" version="3.2.1" />
+                <dependency id="Cortoxa" version="1.0.0.2" />
             </group>
             <group targetFramework=".NETFramework4.5.1">
                 <dependency id="Castle.Windsor" version="3.2.1" />
+                <dependency id="Cortoxa" version="1.0.0.2" />
             </group>
         </dependencies>
     </metadata>
