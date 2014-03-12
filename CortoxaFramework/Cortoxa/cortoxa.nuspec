@@ -6,9 +6,14 @@
         <title>Cortoxa</title>
         <authors>Denis Korkhov</authors>
         <owners>Denis Korkhov</owners>
+        <licenseUrl>http://opensource.org/licenses/LGPL-3.0</licenseUrl>
+        <projectUrl>https://github.com/DenisKorkhov/Cortoxa</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Description</description>
+        <description>Core features for Cortoxa Framework. 
+Contains interfaces for common "Design Patterns".</description>
+        <summary>Powerful Framework for faster and easier building .Net applications based on Dependency Injection patterns. Contains implementation of common "Design Patterns".</summary>
         <copyright>Copyright Denis Korkhov©  2013</copyright>
+        <tags>ioc Dependency injection repository logger</tags>
     </metadata>
     <files>
         <file src="bin\NET35\Release\Cortoxa.dll" target="lib\net35\Cortoxa.dll" />
@@ -16,5 +21,4 @@
         <file src="bin\NET45\Release\Cortoxa.dll" target="lib\net45\Cortoxa.dll" />
         <file src="bin\NET451\Release\Cortoxa.dll" target="lib\net451\Cortoxa.dll" />
     </files>
-    
 </package>
