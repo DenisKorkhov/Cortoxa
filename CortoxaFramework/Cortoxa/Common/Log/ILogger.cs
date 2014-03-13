@@ -11,6 +11,7 @@
 //  *
 //  */
 #endregion
+
 using System;
 
 namespace Cortoxa.Common.Log

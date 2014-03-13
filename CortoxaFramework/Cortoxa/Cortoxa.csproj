@@ -52,8 +52,9 @@
     <Compile Include="Common\Configuration\IConfigurationStrategy.cs" />
     <Compile Include="Common\Configuration\IConfigurator.cs" />
     <Compile Include="Common\Fluent\FluentBuilder.cs" />
+    <Compile Include="Common\Log\LoggerComponent.cs" />
     <Compile Include="Components\IComponent.cs" />
-    <Compile Include="Common\ILogger.cs" />
+    <Compile Include="Common\Log\ILogger.cs" />
     <Compile Include="Common\IRepository.cs" />
     <Compile Include="Common\StingExtentions.cs" />
     <Compile Include="Container\Complex\ComplexConfigurationStrategy.cs" />
