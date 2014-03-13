@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using Cortoxa.Data.Common;
+using Cortoxa.Data.Model;
 
-namespace Cortoxa.Data.Component
+namespace Cortoxa.Data.Common
 {
     public interface IDataSource : IDisposable
     {

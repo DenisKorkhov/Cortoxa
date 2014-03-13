@@ -5,23 +5,21 @@
 //  * (LGPL) which accompanies this distribution, and is available at
 //  * http://www.gnu.org/licenses/lgpl.html
 //  *
-//  *  Filename:	ModelBuilderConfiguration.cs
-//  *  Date:		18/02/2014
+//  *  Filename:	IUnitOfWork.cs
+//  *  Date:		11/02/2014
 //  *  Author:   	Denis Korkhov
 //  *
 //  */
 #endregion
-using Cortoxa.IoC;
-using Cortoxa.IoC.Base;
-using Cortoxa.IoC.Common;
 
-namespace Cortoxa.Data.IoC
+using System.Threading.Tasks;
+
+namespace Cortoxa.Data.Common
 {
-    public class ModelBuilderConfiguration : IRegistrationStratagy
+    public interface IUnitOfWork
     {
-        public void Register(IToolContainer container)
-        {
-            
-        }
+        void SaveChanges();
+
+        Task SaveChangesAsync();
     }
 }

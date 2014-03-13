@@ -5,19 +5,19 @@
 //  * (LGPL) which accompanies this distribution, and is available at
 //  * http://www.gnu.org/licenses/lgpl.html
 //  *
-//  *  Filename:	IDataConfig.cs
-//  *  Date:		17/02/2014
+//  *  Filename:	IEntity.cs
+//  *  Date:		11/02/2014
 //  *  Author:   	Denis Korkhov
 //  *
 //  */
 #endregion
-using Cortoxa.Initialization;
-using Cortoxa.IoC.Base;
 
-namespace Cortoxa.Data.IoC
+using System;
+
+namespace Cortoxa.Data.Model
 {
-    public interface IDataConfig : IRegistrationConfig
+    public interface IEntity
     {
-        IDataConfig WithSession<T>(LifeTime lifeTime = LifeTime.Transient);
+        Guid Id { get; set; }
     }
 }

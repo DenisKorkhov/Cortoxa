@@ -13,7 +13,6 @@
 #endregion
 
 using System;
-using Cortoxa.Data.Common;
 
 namespace Cortoxa.Data.Model
 {

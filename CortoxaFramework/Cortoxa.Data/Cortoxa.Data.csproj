@@ -43,24 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Component\IDataComponent.cs" />
-    <Compile Include="Component\IDataSource.cs" />
+    <Compile Include="Common\IDataSource.cs" />
     <Compile Include="Common\IModelBuilder.cs" />
     <Compile Include="Context\IDbSession.cs" />
     <Compile Include="Context\IModelFactory.cs" />
-    <Compile Include="IoC\IStoreConfig.cs" />
-    <Compile Include="StoreSetup.cs" />
     <Compile Include="Model\Entity.cs" />
-    <Compile Include="Common\IEntity.cs" />
-    <Compile Include="IoC\DataConfig.cs" />
-    <Compile Include="IoC\ContextConfiguration.cs" />
-    <Compile Include="IoC\IDataConfig.cs" />
-    <Compile Include="DataSetupExtentions.cs" />
-    <Compile Include="IoC\IStoreSetup.cs" />
-    <Compile Include="IoC\ModelBuilderConfiguration.cs" />
-    <Compile Include="IoC\RepositoryConfiguration.cs" />
-    <Compile Include="IoC\SessionConfiguration.cs" />
-    <Compile Include="Component\IUnitOfWork.cs" />
+    <Compile Include="Model\IEntity.cs" />
+    <Compile Include="Common\IUnitOfWork.cs" />
     <Compile Include="Repository\Store.cs" />
     <Compile Include="Repository\IStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
