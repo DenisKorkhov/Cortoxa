@@ -14,6 +14,7 @@
 #endregion
 using System;
 using Cortoxa.Common;
+using Cortoxa.Common.Log;
 using Cortoxa.Container.Components;
 using Cortoxa.Container.Services;
 using NLog;
