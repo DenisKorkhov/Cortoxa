@@ -1,41 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
-        <id>Cortoxa.Windsor</id>
+        <id>Cortoxa.Log4Net</id>
         <version>1.0.0.0</version>
-        <title>Cortoxa Windsor</title>
+        <title>Cortoxa Log4Net</title>
         <authors>Denis Korkhov</authors>
         <owners>Denis Korkhov</owners>
         <licenseUrl>http://opensource.org/licenses/LGPL-3.0</licenseUrl>
         <projectUrl>https://github.com/DenisKorkhov/Cortoxa</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Windsor Implementation of the "Dependency Injection" pattern for Cortoxa Framework. Cortoxa Framework is a Powerful Framework for faster and easier building .Net applications based on Dependency Injection patterns. Contains implementation of common "Design Patterns".</description>
-        <summary>Windsor Implementation of the "Dependency Injection" pattern for Cortoxa Framework.</summary>
+        <description>Log4Net integration for Cortoxa Framework.
+Cortoxa Framework is a Powerful Framework for faster and easier building .Net applications based on Dependency Injection patterns. Contains implementation of common "Design Patterns".</description>
+        <summary>Log4Net integration for Cortoxa Framework</summary>
         <copyright>Copyright© Denis Korkhov at Oxagile 2014</copyright>
-        <tags>Cortoxa Windsor</tags>
+        <tags>logger log logging log4net</tags>
         <dependencies>
             <group targetFramework=".NETFramework3.5">
-                <dependency id="Castle.Windsor" version="3.2.1" />
                 <dependency id="Cortoxa" version="1.0.0.4" />
+                <dependency id="log4net" version="2.0.3" />
             </group>
             <group targetFramework=".NETFramework4.0">
-                <dependency id="Castle.Windsor" version="3.2.1" />
                 <dependency id="Cortoxa" version="1.0.0.4" />
+                <dependency id="log4net" version="2.0.3" />
             </group>
             <group targetFramework=".NETFramework4.5">
-                <dependency id="Castle.Windsor" version="3.2.1" />
                 <dependency id="Cortoxa" version="1.0.0.4" />
+                <dependency id="log4net" version="2.0.3" />
             </group>
             <group targetFramework=".NETFramework4.5.1">
-                <dependency id="Castle.Windsor" version="3.2.1" />
                 <dependency id="Cortoxa" version="1.0.0.4" />
+                <dependency id="log4net" version="2.0.3" />
             </group>
         </dependencies>
     </metadata>
     <files>
-        <file src="bin\NET35\Release\Cortoxa.Windsor.dll" target="lib\net35\Cortoxa.Windsor.dll" />
-        <file src="bin\NET40\Release\Cortoxa.Windsor.dll" target="lib\net40\Cortoxa.Windsor.dll" />
-        <file src="bin\NET45\Release\Cortoxa.Windsor.dll" target="lib\net45\Cortoxa.Windsor.dll" />
-        <file src="bin\NET451\Release\Cortoxa.Windsor.dll" target="lib\net451\Cortoxa.Windsor.dll" />
+        <file src="bin\NET35\Release\Cortoxa.Log4Net.dll" target="lib\net35\Cortoxa.Log4Net.dll" />
+        <file src="bin\NET40\Release\Cortoxa.Log4Net.dll" target="lib\net40\Cortoxa.Log4Net.dll" />
+        <file src="bin\NET45\Release\Cortoxa.Log4Net.dll" target="lib\net45\Cortoxa.Log4Net.dll" />
+        <file src="bin\NET451\Release\Cortoxa.Log4Net.dll" target="lib\net451\Cortoxa.Log4Net.dll" />
     </files>
 </package>

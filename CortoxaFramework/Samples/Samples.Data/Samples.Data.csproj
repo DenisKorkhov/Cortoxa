@@ -54,7 +54,7 @@
       <Project>{06c7e715-b86c-41e0-8879-cac35c112a8d}</Project>
       <Name>Cortoxa.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Cortoxa.Identity\Cortoxa.Data.Identity.csproj">
+    <ProjectReference Include="..\..\Cortoxa.Data.Identity\Cortoxa.Data.Identity.csproj">
       <Project>{92912f87-74fc-4f5f-9af6-00e537bc888e}</Project>
       <Name>Cortoxa.Data.Identity</Name>
     </ProjectReference>

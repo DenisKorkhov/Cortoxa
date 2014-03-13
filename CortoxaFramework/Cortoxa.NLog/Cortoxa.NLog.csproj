@@ -10,28 +10,36 @@
     <RootNamespace>Cortoxa.NLog</RootNamespace>
     <AssemblyName>Cortoxa.NLog</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <Framework>$(TargetFrameworkVersion.Replace("v", "NET").Replace(".", ""))</Framework>
+    <ChildBuild>True</ChildBuild>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\$(Framework)\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\$(Framework)\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);$(Framework)</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NLog">
-      <HintPath>..\packages\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.2.1.0\lib\net35\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -42,10 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="cortoxa.nlog.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <Compile Include="NLogSetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -62,4 +71,14 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="AfterBuild" Condition=" '$(ChildBuild)' == 'True' ">
+    <!-- Build NET35 -->
+    <MSBuild Condition=" '$(TargetFrameworkVersion)' != 'v3.5' " Projects="$(MSBuildProjectFile)" ToolsVersion="3.5" Properties="TargetFrameworkVersion=v3.5; ChildBuild=False" RunEachTargetSeparately="true" />
+    <!-- Build NET40 -->
+    <MSBuild Condition=" '$(TargetFrameworkVersion)' != 'v4.0' " Projects="$(MSBuildProjectFile)" ToolsVersion="4.0" Properties="TargetFrameworkVersion=v4.0; ChildBuild=False" RunEachTargetSeparately="true" />
+    <!-- Build NET45 -->
+    <MSBuild Condition=" '$(TargetFrameworkVersion)' != 'v4.5' " Projects="$(MSBuildProjectFile)" ToolsVersion="4.0" Properties="TargetFrameworkVersion=v4.5; ChildBuild=False" RunEachTargetSeparately="true" />
+    <!-- Build NET451 -->
+    <MSBuild Condition=" '$(TargetFrameworkVersion)' != 'v4.5.1' " Projects="$(MSBuildProjectFile)" ToolsVersion="4.0" Properties="TargetFrameworkVersion=v4.5.1; ChildBuild=False" RunEachTargetSeparately="true" />
+  </Target>
 </Project>
