@@ -16,19 +16,19 @@
         <dependencies>
             <group targetFramework=".NETFramework3.5">
                 <dependency id="Castle.Windsor" version="3.2.1" />
-                <dependency id="Cortoxa" version="1.0.0.4" />
+                <dependency id="Cortoxa" version="1.0.4" />
             </group>
             <group targetFramework=".NETFramework4.0">
                 <dependency id="Castle.Windsor" version="3.2.1" />
-                <dependency id="Cortoxa" version="1.0.0.4" />
+                <dependency id="Cortoxa" version="1.0.4" />
             </group>
             <group targetFramework=".NETFramework4.5">
                 <dependency id="Castle.Windsor" version="3.2.1" />
-                <dependency id="Cortoxa" version="1.0.0.4" />
+                <dependency id="Cortoxa" version="1.0.4" />
             </group>
             <group targetFramework=".NETFramework4.5.1">
                 <dependency id="Castle.Windsor" version="3.2.1" />
-                <dependency id="Cortoxa" version="1.0.0.4" />
+                <dependency id="Cortoxa" version="1.0.4" />
             </group>
         </dependencies>
     </metadata>

@@ -16,19 +16,19 @@ Cortoxa Framework is a Powerful Framework for faster and easier building .Net ap
         <tags>logger log logging log4net</tags>
         <dependencies>
             <group targetFramework=".NETFramework3.5">
-                <dependency id="Cortoxa" version="1.0.0.4" />
+                <dependency id="Cortoxa" version="1.0.4" />
                 <dependency id="log4net" version="2.0.3" />
             </group>
             <group targetFramework=".NETFramework4.0">
-                <dependency id="Cortoxa" version="1.0.0.4" />
+                <dependency id="Cortoxa" version="1.0.4" />
                 <dependency id="log4net" version="2.0.3" />
             </group>
             <group targetFramework=".NETFramework4.5">
-                <dependency id="Cortoxa" version="1.0.0.4" />
+                <dependency id="Cortoxa" version="1.0.4" />
                 <dependency id="log4net" version="2.0.3" />
             </group>
             <group targetFramework=".NETFramework4.5.1">
-                <dependency id="Cortoxa" version="1.0.0.4" />
+                <dependency id="Cortoxa" version="1.0.4" />
                 <dependency id="log4net" version="2.0.3" />
             </group>
         </dependencies>
