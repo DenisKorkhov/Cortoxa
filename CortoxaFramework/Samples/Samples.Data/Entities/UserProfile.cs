@@ -1,6 +1,4 @@
-﻿using System;
-using Cortoxa.Data.Identity.Entitites;
-using Cortoxa.Data.Model;
+﻿using Cortoxa.Data.Model;
 
 namespace Samples.Data.Entities
 {
@@ -9,5 +7,7 @@ namespace Samples.Data.Entities
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        public User User { get; set; }
     }
 }
