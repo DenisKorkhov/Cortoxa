@@ -34,10 +34,10 @@ namespace Cortoxa.Data.EntityFramework.Data
             this.modelBuilder = modelBuilder;
         }
 
-        public EntityContext(string nameOrConnectionString, DbCompiledModel model, IModelBuilder modelBuilder = null): base(nameOrConnectionString, model)
-        {
-            this.modelBuilder = modelBuilder;
-        }
+//        public EntityContext(string nameOrConnectionString, DbCompiledModel model, IModelBuilder modelBuilder = null): base(nameOrConnectionString, model)
+//        {
+//            this.modelBuilder = modelBuilder;
+//        }
 
         public IQueryable<TEntity> Query<TEntity>() where TEntity : class
         {
@@ -65,7 +65,7 @@ namespace Cortoxa.Data.EntityFramework.Data
 
         public new Task SaveChangesAsync()
         {
-            return base.SaveChangesAsync();
+            return Task.Factory.StartNew(SaveChanges);
         }
     }
 }

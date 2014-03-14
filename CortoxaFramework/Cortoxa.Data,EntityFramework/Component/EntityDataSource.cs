@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cortoxa.Data.Common;
 using Cortoxa.Data.Component;
+using Cortoxa.Data.Model;
 
 namespace Cortoxa.Data.EntityFramework.Component
 {
@@ -52,7 +53,11 @@ namespace Cortoxa.Data.EntityFramework.Component
 
         public Task SaveChangesAsync()
         {
+            #if NET40
+            return Task.Factory.StartNew(SaveChanges);
+            #else
             return Task.Run(() => SaveChanges());
+            #endif
         }
     }
 }

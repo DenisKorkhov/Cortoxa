@@ -1,13 +1,14 @@
-﻿using Cortoxa.Data.Component;
-using Cortoxa.IoC.Base.ServiceFamily;
+﻿using System.Data.Entity;
+using Cortoxa.Container.Services;
+using Cortoxa.Data.Common;
+using Cortoxa.Data.Component;
 
 namespace Cortoxa.Data.EntityFramework.Component
 {
     public class EntityComponent : IDataComponent
     {
+        public IServiceConfigurator Context { get; set; }
 
-        public IServiceBuilder DbContext { get; private set; }
-
-        public IServiceBuilder DataSource { get; private set; }
+        public IDataSource Source { get; set; }
     }
 }
