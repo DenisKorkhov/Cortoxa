@@ -34,9 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.AspNet.Identity.Core">
-      <HintPath>..\..\..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -54,17 +52,10 @@
       <Project>{06c7e715-b86c-41e0-8879-cac35c112a8d}</Project>
       <Name>Cortoxa.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Cortoxa.Data.Identity\Cortoxa.Data.Identity.csproj">
-      <Project>{92912f87-74fc-4f5f-9af6-00e537bc888e}</Project>
-      <Name>Cortoxa.Data.Identity</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Cortoxa\Cortoxa.csproj">
       <Project>{5f54c462-7e84-40c3-b045-92589fe9fea4}</Project>
       <Name>Cortoxa</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
