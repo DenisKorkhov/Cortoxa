@@ -9,31 +9,35 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Cortoxa.Data</RootNamespace>
     <AssemblyName>Cortoxa.Data</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <Framework>$(TargetFrameworkVersion.Replace("v", "NET").Replace(".", ""))</Framework>
+    <ChildBuild>True</ChildBuild>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\$(Framework)\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\$(Framework)\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);$(Framework)</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Cortoxa.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Cortoxa.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,7 +49,7 @@
   <ItemGroup>
     <Compile Include="Common\IDataSource.cs" />
     <Compile Include="Common\IModelBuilder.cs" />
-    <Compile Include="Context\IDbSession.cs" />
+    <Compile Include="Component\IDataComponent.cs" />
     <Compile Include="Context\IModelFactory.cs" />
     <Compile Include="Model\Entity.cs" />
     <Compile Include="Model\IEntity.cs" />
@@ -60,13 +64,18 @@
     <Compile Include="Schema\IModelBuilder.cs" />
     <Compile Include="Schema\Models\ITableModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="cortoxa.nlog.nuspec">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cortoxa\Cortoxa.csproj">
-      <Project>{5f54c462-7e84-40c3-b045-92589fe9fea4}</Project>
+      <Project>{5F54C462-7E84-40C3-B045-92589FE9FEA4}</Project>
       <Name>Cortoxa</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -75,4 +84,12 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="AfterBuild" Condition=" '$(ChildBuild)' == 'True' ">
+    <!-- Build NET40 -->
+    <MSBuild Condition=" '$(TargetFrameworkVersion)' != 'v4.0' " Projects="$(MSBuildProjectFile)" ToolsVersion="4.0" Properties="TargetFrameworkVersion=v4.0; ChildBuild=False" RunEachTargetSeparately="true" />
+    <!-- Build NET45 -->
+    <MSBuild Condition=" '$(TargetFrameworkVersion)' != 'v4.5' " Projects="$(MSBuildProjectFile)" ToolsVersion="4.0" Properties="TargetFrameworkVersion=v4.5; ChildBuild=False" RunEachTargetSeparately="true" />
+    <!-- Build NET451 -->
+    <MSBuild Condition=" '$(TargetFrameworkVersion)' != 'v4.5.1' " Projects="$(MSBuildProjectFile)" ToolsVersion="4.0" Properties="TargetFrameworkVersion=v4.5.1; ChildBuild=False" RunEachTargetSeparately="true" />
+  </Target>
 </Project>

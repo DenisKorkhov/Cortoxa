@@ -12,7 +12,6 @@
 //  */
 #endregion
 
-using Cortoxa.Data.Common;
 using Cortoxa.Data.Model;
 
 namespace Cortoxa.Data.Schema.Models

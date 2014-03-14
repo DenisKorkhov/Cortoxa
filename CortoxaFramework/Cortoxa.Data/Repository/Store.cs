@@ -24,9 +24,9 @@ namespace Cortoxa.Data.Repository
 {
     public class Store<T> : IStore<T> where T : class, IEntity
     {
-        private IDbSession session;
+        private IDataSource session;
 
-        public Store(IDbSession session)
+        public Store(IDataSource session)
         {
             this.session = session;
         }
@@ -61,12 +61,12 @@ namespace Cortoxa.Data.Repository
 
         public virtual Task<T> FirstAsync(Expression<Func<T, bool>> predicate)
         {
-            return Task.FromResult(First(predicate));
+            return new Task<T>(() => First(predicate));
         }
 
         public virtual Task<T> SingleAsync(Expression<Func<T, bool>> predicate)
         {
-            return Task.FromResult(Single(predicate));
+            return new Task<T>(() => Single(predicate));
         }
 
         public virtual T Single(Expression<Func<T, bool>> predicate)
@@ -81,7 +81,7 @@ namespace Cortoxa.Data.Repository
 
         public virtual Task<IEnumerable<T>> FindAllAsync(Expression<Func<T, bool>> predicate = null)
         {
-            return Task.FromResult(FindAll(predicate));
+            return new Task<IEnumerable<T>>(() => FindAll(predicate));
         }
 
         public virtual IEnumerable<T> GetAll()
@@ -96,7 +96,11 @@ namespace Cortoxa.Data.Repository
 
         public Task AddAsync(T entity)
         {
+            #if NET40
+            return Task.Factory.StartNew(() => Add(entity));
+            #else
             return Task.Run(() => Add(entity));
+            #endif
         }
 
         public virtual void Update(T entity)
@@ -106,7 +110,11 @@ namespace Cortoxa.Data.Repository
 
         public virtual Task UpdateAsync(T entity)
         {
-            return Task.Run(() => Update(entity));
+            #if NET40
+            return Task.Factory.StartNew(() => Update(entity));
+            #else
+            return Task.Run(() => Add(entity));
+            #endif
         }
 
         public virtual void Delete(T entity)
@@ -116,12 +124,11 @@ namespace Cortoxa.Data.Repository
 
         public Task DeleteAsync(T entity)
         {
-            return Task.Run(() => Delete(entity));
-        }
-
-        public virtual void SaveChanges()
-        {
-            session.SaveChanges();
+            #if NET40
+            return Task.Factory.StartNew(() => Delete(entity));
+            #else
+            return Task.Run(() => Add(entity));
+            #endif
         }
 
         public virtual T Get(Guid id)
@@ -131,7 +138,7 @@ namespace Cortoxa.Data.Repository
 
         public virtual Task<T> GetAsync(Guid id)
         {
-            return Task.FromResult(Get(id));
+            return new Task<T>(() => Get(id));
         }
 
         public virtual T[] Get(params Guid[] ids)
@@ -141,7 +148,7 @@ namespace Cortoxa.Data.Repository
 
         public virtual Task<T[]> GetAsync(params Guid[] ids)
         {
-            return Task.FromResult(Get(ids));
+            return new Task<T[]>(() => Get(ids));
         }
     }
 }
