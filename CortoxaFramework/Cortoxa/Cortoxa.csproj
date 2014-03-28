@@ -47,9 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\Configuration\BaseConfigurator.cs" />
-    <Compile Include="Common\Configuration\IConfigurationContext.cs" />
-    <Compile Include="Common\Configuration\IConfigurationStrategy.cs" />
+    <Compile Include="Configuration\ConfigurationBase.cs" />
+    <Compile Include="Configuration\IConfiguration.cs" />
+    <Compile Include="Configuration\IConfigurationStrategy.cs" />
     <Compile Include="Common\Configuration\IConfigurator.cs" />
     <Compile Include="Common\Fluent\FluentBuilder.cs" />
     <Compile Include="Common\Log\LoggerComponent.cs" />
@@ -57,45 +57,60 @@
     <Compile Include="Common\Log\ILogger.cs" />
     <Compile Include="Common\IRepository.cs" />
     <Compile Include="Common\StingExtentions.cs" />
-    <Compile Include="Container\Complex\ComplexConfigurationStrategy.cs" />
-    <Compile Include="Container\Complex\ComplexContext.cs" />
+    <Compile Include="Components\IService.cs" />
+    <Compile Include="Container\Complex\ActionContext.cs" />
+    <Compile Include="Container\Components\ComponentConfiguration.cs" />
     <Compile Include="Container\Components\ComponentConfigurator.cs" />
     <Compile Include="Container\Components\ComponentRegistrator.cs" />
     <Compile Include="Container\Components\ComponentContext.cs" />
     <Compile Include="Container\Components\IComponentConfigurator.cs" />
+    <Compile Include="Container\Components\IComponentContext.cs" />
     <Compile Include="Container\Components\IComponentRegistrator.cs" />
+    <Compile Include="Container\Configuration\ContainerConfiguration.cs" />
+    <Compile Include="Configuration\ActionStrategy.cs" />
+    <Compile Include="Container\Configuration\IContainerConfiguration.cs" />
+    <Compile Include="Container\IContainer.cs" />
+    <Compile Include="Tool\IToolWizard.cs" />
+    <Compile Include="Container\Registrations\ContainerRegistrator.cs" />
+    <Compile Include="Container\Registrations\IContainerCleanup.cs" />
+    <Compile Include="Container\Registrations\IContainerRegistrator.cs" />
+    <Compile Include="Container\Registrations\IContainerResolver.cs" />
+    <Compile Include="Container\Registrations\RegistrationContext.cs" />
     <Compile Include="Container\Registrator\ContainerConfigurator.cs" />
-    <Compile Include="Container\Services\IServiceConfigurator.cs" />
-    <Compile Include="Container\Services\ServiceConfigurator.cs" />
-    <Compile Include="Container\Types\ITypeConfigurator.cs" />
-    <Compile Include="Container\Types\TypeConfigurator.cs" />
+    <Compile Include="Container\Registrator\RegistrationSetup.cs" />
+    <Compile Include="Container\Services\IServiceConfiguration.cs" />
+    <Compile Include="Container\Services\IServiceContext.cs" />
+    <Compile Include="Container\Services\ServiceConfiguration.cs" />
+    <Compile Include="Tool\ContainerSetup.cs" />
+    <Compile Include="Tool\Context.cs" />
+    <Compile Include="Container\Types\TypeConfiguration.cs" />
     <Compile Include="Container\Types\TypeContext.cs" />
     <Compile Include="Container\Types\TypeExtentions.cs" />
     <Compile Include="Container\Components\ComponentExtentions.cs" />
-    <Compile Include="Container\Common\ISetupBuilder.cs" />
-    <Compile Include="Container\Common\ISetupConfigurator.cs" />
     <Compile Include="Container\Registrator\IRegistration.cs" />
     <Compile Include="Container\Services\ServiceExtentions.cs" />
     <Compile Include="Container\Services\ServiceContext.cs" />
     <Compile Include="Container\Services\IServiceInterception.cs" />
     <Compile Include="Container\IToolContainer.cs" />
     <Compile Include="Container\Services\ServiceInterception.cs" />
-    <Compile Include="Container\Common\LifeTime.cs" />
+    <Compile Include="Container\Life\LifeTime.cs" />
     <Compile Include="Container\Registrator\IRegistrationStratagy.cs" />
     <Compile Include="Container\Services\FactoryContext.cs" />
     <Compile Include="Common\Fluent\IFluentBuilder.cs" />
     <Compile Include="Container\Services\InterceptionContext.cs" />
     <Compile Include="Container\Services\MethodInteception.cs" />
-    <Compile Include="Container\ToolSetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\ReflectionExtentions.cs" />
     <Compile Include="Setup.cs" />
+    <Compile Include="Tool\ContainerContext.cs" />
+    <Compile Include="Tool\ToolWizard.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Cortoxa.nuspec">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

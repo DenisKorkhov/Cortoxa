@@ -13,18 +13,20 @@
 // //  */
 #endregion
 using System;
+using Cortoxa.Configuration;
 using Cortoxa.Container;
-using Cortoxa.Container.Common;
+using Cortoxa.Tool;
 
 namespace Cortoxa
 {
     public static class Setup
     {
-        public static IToolContainer Container(Action<ISetupConfigurator<IToolContainer>> setupAction)
+        public static IToolContainer Container(Action<IConfiguration<ContainerContext>> setupAction)
         {
-            var setup = new ToolSetup<IToolContainer>();
-            setupAction(setup);
-            return setup.Build();
+            var context = new ContainerContext();
+            var configuration = new ConfigurationBase<ContainerContext>(context);
+            setupAction(configuration);
+            return context.Container;
         }
     }
 }

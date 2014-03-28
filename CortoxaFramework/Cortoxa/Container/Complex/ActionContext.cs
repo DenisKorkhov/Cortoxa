@@ -6,34 +6,24 @@
 // //  * (LGPL) version 2.1 which accompanies this distribution, and is available at
 // //  * http://www.gnu.org/licenses/lgpl-2.1.html
 // //  *
-// //  *  Filename:	ToolSetup.cs
+// //  *  Filename:	ActionContext.cs
 // //  *  Date:		11/03/2014
 // //  *  Author:   	Denis Korkhov
 // //  *
 // //  */
 #endregion
 using System;
-using Cortoxa.Container.Common;
+using System.Collections.Generic;
 
-namespace Cortoxa.Container
+namespace Cortoxa.Container.Complex
 {
-    public class ToolSetup<T> : ISetupBuilder<T>, ISetupConfigurator<T> 
+    public class ActionContext
     {
-        protected T Value;
+        private readonly IList<Action> confiurationActions = new List<Action>();
 
-        public void Create(Func<T> action)
+        public IList<Action> ConfiurationActions
         {
-            Value = action();
-        }
-
-        public void Configure(Action<T> action)
-        {
-            action(Value);
-        }
-
-        public T Build()
-        {
-            return Value;
-        }
+            get { return confiurationActions; }
+        } 
     }
 }

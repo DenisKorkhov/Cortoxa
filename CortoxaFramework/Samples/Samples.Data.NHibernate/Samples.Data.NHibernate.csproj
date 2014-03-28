@@ -64,14 +64,6 @@
       <Project>{06c7e715-b86c-41e0-8879-cac35c112a8d}</Project>
       <Name>Cortoxa.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Cortoxa.Data.Identity\Cortoxa.Data.Identity.csproj">
-      <Project>{92912F87-74FC-4F5F-9AF6-00E537BC888E}</Project>
-      <Name>Cortoxa.Data.Identity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Cortoxa.Data,NHibernate\Cortoxa.Data.NHibernate.csproj">
-      <Project>{f36a7bcf-6a17-4174-9ffa-e462f19a644a}</Project>
-      <Name>Cortoxa.Data.NHibernate</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Cortoxa\Cortoxa.csproj">
       <Project>{5f54c462-7e84-40c3-b045-92589fe9fea4}</Project>
       <Name>Cortoxa</Name>

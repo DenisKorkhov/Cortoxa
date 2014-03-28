@@ -7,8 +7,8 @@ namespace Cortoxa.Container.Registrator
 {
     public interface IRegistration
     {
-        IServiceConfigurator For(params Type[] types);
+        IServiceConfiguration For(params Type[] types);
 
-        ITypeConfigurator Types(params Assembly[] assemblies);
+        TypeConfiguration Types(params Assembly[] assemblies);
     }
 }

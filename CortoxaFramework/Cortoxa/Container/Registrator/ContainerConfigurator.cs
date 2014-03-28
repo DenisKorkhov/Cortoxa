@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Reflection;
 using Cortoxa.Common.Configuration;
+using Cortoxa.Configuration;
 using Cortoxa.Container.Complex;
 using Cortoxa.Container.Services;
 using Cortoxa.Container.Types;
 
 namespace Cortoxa.Container.Registrator
 {
-    public class ContainerConfigurator : IConfigurator<ComplexContext>, IRegistration
+    public class ContainerConfigurator : IConfigurator<ActionContext>, IRegistration
     {
         private readonly IConfigurationStrategy<ServiceContext> serviceStrategy;
         private readonly IConfigurationStrategy<TypeContext> typeStrategy;
-        private readonly ComplexContext context;
+        private readonly ActionContext context;
 
-        public ComplexContext Context
+        public ActionContext Context
         {
             get { return context; }
         }
@@ -22,21 +23,21 @@ namespace Cortoxa.Container.Registrator
         {
             this.serviceStrategy = serviceStrategy;
             this.typeStrategy = typeStrategy;
-            context = new ComplexContext();
+            context = new ActionContext();
         }
 
-        public IServiceConfigurator For(params Type[] types)
+        public IServiceConfiguration For(params Type[] types)
         {
-            var configurator = new ServiceConfigurator(serviceStrategy);
-            configurator.For(types);
-            context.ConfiurationActions.Add(configurator.Configure);
+            var configurator = new ServiceConfiguration();
+            configurator.Configure(x=>x.For = types);
+//            context.ConfiurationActions.Add(configurator.Build);
             return configurator;
         }
 
-        public ITypeConfigurator Types(params Assembly[] assemblies)
+        public TypeConfiguration Types(params Assembly[] assemblies)
         {
-            var configurator = new TypeConfigurator(typeStrategy);
-            context.ConfiurationActions.Add(configurator.Configure);
+            var configurator = new TypeConfiguration();
+//            context.ConfiurationActions.Add(configurator.Build);
             return configurator;
         }
 

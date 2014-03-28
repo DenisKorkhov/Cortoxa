@@ -6,24 +6,19 @@
 // //  * (LGPL) version 2.1 which accompanies this distribution, and is available at
 // //  * http://www.gnu.org/licenses/lgpl-2.1.html
 // //  *
-// //  *  Filename:	ComplexConfigurationStrategy.cs
+// //  *  Filename:	IConfigurationStrategy.cs
 // //  *  Date:		11/03/2014
 // //  *  Author:   	Denis Korkhov
 // //  *
 // //  */
 #endregion
-using Cortoxa.Common.Configuration;
 
-namespace Cortoxa.Container.Complex
+using Cortoxa.Tool;
+
+namespace Cortoxa.Configuration
 {
-    public class ComplexConfigurationStrategy : IConfigurationStrategy<ComplexContext>
+    public interface IConfigurationStrategy<T>
     {
-        public void Configure(ComplexContext context)
-        {
-            foreach (var configurationAction in context.ConfiurationActions)
-            {
-                configurationAction();
-            }
-        }
+        void Execute(T context);
     }
 }

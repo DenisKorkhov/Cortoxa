@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Cortoxa.Container.Common;
+using Cortoxa.Container.Life;
 
 namespace Cortoxa.Container.Services
 {
-    public class ServiceContext 
+    public class ServiceContext : IServiceContext
     {
         private readonly IDictionary<Type, string> dependencies = new Dictionary<Type, string>();
 

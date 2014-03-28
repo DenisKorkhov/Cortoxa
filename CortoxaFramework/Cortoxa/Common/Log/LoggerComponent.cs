@@ -13,14 +13,12 @@
 // //  */
 #endregion
 
-using Cortoxa.Components;
-using Cortoxa.Container.Services;
+using Cortoxa.Container.Components;
 
 namespace Cortoxa.Common.Log
 {
-    public class LoggerComponent : IComponent
+    public class LoggerComponent : IComponentContext
     {
-        public IServiceConfigurator Logger { get; set; }
-
+        public string Name { get; set; }
     }
 }

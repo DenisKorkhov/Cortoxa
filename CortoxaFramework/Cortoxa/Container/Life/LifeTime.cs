@@ -14,7 +14,7 @@
 
 #endregion
 
-namespace Cortoxa.Container.Common
+namespace Cortoxa.Container.Life
 {
     public enum LifeTime
     {

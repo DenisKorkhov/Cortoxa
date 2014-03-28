@@ -18,10 +18,13 @@ namespace Cortoxa.Windsor.Tool
 
         public IToolContainer Register(Action<IRegistration> registrationAction)
         {
-            var configurator = new ContainerConfigurator(new WindsorServiceRegistrator(container), new WindsorTypeRegistrator(container));
-            registrationAction(configurator);
-            configurator.Configure();
+
             return this;
+
+//            var registration = new RegistrationSetup(new WindsorServiceRegistration(container), new WindsorTypeRegistration(container));
+//            registrationAction(registration);
+//            registration.Register();
+//            return this;
         }
 
         public T Resolve<T>(object arguments = null)

@@ -53,6 +53,7 @@
     <None Include="cortoxa.nlog.nuspec">
       <SubType>Designer</SubType>
     </None>
+    <Compile Include="NLogRegistration.cs" />
     <Compile Include="NLogSetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />

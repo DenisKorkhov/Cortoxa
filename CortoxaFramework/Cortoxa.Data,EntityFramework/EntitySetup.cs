@@ -12,8 +12,8 @@
 //  */
 #endregion
 
-using Cortoxa.Container.Common;
 using Cortoxa.Container.Components;
+using Cortoxa.Container.Life;
 using Cortoxa.Container.Services;
 using Cortoxa.Data.Common;
 using Cortoxa.Data.EntityFramework.Component;

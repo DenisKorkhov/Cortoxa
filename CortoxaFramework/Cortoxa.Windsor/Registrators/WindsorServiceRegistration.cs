@@ -2,23 +2,24 @@
 using System.Linq;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
-using Cortoxa.Common.Configuration;
+using Cortoxa.Configuration;
 using Cortoxa.Container.Services;
+using Cortoxa.Tool;
 using Cortoxa.Windsor.Helpers;
 using Cortoxa.Windsor.Interceptions;
 
 namespace Cortoxa.Windsor.Registrators
 {
-    public class WindsorServiceRegistrator : IConfigurationStrategy<ServiceContext>
+    public class WindsorServiceRegistration : IConfigurationStrategy<ServiceContext>
     {
         private readonly IWindsorContainer container;
         
-        public WindsorServiceRegistrator(IWindsorContainer container)
+        public WindsorServiceRegistration(IWindsorContainer container)
         {
             this.container = container;
         }
 
-        public void Configure(ServiceContext context)
+        public void Execute(ServiceContext context)
         {
             ComponentRegistration<object> component = Component.For(context.For);
 
