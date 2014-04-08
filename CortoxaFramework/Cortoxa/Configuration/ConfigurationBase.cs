@@ -18,6 +18,11 @@ namespace Cortoxa.Configuration
             configurationBuilder = buildAction;
         }
 
+        public void SetBuilder(Func<T, T> buildAction)
+        {
+            throw new NotImplementedException();
+        }
+
         public void SetStrategy(IConfigurationStrategy<T> strategy)
         {
             configurationBuilder = strategy.Execute;

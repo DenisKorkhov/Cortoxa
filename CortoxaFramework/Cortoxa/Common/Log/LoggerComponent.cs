@@ -17,7 +17,7 @@ using Cortoxa.Container.Components;
 
 namespace Cortoxa.Common.Log
 {
-    public class LoggerComponent : IComponentContext
+    public class LoggerComponent : IComponent
     {
         public string Name { get; set; }
     }

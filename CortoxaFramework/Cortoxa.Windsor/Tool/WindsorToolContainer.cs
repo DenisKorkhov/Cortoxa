@@ -1,30 +1,40 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using Castle.Windsor;
-using Cortoxa.Container;
 using Cortoxa.Container.Registrator;
+using Cortoxa.Container.Services;
 using Cortoxa.Windsor.Registrators;
 
 namespace Cortoxa.Windsor.Tool
 {
-    public class WindsorToolContainer : IToolContainer
+    public class WindsorToolContainer : IRegistrator
     {
         private readonly IWindsorContainer container;
+        
 
         public WindsorToolContainer(IWindsorContainer container)
         {
             this.container = container;
+            
         }
 
-        public IToolContainer Register(Action<IRegistration> registrationAction)
+        public IRegistrator Registration { get; private set; }
+
+
+        public IRegistrator For(Type[] types, Action<IServiceConfiguration> serviceConfiguration)
         {
-
+            var serviceConfigurator = new ServiceConfiguration();
+            serviceConfigurator.SetStrategy(new WindsorServiceRegistration(container));
+            serviceConfigurator.For(types);
+            serviceConfiguration(serviceConfigurator);
+            serviceConfigurator.Build();
             return this;
+        }
 
-//            var registration = new RegistrationSetup(new WindsorServiceRegistration(container), new WindsorTypeRegistration(container));
-//            registrationAction(registration);
-//            registration.Register();
-//            return this;
+        public IRegistrator Type(Assembly[] assemblies, Action<IServiceConfiguration> serviceConfiguration)
+        {
+            return this;
         }
 
         public T Resolve<T>(object arguments = null)

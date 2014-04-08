@@ -1,41 +1,24 @@
 ﻿using System;
-using System.Linq.Expressions;
-using Cortoxa.Common.Configuration;
-using Cortoxa.Components;
+using Cortoxa.Configuration;
+using Cortoxa.Container.Registrator;
+
 
 namespace Cortoxa.Container.Components
 {
-    public class ComponentConfigurator<T> : IComponentConfigurator<T>, IConfigurator<T> where T : IComponent
+    public class ComponentConfigurator<T> : IConfigurator<T>, IComponent
     {
-        private readonly T component;
+        private readonly IRegistrator registrator;
 
-        public ComponentConfigurator(T component)
+        public ComponentConfigurator(IRegistrator registrator)
         {
-            this.component = component;
+            this.registrator = registrator;
         }
 
-        public virtual void Init()
+        
+        public T Context { get; private set; }
+        public void Configure(Action<T> contextAction)
         {
-        }
-
-        public IComponentConfigurator<T> Configure(Expression<Func<T, T>> property)
-        {
-            return this;
-        }
-
-        public IComponentConfigurator<T> Update(Action<T> updateAction)
-        {
-            updateAction(component);
-            return this;
-        }
-
-        public T Context
-        {
-            get { return component; }
-        }
-
-        public void Configure()
-        {
+            throw new NotImplementedException();
         }
     }
 }

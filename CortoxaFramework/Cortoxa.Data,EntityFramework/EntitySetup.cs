@@ -22,9 +22,9 @@ namespace Cortoxa.Data.EntityFramework
 {
     public static class EntitySetup
     {
-        public static IComponentConfigurator<EntityComponent> EntityFramework(this IComponentRegistrator componentRegistrator)
-        {
-            return componentRegistrator.Configure<EntityComponent>(c=>c.Source, r => r.For<IDataSource>().To<EntityDataSource>().LifeTime(LifeTime.Transient));
-        }
+//        public static IComponentConfigurator<EntityComponent> EntityFramework(this IComponentRegistrator componentRegistrator)
+//        {
+//            return componentRegistrator.Configure<EntityComponent>(c=>c.Source, r => r.For<IDataSource>().To<EntityDataSource>().LifeTime(LifeTime.Transient));
+//        }
 }
 }

@@ -1,17 +1,13 @@
 ﻿using System;
-using Cortoxa.Container.Life;
+using Cortoxa.Container.Registrator;
 
 namespace Cortoxa.Container.Services
 {
-    public interface IServiceConfiguration
+    public interface IServiceConfiguration : IRegistrationConfig
     {
         IServiceConfiguration To<T>();
 
         IServiceConfiguration To(Type to);
-
-        IServiceConfiguration Name(string name);
-
-        IServiceConfiguration LifeTime(LifeTime lifeTime);
 
         IServiceInterception Intercept { get; }
 

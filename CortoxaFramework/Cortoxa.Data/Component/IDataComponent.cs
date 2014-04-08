@@ -1,4 +1,4 @@
-﻿using Cortoxa.Components;
+﻿using Cortoxa.Container.Components;
 using Cortoxa.Data.Common;
 
 namespace Cortoxa.Data.Component

@@ -1,6 +1,7 @@
 ﻿using System;
 using Cortoxa.Configuration;
 using Cortoxa.Container.Life;
+using Cortoxa.Container.Registrator;
 
 namespace Cortoxa.Container.Services
 {
@@ -30,13 +31,13 @@ namespace Cortoxa.Container.Services
             return this;
         }
 
-        public IServiceConfiguration Name(string name)
+        public IRegistrationConfig Name(string name)
         {
             context.Name = name;
             return this;
         }
 
-        public IServiceConfiguration LifeTime(LifeTime lifeTime)
+        public IRegistrationConfig LifeTime(LifeTime lifeTime)
         {
             context.Lifetime = lifeTime;
             return this;

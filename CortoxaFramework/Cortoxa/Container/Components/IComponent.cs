@@ -1,6 +1,6 @@
 ﻿namespace Cortoxa.Container.Components
 {
-    public class ComponentContext
+    public interface IComponent
     {
          
     }
