@@ -28,9 +28,10 @@ namespace Cortoxa.Windsor.Tool
 
             var configurator = new ServiceConfigurator();
             configurator.Setup(ca => ca(new ServiceContext()));
+            configurator.For(types);
+            serviceConfiguration(configurator);
 
             var serviceRegistrator = new WindsorServiceRegistration(container);
-            serviceConfiguration(configurator);
             configurator.OnBuild(serviceRegistrator.Execute);
             configurator.Build();
             return this;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Cortoxa.Configuration
 {
@@ -7,7 +8,7 @@ namespace Cortoxa.Configuration
         #region Fields
         
         private Action<Action<T>> strategy;
-        private Action<T> configuration;
+        private readonly IList<Action<T>> configurations = new List<Action<T>>();
         private Action<T> buildStrategy;
 
         #endregion
@@ -21,7 +22,7 @@ namespace Cortoxa.Configuration
 
         public void Configure(Action<T> action)
         {
-            this.configuration = action;
+            configurations.Add(action);
         }
 
         public void OnBuild(Action<T> buildStrategy)
@@ -37,9 +38,12 @@ namespace Cortoxa.Configuration
                 this.strategy(c => context = c);
             }
 
-            if (this.configuration != null)
+            if (this.configurations != null)
             {
-                this.configuration(context);
+                foreach (var configuration in this.configurations)
+                {
+                    configuration(context);
+                }
             }
 
             if (this.buildStrategy != null)
