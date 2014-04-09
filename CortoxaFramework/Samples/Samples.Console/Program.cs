@@ -11,12 +11,12 @@ namespace Samples.Console
     {
         static void Main(string[] args)
         {
-            var container = Setup.Container(s => s.UseWindsor())
-                .Register
+            var container = Setup.Container(s => s.UseWindsor());
+            var registrator = container.Register
                     .For<Test>(c => c.To<Test>())
-                    .Component(c=>c.NLog())
-                    ;
-            var test = container.Resolve<Test>();
+               .Component(c=>c.NLog());
+
+            var test = registrator.Resolve<Test>();
             test.DoSomthing();
         }
     }
