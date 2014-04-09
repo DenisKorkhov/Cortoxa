@@ -2,7 +2,7 @@
 
 namespace Cortoxa.Configuration
 {
-    public class Configurator<T> : IConfigurator<T>
+    public class Configurator<T> : IConfigurator<T>, IConfiguratorBuilder<T>
     {
         #region Fields
         

@@ -48,22 +48,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\ConfigurationBase.cs" />
-    <Compile Include="Configuration\ConfigurationContext.cs" />
     <Compile Include="Configuration\Configurator.cs" />
     <Compile Include="Configuration\IConfiguration.cs" />
     <Compile Include="Configuration\IConfigurationStrategy.cs" />
     <Compile Include="Common\Fluent\FluentBuilder.cs" />
-    <Compile Include="Common\Log\LoggerComponent.cs" />
     <Compile Include="Common\Log\ILogger.cs" />
     <Compile Include="Common\IRepository.cs" />
     <Compile Include="Common\StingExtentions.cs" />
     <Compile Include="Configuration\IConfigurator.cs" />
     <Compile Include="Configuration\IConfiguratorBuilder.cs" />
-    <Compile Include="Configuration\ActionStrategy.cs" />
-    <Compile Include="Container\Components\ComponentConfigurator.cs" />
     <Compile Include="Container\Components\ComponentExtentions.cs" />
     <Compile Include="Container\Components\IComponent.cs" />
-    <Compile Include="Container\Components\IComponentRegistratior.cs" />
     <Compile Include="Container\Registrator\IRegistrationConfig.cs" />
     <Compile Include="Container\Extentions\RegistrationExtentions.cs" />
     <Compile Include="Container\Registrator\IRegistrator.cs" />

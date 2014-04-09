@@ -7,7 +7,5 @@ namespace Cortoxa.Configuration
         void Setup(Action<Action<T>> contextAction);
 
         void Configure(Action<T> action);
-
-        T Build();
     }
 }
