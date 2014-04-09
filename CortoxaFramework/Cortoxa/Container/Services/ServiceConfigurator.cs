@@ -5,18 +5,26 @@ using Cortoxa.Container.Registrator;
 
 namespace Cortoxa.Container.Services
 {
-    public class ServiceConfiguration : ConfigurationBase<ServiceContext>, IServiceConfiguration
+    public class ServiceConfigurator : Configurator<ServiceContext>, IServiceConfiguration
     {
         private readonly IServiceInterception interception;
 
-        public ServiceConfiguration() : base(new ServiceContext())
+        public ServiceConfigurator()
         {
             this.interception = new ServiceInterception(this);
         }
 
+        public override ServiceContext Build()
+        {
+            var result = base.Build();
+
+            
+            return result;
+        }
+
         public IServiceConfiguration For(Type[] types)
         {
-            context.For = types;
+            this.Configure(x=>x.For = types);
             return this;
         }
 
@@ -27,19 +35,19 @@ namespace Cortoxa.Container.Services
 
         public IServiceConfiguration To(Type to)
         {
-            context.To = to;
+            this.Configure(x => x.To = to);
             return this;
         }
 
         public IRegistrationConfig Name(string name)
         {
-            context.Name = name;
+            this.Configure(x => x.Name = name);
             return this;
         }
 
         public IRegistrationConfig LifeTime(LifeTime lifeTime)
         {
-            context.Lifetime = lifeTime;
+            this.Configure(x => x.Lifetime = lifeTime);
             return this;
         }
 
@@ -47,13 +55,13 @@ namespace Cortoxa.Container.Services
 
         public IServiceConfiguration InterceptMethod(MethodInteception methodInteception)
         {
-            context.Interceptors.Add(methodInteception);
+            this.Configure(x => x.Interceptors.Add(methodInteception) );
             return this;
         }
 
-        public IServiceConfiguration ToFactory(Func<FactoryContext, object> action)
+        public IServiceConfiguration ToFactory(Func<FactoryContext, object> factoryAction)
         {
-            context.ToFactory = action;
+            this.Configure(x => x.ToFactory = factoryAction);
             return this;
         }
     }

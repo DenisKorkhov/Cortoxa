@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using Castle.Windsor;
+using Cortoxa.Configuration;
 using Cortoxa.Container.Registrator;
 using Cortoxa.Container.Services;
 using Cortoxa.Windsor.Registrators;
@@ -24,11 +25,14 @@ namespace Cortoxa.Windsor.Tool
 
         public IRegistrator For(Type[] types, Action<IServiceConfiguration> serviceConfiguration)
         {
-            var serviceConfigurator = new ServiceConfiguration();
-            serviceConfigurator.SetStrategy(new WindsorServiceRegistration(container));
-            serviceConfigurator.For(types);
-            serviceConfiguration(serviceConfigurator);
-            serviceConfigurator.Build();
+
+            var configurator = new ServiceConfigurator();
+            configurator.Setup(ca => ca(new ServiceContext()));
+
+            var serviceRegistrator = new WindsorServiceRegistration(container);
+            serviceConfiguration(configurator);
+            configurator.OnBuild(serviceRegistrator.Execute);
+            configurator.Build();
             return this;
         }
 

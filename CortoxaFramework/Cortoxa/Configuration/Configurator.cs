@@ -8,6 +8,7 @@ namespace Cortoxa.Configuration
         
         private Action<Action<T>> strategy;
         private Action<T> configuration;
+        private Action<T> buildStrategy;
 
         #endregion
 
@@ -23,7 +24,12 @@ namespace Cortoxa.Configuration
             this.configuration = action;
         }
 
-        public T Build()
+        public void OnBuild(Action<T> buildStrategy)
+        {
+            this.buildStrategy = buildStrategy;
+        }
+
+        public virtual T Build()
         {
             T context = default(T);
             if (this.strategy != null)
@@ -34,6 +40,11 @@ namespace Cortoxa.Configuration
             if (this.configuration != null)
             {
                 this.configuration(context);
+            }
+
+            if (this.buildStrategy != null)
+            {
+                buildStrategy(context);
             }
             return context;
         } 
