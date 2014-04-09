@@ -16,11 +16,6 @@ namespace Samples.Console
                     .For<Test>(c => c.To<Test>())
                     .Component(c=>c.NLog())
                     ;
-
-//                .Register(r=>r.For<Test>().To<Test>())
-////                .Register(r => r.For<Test>().To<Test>().Name("test").LifeTime(LifeTime.Transient))
-////                .Register(r => r.Component(c => c.Nlog().Update(x=>x.Logger..Name("logger_name"))))
-////                .Register(r => r.Component(c => c.EntityFramework()))
             var test = container.Resolve<Test>();
             test.DoSomthing();
         }

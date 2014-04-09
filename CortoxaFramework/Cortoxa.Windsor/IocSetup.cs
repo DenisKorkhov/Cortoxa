@@ -24,17 +24,17 @@ namespace Cortoxa.Windsor
 {
     public static class IocSetup
     {
-        public static void UseWindsor(this Action<IToolContainer> setupAction)
+        public static void UseWindsor(this IConfigurator<IToolContainer> setupAction)
         {
             var container = new WindsorContainer();
             container.Kernel.Resolver.AddSubResolver(new ArrayResolver(container.Kernel));
             setupAction.UseWindsor(container);
         }
 
-        public static void UseWindsor(this Action<IToolContainer> setupAction, IWindsorContainer instance)
+        public static void UseWindsor(this IConfigurator<IToolContainer> setupAction, IWindsorContainer instance)
         {
-            var windsorRegistrator = new WindsorToolContainer(instance);
-            setupAction(new ToolContainer(windsorRegistrator));
+            var toolContainer = new ToolContainer(new WindsorToolContainer(instance));
+            setupAction.Setup(c => c(toolContainer));
         }
     }
 }

@@ -5,7 +5,7 @@ using Cortoxa.Container.Registrator;
 
 namespace Cortoxa.Container.Components
 {
-    public class ComponentConfigurator<T> : IConfigurator<T>, IComponent
+    public class ComponentConfigurator<T> //: IConfigurator<T>, IComponent
     {
         private readonly IRegistrator registrator;
 

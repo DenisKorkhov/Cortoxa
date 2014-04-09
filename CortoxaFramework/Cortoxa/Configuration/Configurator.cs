@@ -2,24 +2,40 @@
 
 namespace Cortoxa.Configuration
 {
-    public class Configurator<T> : IConfiguratorBuilder<T>
+    public class Configurator<T> : IConfigurator<T>
     {
         #region Fields
-        private readonly ConfigurationContext<T> context = new ConfigurationContext<T>();
-        private Action<T> buildAction; 
+        
+        private Action<Action<T>> strategy;
+        private Action<T> configuration;
+
         #endregion
 
-        #region Impelementation of IConfiguratorBuilder
+        #region Implementation of IConfigurator<T>
 
-        public void SetBuilder(Action<T> buildAction)
+        public void Setup(Action<Action<T>> contextAction)
         {
-            this.buildAction = buildAction;
+            this.strategy = contextAction;
+        }
+
+        public void Configure(Action<T> action)
+        {
+            this.configuration = action;
         }
 
         public T Build()
         {
-            buildAction(context.Value);
-            return context.Value;
+            T context = default(T);
+            if (this.strategy != null)
+            {
+                this.strategy(c => context = c);
+            }
+
+            if (this.configuration != null)
+            {
+                this.configuration(context);
+            }
+            return context;
         } 
 
         #endregion
