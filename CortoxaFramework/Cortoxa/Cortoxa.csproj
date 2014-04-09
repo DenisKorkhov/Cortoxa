@@ -62,17 +62,13 @@
     <Compile Include="Container\Registrator\IRegistrationConfig.cs" />
     <Compile Include="Container\Extentions\RegistrationExtentions.cs" />
     <Compile Include="Container\Registrator\IRegistrator.cs" />
-    <Compile Include="Container\Registrator\RegistrationSetup.cs" />
     <Compile Include="Container\Services\IServiceConfiguration.cs" />
     <Compile Include="Container\Services\IServiceContext.cs" />
     <Compile Include="Container\Services\ServiceConfiguration.cs" />
-    <Compile Include="Tool\ContainerSetup.cs" />
     <Compile Include="Tool\Context.cs" />
     <Compile Include="Container\Types\TypeConfiguration.cs" />
     <Compile Include="Container\Types\TypeContext.cs" />
     <Compile Include="Container\Types\TypeExtentions.cs" />
-    <Compile Include="Container\Registrator\IRegistration.cs" />
-    <Compile Include="Container\Services\ServiceExtentions.cs" />
     <Compile Include="Container\Services\ServiceContext.cs" />
     <Compile Include="Container\Services\IServiceInterception.cs" />
     <Compile Include="Container\IToolContainer.cs" />
