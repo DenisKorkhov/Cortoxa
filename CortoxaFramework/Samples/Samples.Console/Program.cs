@@ -1,8 +1,9 @@
 ﻿using Cortoxa;
 using Cortoxa.Common.Log;
-using Cortoxa.Container.Components;
+using Cortoxa.Container.Component;
 using Cortoxa.Container.Extentions;
 using Cortoxa.NLog;
+using Cortoxa.Web.MVC;
 using Cortoxa.Windsor;
 
 namespace Samples.Console
@@ -11,12 +12,18 @@ namespace Samples.Console
     {
         static void Main(string[] args)
         {
-            var container = Setup.Container(s => s.UseWindsor());
-            var registrator = container.Register
-                    .For<Test>(c => c.To<Test>())
-               .Component(c=>c.NLog());
+            var container = Setup.Container(s => s.UseWindsor())
+                .Register(r => r.For<Test>().To<Test>())
+                .Register(r => r.Component(c=>c.NLog()))
+                .Register(r => r.Component(c=>c.Controllers()))
+//                .SetupControllerFactory()
+                ;
+                
+             
+//            var registration = container.Registration.For<Test>(c => c.To<Test>())
+//               .Component(c=>c.NLog());
 
-            var test = registrator.Resolve<Test>();
+            var test = container.Resolver.Resolve<Test>();
             test.DoSomthing();
         }
     }
@@ -32,7 +39,7 @@ namespace Samples.Console
 
         public virtual void DoSomthing()
         {
-            logger.Debug("Do something");
+            logger.Info("Do something!");
         }
     }
 }

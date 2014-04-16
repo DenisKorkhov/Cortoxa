@@ -15,22 +15,19 @@
 using System;
 using System.Reflection;
 using Cortoxa.Common;
-using Cortoxa.Data.IoC;
 using Cortoxa.Data.NHibernate.Context;
 using Cortoxa.Data.NHibernate.IoC;
 using Cortoxa.Data.Repository;
-using Cortoxa.IoC.Base;
-using Cortoxa.IoC.Common;
 
 namespace Cortoxa.Data.NHibernate
 {
     public static class HibernateSetup
     {
-        public static IStoreSetup UseHibernate(this ISetupConfigurator<IStoreSetup> dataSetup, string connectionString, Assembly sourceAssembly, LifeTime lifeTime = LifeTime.PerWebRequest, bool buildSchema = false)
-        {
-            return new HibernateStoreSetup("hibernate_{0}".Format(Guid.NewGuid()), connectionString, sourceAssembly)
-                .WithSession<HibernateSession>()
-                .WithRepository(typeof (Store<>));
-        }
+//        public static IStoreSetup UseHibernate(this ISetupConfigurator<IStoreSetup> dataSetup, string connectionString, Assembly sourceAssembly, LifeTime lifeTime = LifeTime.PerWebRequest, bool buildSchema = false)
+//        {
+//            return new HibernateStoreSetup("hibernate_{0}".Format(Guid.NewGuid()), connectionString, sourceAssembly)
+//                .WithSession<HibernateSession>()
+//                .WithRepository(typeof (Store<>));
+//        }
     }
 }

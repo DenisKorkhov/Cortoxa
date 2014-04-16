@@ -30,7 +30,7 @@ namespace Cortoxa.Data.NHibernate.Context
         private readonly string providerName;
         private readonly Assembly assembly;
         private readonly bool buildSchema;
-        private readonly Configuration configuration;
+//        private readonly Configuration configuration;
 
         public HibernateModelFactory(string connectionString, string providerName, Assembly assembly, bool buildSchema)
         {
@@ -38,44 +38,45 @@ namespace Cortoxa.Data.NHibernate.Context
             this.providerName = providerName;
             this.assembly = assembly;
             this.buildSchema = buildSchema;
-            this.configuration = new Configuration();
+//            this.configuration = new Configuration();
         }
 
         public virtual void Configure()
         {
-            configuration.DataBaseIntegration(c =>
-            {
-                c.ConnectionStringName = connectionString;
-                if (providerName.Equals("System.Data.SqlServerCe.4.0", StringComparison.OrdinalIgnoreCase))
-                {
-                    c.Driver<SqlServerCeDriver>();
-                    c.Dialect<MsSqlCe40Dialect>();
-                }
-                else
-                {
-                    c.Driver<SqlClientDriver>();
-                    c.Dialect<MsSql2008Dialect>();
-                }
-
-                #if DEBUG
-                c.LogSqlInConsole = true;
-                c.LogFormattedSql = true;
-                #endif
-
-                c.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
-
-                if (buildSchema)
-                {
-                    c.SchemaAction = SchemaAutoAction.Update;
-                }
-            });
+//            configuration.DataBaseIntegration(c =>
+//            {
+//                c.ConnectionStringName = connectionString;
+//                if (providerName.Equals("System.Data.SqlServerCe.4.0", StringComparison.OrdinalIgnoreCase))
+//                {
+//                    c.Driver<SqlServerCeDriver>();
+//                    c.Dialect<MsSqlCe40Dialect>();
+//                }
+//                else
+//                {
+//                    c.Driver<SqlClientDriver>();
+//                    c.Dialect<MsSql2008Dialect>();
+//                }
+//
+//                #if DEBUG
+//                c.LogSqlInConsole = true;
+//                c.LogFormattedSql = true;
+//                #endif
+//
+//                c.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
+//
+//                if (buildSchema)
+//                {
+//                    c.SchemaAction = SchemaAutoAction.Update;
+//                }
+//            });
         }
 
         public ISessionFactory GetSession()
         {
             this.Configure();
             this.BuildModel();
-            return configuration.BuildSessionFactory();
+//            return configuration.BuildSessionFactory();
+            throw new NotImplementedException();
         }
 
         public virtual void BuildModel()
@@ -83,7 +84,7 @@ namespace Cortoxa.Data.NHibernate.Context
             var mapper = new ModelMapper();
             var maps = assembly.GetExportedTypes().Where(t => t.IsClass && !t.IsAbstract).ToArray();
             mapper.AddMappings(maps);
-            configuration.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
+//            configuration.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
         }
     }
 }

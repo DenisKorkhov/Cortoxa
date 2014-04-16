@@ -12,12 +12,10 @@
 //  */
 #endregion
 
-using System;
 using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.Windsor;
 using Cortoxa.Configuration;
 using Cortoxa.Container;
-using Cortoxa.Tool;
 using Cortoxa.Windsor.Tool;
 
 namespace Cortoxa.Windsor
@@ -33,7 +31,7 @@ namespace Cortoxa.Windsor
 
         public static void UseWindsor(this IConfigurator<IToolContainer> setupAction, IWindsorContainer instance)
         {
-            var toolContainer = new ToolContainer(new WindsorToolContainer(instance));
+            var toolContainer = new WindsorToolContainer(instance);
             setupAction.Setup(c => c(toolContainer));
         }
     }

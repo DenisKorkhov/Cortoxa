@@ -22,7 +22,7 @@ using NHibernate.Linq;
 
 namespace Cortoxa.Data.NHibernate.Context
 {
-    public class HibernateSession : IDbSession
+    public class HibernateSession //: IDbSession
     {
         private readonly ISession session;
 

@@ -12,7 +12,7 @@
 //  */
 #endregion
 
-using Cortoxa.Container.Components;
+using Cortoxa.Container.Component;
 using Cortoxa.Container.Life;
 using Cortoxa.Container.Services;
 using Cortoxa.Data.Common;

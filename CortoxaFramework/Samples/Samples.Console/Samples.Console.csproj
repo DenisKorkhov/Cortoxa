@@ -74,6 +74,14 @@
       <Project>{9041BABE-E6B7-4CEE-BF08-EE56C4DC43E7}</Project>
       <Name>Cortoxa.NLog</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Cortoxa.Web.MVC\Cortoxa.Web.MVC.csproj">
+      <Project>{cce38a3c-24c1-47c2-b09b-690d6a481d44}</Project>
+      <Name>Cortoxa.Web.MVC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Cortoxa.Web\Cortoxa.Web.csproj">
+      <Project>{8f8156b2-1af2-42f8-b7bc-c869c7b15745}</Project>
+      <Name>Cortoxa.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Cortoxa.Windsor\Cortoxa.Windsor.csproj">
       <Project>{34F71A84-2C75-468C-AEE2-61246F6B1353}</Project>
       <Name>Cortoxa.Windsor</Name>

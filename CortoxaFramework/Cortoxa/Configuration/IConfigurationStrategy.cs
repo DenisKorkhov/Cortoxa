@@ -13,8 +13,6 @@
 // //  */
 #endregion
 
-using Cortoxa.Tool;
-
 namespace Cortoxa.Configuration
 {
     public interface IConfigurationStrategy<T>

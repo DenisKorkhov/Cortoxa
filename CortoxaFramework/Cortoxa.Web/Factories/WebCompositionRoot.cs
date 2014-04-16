@@ -15,16 +15,15 @@ using System;
 using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
-using Cortoxa.IoC;
-using Cortoxa.IoC.Base;
+using Cortoxa.Container.Registrator;
 
 namespace Cortoxa.Web.Factories
 {
     public class WebCompositionRoot : IHttpControllerActivator
     {
-        private readonly IToolContainer resolver;
+        private readonly IResolver resolver;
 
-        public WebCompositionRoot(IToolContainer resolver)
+        public WebCompositionRoot(IResolver resolver)
         {
             this.resolver = resolver;
         }

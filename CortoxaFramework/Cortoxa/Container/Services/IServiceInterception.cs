@@ -23,37 +23,37 @@ namespace Cortoxa.Container.Services
     {
         #region Replace
 
-        IServiceConfiguration Method<T>(Expression<Action<T>> methodExpr, Func<InterceptionContext, object> action);
+        IServiceConfigurator Method<T>(Expression<Action<T>> methodExpr, Func<InterceptionContext, object> action);
 
-        IServiceConfiguration Method<T>(Expression<Action<T>> methodExpr, Action<InterceptionContext> action);
+        IServiceConfigurator Method<T>(Expression<Action<T>> methodExpr, Action<InterceptionContext> action);
 
-        IServiceConfiguration Method(Func<InterceptionContext, object> action);
+        IServiceConfigurator Method(Func<InterceptionContext, object> action);
 
-        IServiceConfiguration Method(Action<InterceptionContext> action);
+        IServiceConfigurator Method(Action<InterceptionContext> action);
 
         #endregion
 
         #region Before
 
-        IServiceConfiguration Before<T>(Expression<Action<T>> methodExpr, Func<InterceptionContext, object> action);
+        IServiceConfigurator Before<T>(Expression<Action<T>> methodExpr, Func<InterceptionContext, object> action);
 
-        IServiceConfiguration Before<T>(Expression<Action<T>> methodExpr, Action<InterceptionContext> action);
+        IServiceConfigurator Before<T>(Expression<Action<T>> methodExpr, Action<InterceptionContext> action);
 
-        IServiceConfiguration Before(Func<InterceptionContext, object> action);
+        IServiceConfigurator Before(Func<InterceptionContext, object> action);
 
-        IServiceConfiguration Before(Action<InterceptionContext> action);
+        IServiceConfigurator Before(Action<InterceptionContext> action);
 
         #endregion
 
         #region After
 
-        IServiceConfiguration After<T>(Expression<Action<T>> methodExpr, Func<InterceptionContext, object> action);
+        IServiceConfigurator After<T>(Expression<Action<T>> methodExpr, Func<InterceptionContext, object> action);
 
-        IServiceConfiguration After<T>(Expression<Action<T>> methodExpr, Action<InterceptionContext> action);
+        IServiceConfigurator After<T>(Expression<Action<T>> methodExpr, Action<InterceptionContext> action);
 
-        IServiceConfiguration After(Func<InterceptionContext, object> action);
+        IServiceConfigurator After(Func<InterceptionContext, object> action);
 
-        IServiceConfiguration After(Action<InterceptionContext> action);
+        IServiceConfigurator After(Action<InterceptionContext> action);
 
         #endregion
     }

@@ -13,15 +13,13 @@
 #endregion
 
 using System;
+using Cortoxa.Container;
 using Cortoxa.Data.Identity.Repositories;
-using Cortoxa.IoC;
-using Cortoxa.IoC.Base;
-using Cortoxa.IoC.Common;
 using Microsoft.AspNet.Identity;
 
 namespace Cortoxa.Data.Identity.IoC
 {
-    public class IdentityConfig : IRegistrationStratagy
+    public class IdentityConfig// : IRegistrationStratagy
     {
         private readonly Type userType;
 

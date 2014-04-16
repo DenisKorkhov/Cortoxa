@@ -7,7 +7,7 @@ namespace Cortoxa.Data.EntityFramework.Component
 {
     public class EntityComponent : IDataComponent
     {
-        public IServiceConfiguration Context { get; set; }
+        public IServiceConfigurator Context { get; set; }
 
         public IDataSource Source { get; set; }
     }

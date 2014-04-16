@@ -1,7 +1,9 @@
-﻿using Castle.Windsor;
+﻿using System.Linq;
+using Castle.MicroKernel.Registration;
+using Castle.Windsor;
 using Cortoxa.Configuration;
 using Cortoxa.Container.Types;
-using Cortoxa.Tool;
+using Cortoxa.Windsor.Helpers;
 
 namespace Cortoxa.Windsor.Registrators
 {
@@ -16,7 +18,15 @@ namespace Cortoxa.Windsor.Registrators
 
         public void Execute(TypeContext context)
         {
-            throw new System.NotImplementedException();
+            if (context.Assemblies != null && context.Assemblies.Any())
+            {
+                foreach (var assembly in context.Assemblies)
+                {
+                    var types = Types.FromAssembly(assembly).Where(t => context.Where(t));
+                    types.ToWindsorLifeTime(context.LifeTime);
+                    container.Register(types);
+                }
+            }
         }
     }
 }

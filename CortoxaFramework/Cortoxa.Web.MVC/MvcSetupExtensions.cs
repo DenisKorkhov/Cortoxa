@@ -14,42 +14,49 @@
 using System;
 using System.Reflection;
 using System.Web.Mvc;
-using Cortoxa.IoC;
-using Cortoxa.IoC.Base;
+using Cortoxa.Common;
+using Cortoxa.Configuration;
+using Cortoxa.Container;
+using Cortoxa.Container.Life;
+using Cortoxa.Container.Registrator;
 using Cortoxa.Web.MVC.Factories;
 
 namespace Cortoxa.Web.MVC
 {
     public static class MvcSetupExtensions
     {
-            public static IToolContainer InstallControllers(this IToolContainer container, LifeTime lifeTime = LifeTime.Transient)
+        public static IToolContainer SetupControllerFactory(this IToolContainer container)
+        {
+            var currentFactory = ControllerBuilder.Current.GetControllerFactory();
+            if (currentFactory == null || currentFactory.GetType() != typeof(ControllerFactory))
             {
-                return container.InstallControllers(typeof(Controller), lifeTime, Assembly.GetCallingAssembly());
+                ControllerBuilder.Current.SetControllerFactory(new ControllerFactory(container.Resolver));
             }
+            return container;
+        }
 
-            public static IToolContainer InstallControllers(this IToolContainer container, Type controllerType, LifeTime lifeTime = LifeTime.PerWebRequest, params Assembly[] assemblies)
+        public static void Controllers(this IConfigurator<IRegistration> configurator, LifeTime lifeTime = LifeTime.Transient)
+        {
+            configurator.Controllers(typeof (Controller), LifeTime.PerWebRequest, null);
+        }
+
+        public static void Controllers(this IConfigurator<IRegistration> configurator, Type controllerType, LifeTime lifeTime = LifeTime.PerWebRequest, params Assembly[] assemblies)
+        {
+            if (controllerType == null)
             {
-                var currentFactory = ControllerBuilder.Current.GetControllerFactory();
-                if (currentFactory == null || currentFactory.GetType() != typeof(ControllerFactory))
-                {
-                    ControllerBuilder.Current.SetControllerFactory(new ControllerFactory(container));
-                }
-        
-                if (controllerType == null)
-                {
-                    controllerType = typeof(Controller);
-                }
-        
-                if (assemblies == null || assemblies.Length == 0)
-                {
-                    assemblies = new[]
+                controllerType = typeof(Controller);
+            }
+            
+            if (assemblies == null || assemblies.Length == 0)
+            {
+                assemblies = new[]
                     {
                         Assembly.GetCallingAssembly()
                     };
-                }
-
-//                container.Register(r => r.From(assemblies).BasedOn(controllerType).LifeTime(lifeTime));
-                return container;
             }
+
+            
+            configurator.Configure(r => r.Type(assemblies).Where(t=> t.BasedOn(controllerType) ));
+        }
     }
 }

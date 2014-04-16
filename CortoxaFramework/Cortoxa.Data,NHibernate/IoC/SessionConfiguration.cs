@@ -13,15 +13,13 @@
 #endregion
 
 using System;
-
-using Cortoxa.IoC;
-using Cortoxa.IoC.Base;
-using Cortoxa.IoC.Common;
+using Cortoxa.Container;
+using Cortoxa.Container.Life;
 using NHibernate;
 
 namespace Cortoxa.Data.NHibernate.IoC
 {
-    public class SessionConfiguration : IRegistrationStratagy
+    public class SessionConfiguration// : IRegistrationStratagy
     {
         public LifeTime LifeTime { get; set; }
 

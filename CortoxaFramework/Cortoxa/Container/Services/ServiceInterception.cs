@@ -6,80 +6,80 @@ namespace Cortoxa.Container.Services
 {
     public class ServiceInterception : IServiceInterception
     {
-        private readonly IServiceConfiguration configuration;
+        private readonly IServiceConfigurator configuration;
 
-        public ServiceInterception(IServiceConfiguration configuration)
+        public ServiceInterception(IServiceConfigurator configuration)
         {
             this.configuration = configuration;
         }
 
-        public IServiceConfiguration Method<T>(Expression<Action<T>> methodExpr, Func<InterceptionContext, object> action)
+        public IServiceConfigurator Method<T>(Expression<Action<T>> methodExpr, Func<InterceptionContext, object> action)
         {
             return configuration.InterceptMethod(new MethodInteception(action, MethodInteceptionType.Process,
                     methodExpr.MethodFromExpression()));
         }
 
-        public IServiceConfiguration Method<T>(Expression<Action<T>> methodExpr, Action<InterceptionContext> action)
+        public IServiceConfigurator Method<T>(Expression<Action<T>> methodExpr, Action<InterceptionContext> action)
         {
             return
                 configuration.InterceptMethod(new MethodInteception(action, MethodInteceptionType.Process,
                     methodExpr.MethodFromExpression()));
         }
 
-        public IServiceConfiguration Method(Func<InterceptionContext, object> action)
+        public IServiceConfigurator Method(Func<InterceptionContext, object> action)
         {
             return configuration.InterceptMethod(new MethodInteception(action, MethodInteceptionType.Process));
         }
 
-        public IServiceConfiguration Method(Action<InterceptionContext> action)
+        public IServiceConfigurator Method(Action<InterceptionContext> action)
         {
             return configuration.InterceptMethod(new MethodInteception(action, MethodInteceptionType.Process));
         }
 
-        public IServiceConfiguration Before<T>(Expression<Action<T>> methodExpr, Func<InterceptionContext, object> action)
+        public IServiceConfigurator Before<T>(Expression<Action<T>> methodExpr, Func<InterceptionContext, object> action)
         {
             return
                 configuration.InterceptMethod(new MethodInteception(action, MethodInteceptionType.Before,
                     methodExpr.MethodFromExpression()));
         }
 
-        public IServiceConfiguration Before<T>(Expression<Action<T>> methodExpr, Action<InterceptionContext> action)
+        public IServiceConfigurator Before<T>(Expression<Action<T>> methodExpr, Action<InterceptionContext> action)
         {
             return
                 configuration.InterceptMethod(new MethodInteception(action, MethodInteceptionType.Before,
                     methodExpr.MethodFromExpression()));
         }
 
-        public IServiceConfiguration Before(Func<InterceptionContext, object> action)
+        public IServiceConfigurator Before(Func<InterceptionContext, object> action)
         {
             return configuration.InterceptMethod(new MethodInteception(action, MethodInteceptionType.Before));
         }
 
-        public IServiceConfiguration Before(Action<InterceptionContext> action)
+        public IServiceConfigurator Before(Action<InterceptionContext> action)
         {
             return configuration.InterceptMethod(new MethodInteception(action, MethodInteceptionType.Before));
         }
 
-        public IServiceConfiguration After<T>(Expression<Action<T>> methodExpr, Func<InterceptionContext, object> action)
+        public IServiceConfigurator After<T>(Expression<Action<T>> methodExpr, Func<InterceptionContext, object> action)
         {
             return
                 configuration.InterceptMethod(new MethodInteception(action, MethodInteceptionType.After,
                     methodExpr.MethodFromExpression()));
         }
 
-        public IServiceConfiguration After<T>(Expression<Action<T>> methodExpr, Action<InterceptionContext> action)
+        public IServiceConfigurator After<T>(Expression<Action<T>> methodExpr, Action<InterceptionContext> action)
         {
             return
                 configuration.InterceptMethod(new MethodInteception(action, MethodInteceptionType.After,
                     methodExpr.MethodFromExpression()));
         }
 
-        public IServiceConfiguration After(Func<InterceptionContext, object> action)
+        public IServiceConfigurator After(Func<InterceptionContext, object> action)
         {
             return configuration.InterceptMethod(new MethodInteception(action, MethodInteceptionType.After));
         }
 
-        public IServiceConfiguration After(Action<InterceptionContext> action)
+        public IServiceConfigurator After(Action<InterceptionContext> action)
         {
             return configuration.InterceptMethod(new MethodInteception(action, MethodInteceptionType.After));
         }

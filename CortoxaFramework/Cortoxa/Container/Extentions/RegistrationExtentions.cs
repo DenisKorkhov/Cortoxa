@@ -6,24 +6,24 @@ namespace Cortoxa.Container.Extentions
 {
     public static class RegistrationExtentions
     {
-        public static IRegistrator For(this IRegistrator registrator, Type typeFor, Action<IServiceConfiguration> serviceConfiguration)
+        public static IServiceConfigurator For(this IRegistration registration, Type typeFor)
         {
-            return registrator.For(new[] { typeFor }, serviceConfiguration);
+            return registration.For(new[] { typeFor });
         }
 
-        public static IRegistrator For<T>(this IRegistrator registrator, Action<IServiceConfiguration> serviceConfiguration)
+        public static IServiceConfigurator For<T>(this IRegistration registration)
         {
-            return registrator.For(new[] {typeof (T)}, serviceConfiguration);
+            return registration.For(new[] {typeof (T)});
         }
 
-        public static IRegistrator For<T, T2>(this IRegistrator registrator, Action<IServiceConfiguration> serviceConfiguration)
+        public static IServiceConfigurator For<T, T2>(this IRegistration registration)
         {
-            return registrator.For(new[] { typeof(T), typeof(T2) }, serviceConfiguration);
+            return registration.For(new[] { typeof(T), typeof(T2) });
         }
 
-        public static IRegistrator For<T, T2, T3>(this IRegistrator registrator, Action<IServiceConfiguration> serviceConfiguration)
+        public static IServiceConfigurator For<T, T2, T3>(this IRegistration registration)
         {
-            return registrator.For(new[] { typeof(T), typeof(T2), typeof(T3) }, serviceConfiguration);
+            return registration.For(new[] { typeof(T), typeof(T2), typeof(T3) });
         }
     }
 }

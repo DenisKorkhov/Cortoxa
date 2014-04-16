@@ -58,6 +58,7 @@
     <Compile Include="Helpers\WindsorExtentions.cs" />
     <Compile Include="Registrators\WindsorServiceRegistration.cs" />
     <Compile Include="Registrators\WindsorTypeRegistration.cs" />
+    <Compile Include="Tool\WindsorResolver.cs" />
     <Compile Include="Tool\WindsorToolContainer.cs" />
   </ItemGroup>
   <ItemGroup>

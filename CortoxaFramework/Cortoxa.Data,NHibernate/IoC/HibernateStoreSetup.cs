@@ -13,32 +13,27 @@
 #endregion
 
 using System.Reflection;
-using Cortoxa.Data.Context;
-using Cortoxa.Data.NHibernate.Data;
-using Cortoxa.Data.Repository;
-using Cortoxa.IoC;
-using Cortoxa.IoC.Base;
-using NHibernate;
+using Cortoxa.Container;
 
 namespace Cortoxa.Data.NHibernate.IoC
 {
-    public class HibernateStoreSetup : StoreSetup
+    public class HibernateStoreSetup// : StoreSetup
     {
         private readonly string connectionString;
         private readonly Assembly sourceAssembly;
 
-        public HibernateStoreSetup(string scope, string connectionString, Assembly sourceAssembly) : base(scope)
+        public HibernateStoreSetup(string scope, string connectionString, Assembly sourceAssembly) //: base(scope)
         {
             this.connectionString = connectionString;
             this.sourceAssembly = sourceAssembly;
         }
 
-        public override void Register(IToolContainer container)
+        public void Register(IToolContainer container)
         {
-            var respositoryName = string.Format("repository.{0}", Scope);
-            var sessionName = string.Format("session.{0}", Scope);
-            var hibernateSessionName = string.Format("hib.session.{0}", Scope);
-            var factoryName = string.Format("session.factory.{0}", Scope);
+//            var respositoryName = string.Format("repository.{0}", Scope);
+//            var sessionName = string.Format("session.{0}", Scope);
+//            var hibernateSessionName = string.Format("hib.session.{0}", Scope);
+//            var factoryName = string.Format("session.factory.{0}", Scope);
 
 //            container.Register(r => r.For<ISessionFactory>().ToFactory(x => SessionFactoryConfiguration.BuildSessionFactory(sourceAssembly, connectionString)).Name(factoryName).LifeTime(LifeTime.Singleton));
 //

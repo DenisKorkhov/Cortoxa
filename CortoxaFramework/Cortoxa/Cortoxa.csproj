@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\TypeExtentions.cs" />
     <Compile Include="Configuration\Configurator.cs" />
     <Compile Include="Configuration\IConfigurationStrategy.cs" />
     <Compile Include="Common\Fluent\FluentBuilder.cs" />
@@ -55,14 +56,16 @@
     <Compile Include="Common\StingExtentions.cs" />
     <Compile Include="Configuration\IConfigurator.cs" />
     <Compile Include="Configuration\IConfiguratorBuilder.cs" />
-    <Compile Include="Container\Components\ComponentExtentions.cs" />
-    <Compile Include="Container\Components\IComponent.cs" />
-    <Compile Include="Container\Registrator\IRegistrationConfig.cs" />
+    <Compile Include="Container\Component\ComponentExtentions.cs" />
+    <Compile Include="Container\Registrator\IRegistrationConfigurator.cs" />
     <Compile Include="Container\Extentions\RegistrationExtentions.cs" />
-    <Compile Include="Container\Registrator\IRegistrator.cs" />
-    <Compile Include="Container\Services\IServiceConfiguration.cs" />
+    <Compile Include="Container\Registrator\IRegistration.cs" />
+    <Compile Include="Container\Registrator\IResolver.cs" />
+    <Compile Include="Container\Registrator\ToolRegistrator.cs" />
+    <Compile Include="Container\Services\IServiceConfigurator.cs" />
     <Compile Include="Container\Services\IServiceContext.cs" />
     <Compile Include="Container\Services\ServiceConfigurator.cs" />
+    <Compile Include="Container\Types\ITypeConfigurator.cs" />
     <Compile Include="Container\Types\TypeConfigurator.cs" />
     <Compile Include="Container\Types\TypeContext.cs" />
     <Compile Include="Container\Types\TypeExtentions.cs" />
@@ -78,7 +81,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\ReflectionExtentions.cs" />
     <Compile Include="Setup.cs" />
-    <Compile Include="Tool\ToolContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Cortoxa.nuspec">

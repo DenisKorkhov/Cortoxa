@@ -32,16 +32,16 @@ namespace Cortoxa.Data.Identity.Repositories
         private IStore<TUser> userRepository;
         private readonly IStore<IdentityRole> roleRepository;
         private readonly IStore<IdentityUserClaim> claimsRepository;
-        private readonly IDbSession session;
+//        private readonly IDbSession session;
 
         public bool AutoSaveChanges { get; set; }
 
-        public UserStore(IStore<TUser> userRepository, IStore<IdentityRole> roleRepository, IStore<IdentityUserClaim> claimsRepository, IDbSession session)
+        public UserStore(IStore<TUser> userRepository, IStore<IdentityRole> roleRepository, IStore<IdentityUserClaim> claimsRepository/*, IDbSession session*/)
         {
             this.userRepository = userRepository;
             this.roleRepository = roleRepository;
             this.claimsRepository = claimsRepository;
-            this.session = session;
+//            this.session = session;
 
             AutoSaveChanges = true;
         }
@@ -50,7 +50,7 @@ namespace Cortoxa.Data.Identity.Repositories
         {
             if (AutoSaveChanges)
             {
-                await session.SaveChangesAsync();
+           /*     await session.SaveChangesAsync();*/
             }
         }
 
@@ -114,7 +114,7 @@ namespace Cortoxa.Data.Identity.Repositories
         protected virtual void Dispose(bool disposing)
         {
             disposed = true;
-            session.Dispose();
+         /*   session.Dispose();*/
             userRepository = null;
         }
 

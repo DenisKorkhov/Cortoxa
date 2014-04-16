@@ -28,45 +28,46 @@ namespace Cortoxa.Data.NHibernate.Data
     {
         public static ISessionFactory BuildSessionFactory(Assembly sourceAssembly, string connectionString, string providerName = "", bool buildSchema = false)
         {
-            var cfg = new Configuration();
-            cfg.DataBaseIntegration(c =>
-            {
-                c.ConnectionStringName = connectionString;
-                if (providerName.Equals("System.Data.SqlServerCe.4.0", StringComparison.OrdinalIgnoreCase))
-                {
-                    c.Driver<SqlServerCeDriver>();
-                    c.Dialect<MsSqlCe40Dialect>();
-                }
-                else
-                {
-                    c.Driver<SqlClientDriver>();
-                    c.Dialect<MsSql2008Dialect>();
-                }
-
-                #if DEBUG
-                c.LogSqlInConsole = true;
-                c.LogFormattedSql = true;
-                #endif
-
-                c.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
-
-                if (buildSchema)
-                {
-                    c.SchemaAction = SchemaAutoAction.Update;
-                }
-            });
-            cfg.ConfigureMappings(sourceAssembly);
-            return cfg.BuildSessionFactory();
+//            var cfg = new Configuration();
+//            cfg.DataBaseIntegration(c =>
+//            {
+//                c.ConnectionStringName = connectionString;
+//                if (providerName.Equals("System.Data.SqlServerCe.4.0", StringComparison.OrdinalIgnoreCase))
+//                {
+//                    c.Driver<SqlServerCeDriver>();
+//                    c.Dialect<MsSqlCe40Dialect>();
+//                }
+//                else
+//                {
+//                    c.Driver<SqlClientDriver>();
+//                    c.Dialect<MsSql2008Dialect>();
+//                }
+//
+//                #if DEBUG
+//                c.LogSqlInConsole = true;
+//                c.LogFormattedSql = true;
+//                #endif
+//
+//                c.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
+//
+//                if (buildSchema)
+//                {
+//                    c.SchemaAction = SchemaAutoAction.Update;
+//                }
+//            });
+//            cfg.ConfigureMappings(sourceAssembly);
+//            return cfg.BuildSessionFactory();
+            throw new NotImplementedException();
         }
 
-        private static void ConfigureMappings(this Configuration cfg, Assembly sourceAssembly)
-        {
-            var mapper = new ModelMapper();
-
-            var maps = sourceAssembly.GetExportedTypes().Where(t => t.IsClass && !t.IsAbstract).ToArray();
-            mapper.AddMappings(maps);
-
-            cfg.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
-        }
+//        private static void ConfigureMappings(this Configuration cfg, Assembly sourceAssembly)
+//        {
+//            var mapper = new ModelMapper();
+//
+//            var maps = sourceAssembly.GetExportedTypes().Where(t => t.IsClass && !t.IsAbstract).ToArray();
+//            mapper.AddMappings(maps);
+//
+//            cfg.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
+//        }
     }
 }

@@ -15,8 +15,8 @@ using System;
 using System.Reflection;
 using System.Web.Http;
 using System.Web.Http.Dispatcher;
-using Cortoxa.IoC;
-using Cortoxa.IoC.Base;
+using Cortoxa.Container;
+using Cortoxa.Container.Life;
 using Cortoxa.Web.Factories;
 
 namespace Cortoxa.Web
@@ -30,7 +30,7 @@ namespace Cortoxa.Web
 
         public static IToolContainer InstallApiControllers(this IToolContainer container, Type controllerType, LifeTime lifeTime = LifeTime.PerWebRequest, params Assembly[] assemblies)
         {
-            GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator),new WebCompositionRoot(container));
+            GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator), new WebCompositionRoot(container.Resolver));
 
             if (controllerType == null)
             {

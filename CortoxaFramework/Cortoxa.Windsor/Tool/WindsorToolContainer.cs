@@ -1,97 +1,39 @@
 ﻿using System;
-using System.Linq;
-using System.Reflection;
 using Castle.Windsor;
-using Cortoxa.Configuration;
+using Cortoxa.Container;
 using Cortoxa.Container.Registrator;
-using Cortoxa.Container.Services;
 using Cortoxa.Windsor.Registrators;
 
 namespace Cortoxa.Windsor.Tool
 {
-    public class WindsorToolContainer : IRegistrator
+    public class WindsorToolContainer : IToolContainer//, IRegistration
     {
+        #region Fields
+
         private readonly IWindsorContainer container;
-        
+        private WindsorResolver resolver; 
+
+        #endregion
+
 
         public WindsorToolContainer(IWindsorContainer container)
         {
             this.container = container;
-            
+            this.resolver = new WindsorResolver(container);
+
         }
 
-        public IRegistrator Registration { get; private set; }
-
-
-        public IRegistrator For(Type[] types, Action<IServiceConfiguration> serviceConfiguration)
+        public IToolContainer Register(Action<IRegistration> regAction)
         {
-
-            var configurator = new ServiceConfigurator();
-            configurator.Setup(ca => ca(new ServiceContext()));
-            configurator.For(types);
-            serviceConfiguration(configurator);
-
-            var serviceRegistrator = new WindsorServiceRegistration(container);
-            configurator.OnBuild(serviceRegistrator.Execute);
-            configurator.Build();
+            var registrator = new ToolRegistrator(new WindsorServiceRegistration(container), new WindsorTypeRegistration(container));
+            regAction(registrator);
+            registrator.Register();
             return this;
         }
 
-        public IRegistrator Type(Assembly[] assemblies, Action<IServiceConfiguration> serviceConfiguration)
+        public IResolver Resolver
         {
-            return this;
-        }
-
-        public T Resolve<T>(object arguments = null)
-        {
-            return arguments != null ? container.Resolve<T>(arguments) : container.Resolve<T>();
-        }
-
-        public object Resolve(Type type, object arguments = null)
-        {
-            return arguments != null ? container.Resolve(type, arguments) : container.Resolve(type);
-        }
-
-        public T Resolve<T>(Type type, object arguments = null)
-        {
-            object result = arguments != null ? (T)container.Resolve(type, arguments) : container.Resolve(type);
-            return (T)result;
-        }
-
-        public T Resolve<T>(string key, object arguments = null)
-        {
-            return arguments != null ? container.Resolve<T>(key, arguments) : container.Resolve<T>(key);
-        }
-
-        public T[] ResolveAll<T>(object arguments = null)
-        {
-            return arguments != null ? container.ResolveAll<T>(arguments) : container.ResolveAll<T>();
-        }
-
-        public object[] ResolveAll(Type type, object arguments = null)
-        {
-            Array result = arguments != null ? container.ResolveAll(type, arguments) : container.ResolveAll(type);
-            return result.Cast<object>().ToArray();
-        }
-
-        public T[] ResolveAll<T>(Type type, object arguments = null)
-        {
-            Array result = arguments != null ? container.ResolveAll(type, arguments) : container.ResolveAll(type);
-            return result.Cast<T>().ToArray();
-        }
-
-        public void Release(Type type)
-        {
-            var instance = Resolve(type);
-            if (instance != null)
-            {
-                Release(instance);
-            }
-        }
-
-        public void Release(object instance)
-        {
-            container.Release(instance);
+            get { return this.resolver; }
         }
     }
 }

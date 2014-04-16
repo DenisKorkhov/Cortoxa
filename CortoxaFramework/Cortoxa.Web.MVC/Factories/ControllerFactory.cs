@@ -15,20 +15,19 @@ using System;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Cortoxa.IoC;
-using Cortoxa.IoC.Base;
+using Cortoxa.Container.Registrator;
 
 namespace Cortoxa.Web.MVC.Factories
 {
     public class ControllerFactory : DefaultControllerFactory
     {
-        private readonly IToolContainer resolver;
+        private readonly IResolver resolver;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="resolver"></param>
-        public ControllerFactory(IToolContainer resolver)
+        public ControllerFactory(IResolver resolver)
         {
             this.resolver = resolver;
         }

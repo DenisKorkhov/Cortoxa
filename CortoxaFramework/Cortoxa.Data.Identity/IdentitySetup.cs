@@ -14,7 +14,6 @@
 
 using Cortoxa.Data.Identity.Entitites;
 using Cortoxa.Data.Identity.IoC;
-using Cortoxa.Data.IoC;
 using Cortoxa.Data.Schema;
 using Cortoxa.Data.Schema.Models;
 
@@ -22,24 +21,24 @@ namespace Cortoxa.Data.Identity
 {
     public static class IdentitySetup
     {
-        public static IDataConfig WithIdentityModel(this IDataConfig config)
-        {
-            IModelBuilder modelBuilder = null;
-            ITableModel<IdentityUser> userModel = modelBuilder.ForEntity<IdentityUser>("User")
-                .Id(x => x.Id)
-                .Property(x => x.UserName)
-                .Property(x => x.PasswordHash)
-                .Property(x => x.SecurityStamp)
-                .OneToMany(x => x.Claims, null)
-                .ManyToMany(x => x.Roles, null);
-
-            ITableModel<IdentityRole> roleModel = modelBuilder.ForEntity<IdentityRole>("Role")
-                .Id(x => x.Id)
-                .Property(x => x.Name)
-                .ManyToMany(x => x.Users, null);
-
-            config.Configure(new IdentityConfig(typeof (IdentityUser)));
-            return config;
-        }
+//        public static IDataConfig WithIdentityModel(this IDataConfig config)
+//        {
+//            IModelBuilder modelBuilder = null;
+//            ITableModel<IdentityUser> userModel = modelBuilder.ForEntity<IdentityUser>("User")
+//                .Id(x => x.Id)
+//                .Property(x => x.UserName)
+//                .Property(x => x.PasswordHash)
+//                .Property(x => x.SecurityStamp)
+//                .OneToMany(x => x.Claims, null)
+//                .ManyToMany(x => x.Roles, null);
+//
+//            ITableModel<IdentityRole> roleModel = modelBuilder.ForEntity<IdentityRole>("Role")
+//                .Id(x => x.Id)
+//                .Property(x => x.Name)
+//                .ManyToMany(x => x.Users, null);
+//
+//            config.Configure(new IdentityConfig(typeof (IdentityUser)));
+//            return config;
+//        }
     }
 }

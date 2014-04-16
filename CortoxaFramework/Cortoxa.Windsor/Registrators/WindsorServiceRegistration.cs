@@ -4,7 +4,6 @@ using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Cortoxa.Configuration;
 using Cortoxa.Container.Services;
-using Cortoxa.Tool;
 using Cortoxa.Windsor.Helpers;
 using Cortoxa.Windsor.Interceptions;
 
