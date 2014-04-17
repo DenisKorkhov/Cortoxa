@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Cortoxa.Data</RootNamespace>
     <AssemblyName>Cortoxa.Data</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <Framework>$(TargetFrameworkVersion.Replace("v", "NET").Replace(".", ""))</Framework>
     <ChildBuild>True</ChildBuild>
     <FileAlignment>512</FileAlignment>
@@ -49,6 +49,9 @@
   <ItemGroup>
     <Compile Include="Common\IDataSource.cs" />
     <Compile Include="Common\IModelBuilder.cs" />
+    <Compile Include="Components\DataExtentions.cs" />
+    <Compile Include="Components\DataSourceContext.cs" />
+    <Compile Include="Components\RepositoryContext.cs" />
     <Compile Include="Context\IModelFactory.cs" />
     <Compile Include="Model\Entity.cs" />
     <Compile Include="Model\IEntity.cs" />
@@ -62,6 +65,7 @@
     <Compile Include="Schema\Models\IPropertyModel.cs" />
     <Compile Include="Schema\IModelBuilder.cs" />
     <Compile Include="Schema\Models\ITableModel.cs" />
+    <Compile Include="StoreSetup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cortoxa.nlog.nuspec">

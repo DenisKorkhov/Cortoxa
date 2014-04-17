@@ -4,7 +4,7 @@ using Cortoxa.Data.Model;
 
 namespace Cortoxa.Data.Common
 {
-    public interface IDataSource : IDisposable
+    public interface IDataSource : IUnitOfWork, IDisposable 
     {
         IQueryable<TEntity> Query<TEntity>() where TEntity : class, IEntity;
 

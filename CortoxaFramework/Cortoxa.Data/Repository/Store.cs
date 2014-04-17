@@ -17,7 +17,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Cortoxa.Data.Common;
-using Cortoxa.Data.Context;
 using Cortoxa.Data.Model;
 
 namespace Cortoxa.Data.Repository
@@ -91,7 +90,7 @@ namespace Cortoxa.Data.Repository
 
         public virtual void Add(T entity)
         {
-            session.Delete(entity);
+            session.Add(entity);
         }
 
         public Task AddAsync(T entity)
@@ -149,6 +148,16 @@ namespace Cortoxa.Data.Repository
         public virtual Task<T[]> GetAsync(params Guid[] ids)
         {
             return new Task<T[]>(() => Get(ids));
+        }
+
+        public void SaveChanges()
+        {
+            this.session.SaveChanges();
+        }
+
+        public Task SaveChangesAsync()
+        {
+            return this.session.SaveChangesAsync();
         }
     }
 }

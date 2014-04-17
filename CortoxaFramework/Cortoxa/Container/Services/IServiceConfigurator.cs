@@ -13,6 +13,10 @@ namespace Cortoxa.Container.Services
 
         IServiceConfigurator InterceptMethod(MethodInteception methodInteception);
 
-        IServiceConfigurator ToFactory(Func<FactoryContext, object> action); 
+        IServiceConfigurator ToFactory(Func<FactoryContext, object> action);
+
+        IServiceConfigurator DependsOnComponent<T>(string componentName);
+
+        IServiceConfigurator DependsOnValue(string name, object value);
     }
 }

@@ -33,13 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Castle.Core.3.2.0\lib\net45\Castle.Core.dll</HintPath>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\packages\Castle.Core.3.2.2\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Windsor, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Castle.Windsor">
       <HintPath>..\..\packages\Castle.Windsor.3.2.1\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -62,6 +66,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Cortoxa.Data.EntityFramework\Cortoxa.Data.EntityFramework.csproj">
+      <Project>{5110928C-CA26-480F-B3B9-B1C07728D8AE}</Project>
+      <Name>Cortoxa.Data.EntityFramework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Cortoxa.Data\Cortoxa.Data.csproj">
       <Project>{06c7e715-b86c-41e0-8879-cac35c112a8d}</Project>
       <Name>Cortoxa.Data</Name>
@@ -77,6 +85,10 @@
     <ProjectReference Include="..\..\Cortoxa\Cortoxa.csproj">
       <Project>{5F54C462-7E84-40C3-B045-92589FE9FEA4}</Project>
       <Name>Cortoxa</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Samples.Data.EntityFrameWork\Samples.Data.EntityFramework.csproj">
+      <Project>{D49F278C-8334-4E46-9E2B-6B42FEED5CC8}</Project>
+      <Name>Samples.Data.EntityFramework</Name>
     </ProjectReference>
     <ProjectReference Include="..\Samples.Data\Samples.Data.csproj">
       <Project>{5370d894-3d03-4bca-a8bf-15960158369d}</Project>

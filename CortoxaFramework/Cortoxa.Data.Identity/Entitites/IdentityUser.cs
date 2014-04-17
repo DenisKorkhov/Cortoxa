@@ -21,11 +21,12 @@ namespace Cortoxa.Data.Identity.Entitites
 {
     public class IdentityUser : Entity, IUser
     {
-        string IUser.Id
-        {
-            get { return Id.ToString(); }
-        }
+//        string IUser.Id
+//        {
+//            get { return Id.ToString(); }
+//        }
 
+        public string Id { get; private set; }
         public virtual string UserName { get; set; }
 
         public virtual string PasswordHash { get; set; }
@@ -38,7 +39,7 @@ namespace Cortoxa.Data.Identity.Entitites
 
         public IdentityUser() 
         {
-            Id = Guid.NewGuid();
+//            Id = Guid.NewGuid();
         }
 
         public IdentityUser(string userName) : this()

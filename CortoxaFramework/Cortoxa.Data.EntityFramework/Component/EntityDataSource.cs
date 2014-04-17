@@ -6,7 +6,7 @@ using Cortoxa.Data.Model;
 
 namespace Cortoxa.Data.EntityFramework.Component
 {
-    public class EntityDataSource : IUnitOfWork, IDataSource
+    public class EntityDataSource : IDataSource
     {
         private readonly DbContext context;
 

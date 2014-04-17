@@ -43,10 +43,15 @@ namespace Cortoxa.Windsor.Registrators
                 component = component.Named(context.Name);
             }
 
-            if (context.Dependencies.Any())
+            if (context.ComponentDependencies.Any())
             {
-                var allDependencies = context.Dependencies.Select(dependency => Dependency.OnComponent(dependency.Key, dependency.Value)).ToArray();
-                component.DependsOn(allDependencies);
+                var allDependencies = context.ComponentDependencies.Select(dependency => Dependency.OnComponent(dependency.Key, dependency.Value)).ToArray();
+                component = component.DependsOn(allDependencies);
+            }
+
+            if (context.ValueDependencies.Any())
+            {
+                component = context.ValueDependencies.Aggregate(component, (current, dependency) => current.DependsOn(Property.ForKey(dependency.Key).Eq(dependency.Value)));
             }
 
             if (context.Interceptors.Any())

@@ -17,11 +17,12 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Cortoxa.Common;
+using Cortoxa.Data.Common;
 using Cortoxa.Data.Model;
 
 namespace Cortoxa.Data.Repository
 {
-    public interface IStore<T> : IRepository<T> where T : class, IEntity
+    public interface IStore<T> : IRepository<T>, IUnitOfWork where T : class, IEntity
     {
         T Get(Guid id);
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Cortoxa.Configuration;
 using Cortoxa.Container.Life;
 using Cortoxa.Container.Registrator;
@@ -60,6 +61,18 @@ namespace Cortoxa.Container.Services
         public IServiceConfigurator ToFactory(Func<FactoryContext, object> factoryAction)
         {
             this.Configure(x => x.ToFactory = factoryAction);
+            return this;
+        }
+
+        public IServiceConfigurator DependsOnComponent<T>(string componentName)
+        {
+            this.Configure(x => x.ComponentDependencies.Add(new KeyValuePair<Type, string>(typeof(T), componentName)));
+            return this;
+        }
+
+        public IServiceConfigurator DependsOnValue(string name, object value)
+        {
+            this.Configure(x => x.ValueDependencies.Add(new KeyValuePair<string, object>(name, value)));
             return this;
         }
     }

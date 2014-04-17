@@ -11,7 +11,8 @@ namespace Cortoxa.Container.Services
         Func<FactoryContext, object> ToFactory { get; set; }
         string Name { get; set; }
         LifeTime Lifetime { get; set; }
-        IDictionary<Type, string> Dependencies { get; }
+        IDictionary<Type, string> ComponentDependencies { get; }
         IList<MethodInteception> Interceptors { get; }
+        IDictionary<string, object> ValueDependencies { get; }
     }
 }

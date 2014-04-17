@@ -30,21 +30,21 @@ namespace Cortoxa.Data.Identity.Repositories
     {
         private bool disposed;
         private IStore<TUser> userRepository;
-        private readonly IStore<IdentityRole> roleRepository;
+//        private readonly IStore<IdentityRole> roleRepository;
         private readonly IStore<IdentityUserClaim> claimsRepository;
 //        private readonly IDbSession session;
 
         public bool AutoSaveChanges { get; set; }
 
-        public UserStore(IStore<TUser> userRepository, IStore<IdentityRole> roleRepository, IStore<IdentityUserClaim> claimsRepository/*, IDbSession session*/)
-        {
-            this.userRepository = userRepository;
-            this.roleRepository = roleRepository;
-            this.claimsRepository = claimsRepository;
-//            this.session = session;
-
-            AutoSaveChanges = true;
-        }
+//        public UserStore(IStore<TUser> userRepository, IStore<IdentityRole> roleRepository, IStore<IdentityUserClaim> claimsRepository/*, IDbSession session*/)
+//        {
+//            this.userRepository = userRepository;
+//            this.roleRepository = roleRepository;
+//            this.claimsRepository = claimsRepository;
+////            this.session = session;
+//
+//            AutoSaveChanges = true;
+//        }
 
         private async Task SaveChanges()
         {
@@ -248,14 +248,14 @@ namespace Cortoxa.Data.Identity.Repositories
                 throw new ArgumentNullException("user");
             }
             role = role.ToUpper();
-            IdentityRole identityRole = roleRepository.Single(r => r.Name.ToUpper() == role);
+         /*   IdentityRole identityRole = roleRepository.Single(r => r.Name.ToUpper() == role);
             if (identityRole == null)
             {
                 throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, "RoleNotFound {0}", new object[] { role }));
             }
             
 
-            user.Roles.Add(identityRole);
+            user.Roles.Add(identityRole);*/
             return Task.FromResult(0);
         }
         public virtual Task RemoveFromRoleAsync(TUser user, string role)
@@ -268,12 +268,12 @@ namespace Cortoxa.Data.Identity.Repositories
 
             role = role.ToUpper();
 
-            var userRole = roleRepository.First(x=>x.Name == role);
+/*            var userRole = roleRepository.First(x=>x.Name == role);
 
             if (userRole != null)
             {
                 user.Roles.Remove(userRole);
-            }
+            }*/
             return Task.FromResult(0);
         }
 
@@ -285,8 +285,9 @@ namespace Cortoxa.Data.Identity.Repositories
                 throw new ArgumentNullException("user");
             }
 
-            List<string> result = user.Roles != null ? user.Roles.Select(x => x.Name).ToList() : new List<string>();
-            return Task.FromResult<IList<string>>(result);
+            /*   List<string> result = user.Roles != null ? user.Roles.Select(x => x.Name).ToList() : new List<string>();
+               return Task.FromResult<IList<string>>(result);*/
+            throw new NotImplementedException();
         }
 
         public virtual Task<bool> IsInRoleAsync(TUser user, string role)
@@ -297,7 +298,8 @@ namespace Cortoxa.Data.Identity.Repositories
                 throw new ArgumentNullException("user");
             }
             role = role.ToUpper();
-            return Task.FromResult(user.Roles.Any(r => r.Name.ToUpper() == role));
+            throw new NotImplementedException();
+//            return Task.FromResult(user.Roles.Any(r => r.Name.ToUpper() == role));
         }
 
         public Task SetPasswordHashAsync(TUser user, string passwordHash)

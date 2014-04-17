@@ -12,19 +12,22 @@
 //  */
 #endregion
 
+using System.Data.Entity;
 using Cortoxa.Container.Component;
+using Cortoxa.Container.Extentions;
 using Cortoxa.Container.Life;
-using Cortoxa.Container.Services;
 using Cortoxa.Data.Common;
+using Cortoxa.Data.Components;
 using Cortoxa.Data.EntityFramework.Component;
 
 namespace Cortoxa.Data.EntityFramework
 {
     public static class EntitySetup
     {
-//        public static IComponentConfigurator<EntityComponent> EntityFramework(this IComponentRegistrator componentRegistrator)
-//        {
-//            return componentRegistrator.Configure<EntityComponent>(c=>c.Source, r => r.For<IDataSource>().To<EntityDataSource>().LifeTime(LifeTime.Transient));
-//        }
-}
+        public static void UseEnitityFramework<T>(this IComponentConfigurator<DataSourceContext> configurator, string connectionString, LifeTime lifeTime = LifeTime.Transient) where T : DbContext
+        {
+            configurator.Registrator.For<DbContext>().To<T>().DependsOnValue("connectionString", connectionString).LifeTime(lifeTime);
+            configurator.Registrator.For<IDataSource, IUnitOfWork>().To<EntityDataSource>().DependsOnComponent<EntityDataSource>("DbContext").LifeTime(lifeTime);
+        }
+    }
 }
