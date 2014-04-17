@@ -13,7 +13,6 @@
 #endregion
 
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Threading.Tasks;
 using Cortoxa.Data.Schema;
@@ -33,11 +32,6 @@ namespace Cortoxa.Data.EntityFramework.Data
         {
             this.modelBuilder = modelBuilder;
         }
-
-//        public EntityContext(string nameOrConnectionString, DbCompiledModel model, IModelBuilder modelBuilder = null): base(nameOrConnectionString, model)
-//        {
-//            this.modelBuilder = modelBuilder;
-//        }
 
         public IQueryable<TEntity> Query<TEntity>() where TEntity : class
         {

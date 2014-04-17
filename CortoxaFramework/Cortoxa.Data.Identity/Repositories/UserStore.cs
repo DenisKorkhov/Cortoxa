@@ -14,12 +14,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Cortoxa.Data.Common;
-using Cortoxa.Data.Context;
 using Cortoxa.Data.Identity.Entitites;
 using Cortoxa.Data.Repository;
 using Microsoft.AspNet.Identity;
