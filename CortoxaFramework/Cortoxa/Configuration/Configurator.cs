@@ -7,7 +7,7 @@ namespace Cortoxa.Configuration
     {
         #region Fields
         
-        private Action<Action<T>> strategy;
+        protected Action<Action<T>> SetupStrategy;
         private readonly IList<Action<T>> configurations = new List<Action<T>>();
         private Action<T> buildStrategy;
 
@@ -17,15 +17,15 @@ namespace Cortoxa.Configuration
 
         public void Setup(Action<Action<T>> contextAction)
         {
-            this.strategy = contextAction;
+            this.SetupStrategy = contextAction;
         }
 
-        public void Configure(Action<T> action)
+        public virtual void Configure(Action<T> action)
         {
             configurations.Add(action);
         }
 
-        public void OnBuild(Action<T> buildStrategy)
+        public virtual void OnBuild(Action<T> buildStrategy)
         {
             this.buildStrategy = buildStrategy;
         }
@@ -33,9 +33,9 @@ namespace Cortoxa.Configuration
         public virtual T Build()
         {
             T context = default(T);
-            if (this.strategy != null)
+            if (this.SetupStrategy != null)
             {
-                this.strategy(c => context = c);
+                this.SetupStrategy(c => context = c);
             }
 
             if (this.configurations != null)

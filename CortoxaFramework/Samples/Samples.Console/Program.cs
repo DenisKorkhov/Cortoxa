@@ -1,6 +1,7 @@
 ﻿using Cortoxa;
 using Cortoxa.Common.Log;
 using Cortoxa.Container.Component;
+using Cortoxa.Container.Component.Logging;
 using Cortoxa.Container.Extentions;
 using Cortoxa.NLog;
 using Cortoxa.Windsor;
@@ -13,15 +14,8 @@ namespace Samples.Console
         {
             var container = Setup.Container(s => s.UseWindsor())
                 .Register(r => r.For<Test>().To<Test>())
-                .Register(r => r.Component(c=>c.NLog()))
-//                .Register(r => r.Component() )
-//                .Register(r => r.Component(c=>c.Controllers()))
-//                .SetupControllerFactory()
+                .Register(r => r.Logger(c=>c.UseNLog()))
                 ;
-                
-             
-//            var registration = container.Registration.For<Test>(c => c.To<Test>())
-//               .Component(c=>c.NLog());
 
             var test = container.Resolver.Resolve<Test>();
             test.DoSomthing();
