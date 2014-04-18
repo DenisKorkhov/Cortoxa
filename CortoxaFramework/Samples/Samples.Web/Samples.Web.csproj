@@ -249,6 +249,18 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Cortoxa.Data.EntityFramework\Cortoxa.Data.EntityFramework.csproj">
+      <Project>{5110928c-ca26-480f-b3b9-b1c07728d8ae}</Project>
+      <Name>Cortoxa.Data.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Cortoxa.Data.Identity\Cortoxa.Data.Identity.csproj">
+      <Project>{92912F87-74FC-4F5F-9AF6-00E537BC888E}</Project>
+      <Name>Cortoxa.Data.Identity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Cortoxa.Data\Cortoxa.Data.csproj">
+      <Project>{06c7e715-b86c-41e0-8879-cac35c112a8d}</Project>
+      <Name>Cortoxa.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Cortoxa.NLog\Cortoxa.NLog.csproj">
       <Project>{9041babe-e6b7-4cee-bf08-ee56c4dc43e7}</Project>
       <Name>Cortoxa.NLog</Name>
@@ -264,6 +276,14 @@
     <ProjectReference Include="..\..\Cortoxa\Cortoxa.csproj">
       <Project>{5f54c462-7e84-40c3-b045-92589fe9fea4}</Project>
       <Name>Cortoxa</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Samples.Data.EntityFrameWork\Samples.Data.EntityFramework.csproj">
+      <Project>{d49f278c-8334-4e46-9e2b-6b42feed5cc8}</Project>
+      <Name>Samples.Data.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Samples.Data\Samples.Data.csproj">
+      <Project>{5370d894-3d03-4bca-a8bf-15960158369d}</Project>
+      <Name>Samples.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

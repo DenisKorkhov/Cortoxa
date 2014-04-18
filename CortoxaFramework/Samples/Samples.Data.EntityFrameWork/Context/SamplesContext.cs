@@ -6,19 +6,13 @@ namespace Samples.Data.EntityFramework.Context
     public class SamplesContext : DbContext
     {
         #region Constructor
-
-        protected SamplesContext()
+        public SamplesContext(string connectionString): base(connectionString)
         {
-
         }
-
         #endregion
 
-        public SamplesContext(string connectionString)
-            : base(connectionString)
-        {
-        }
-
         public DbSet<User> Users { get; set; }
+
+
     }
 }

@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\IdentityContext.cs" />
+    <Compile Include="Components\IdentityDataExtentions.cs" />
     <Compile Include="Entitites\IdentityRole.cs" />
     <Compile Include="Entitites\IdentityUser.cs" />
     <Compile Include="Entitites\IdentityUserClaim.cs" />

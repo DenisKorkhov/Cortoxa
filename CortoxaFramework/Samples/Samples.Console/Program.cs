@@ -22,8 +22,9 @@ namespace Samples.Console
             var container = Setup.Container(s => s.UseWindsor())
                 .Register(r => r.For<Test>().To<Test>())
                 .Register(r => r.Logger(c=>c.UseNLog()))
-                .Register(r => r.DataSource(c => c.UseEnitityFramework<SamplesContext>().ConnectionString("Database").Singleton()))
+                .Register(r => r.DataAccess(c => c.UseEnitityFramework<SamplesContext>().ConnectionString("Database").Singleton()))
                 .Register(r => r.Repository("dataSource"))
+
                 ;
 
             var test = container.Resolver.Resolve<Test>();

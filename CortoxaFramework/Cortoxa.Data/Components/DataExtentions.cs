@@ -9,7 +9,7 @@ namespace Cortoxa.Data.Components
 {
     public static class DataExtentions
     {
-        public static IRegistration DataSource(this IRegistration registration, Action<IComponentRegistrator<DataSourceContext>> setup)
+        public static IRegistration DataAccess(this IRegistration registration, Action<IComponentRegistrator<DataSourceContext>> setup)
         {
             var configurator = new ComponentConfigurator<DataSourceContext>(registration);
             setup(configurator);
