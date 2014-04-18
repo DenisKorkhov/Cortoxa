@@ -65,6 +65,7 @@
     <Compile Include="Data\EntityContext.cs" />
     <Compile Include="EntitySetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schema\EntityModelBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

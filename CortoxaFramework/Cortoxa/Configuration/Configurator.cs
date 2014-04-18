@@ -25,7 +25,7 @@ namespace Cortoxa.Configuration
             configurations.Add(action);
         }
 
-        public virtual void OnBuild(Action<T> buildStrategy)
+        public virtual void ConfigureBuild(Action<T> buildStrategy)
         {
             this.buildStrategy = buildStrategy;
         }

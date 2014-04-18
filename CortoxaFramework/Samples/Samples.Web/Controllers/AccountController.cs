@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -192,7 +193,7 @@ namespace Samples.Web.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
+        /*    var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
             {
                 return RedirectToAction("Login");
@@ -211,7 +212,8 @@ namespace Samples.Web.Controllers
                 ViewBag.ReturnUrl = returnUrl;
                 ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
                 return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { UserName = loginInfo.DefaultUserName });
-            }
+            }*/
+            throw new NotImplementedException();
         }
 
         //
@@ -228,17 +230,18 @@ namespace Samples.Web.Controllers
         // GET: /Account/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
-            if (loginInfo == null)
-            {
-                return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
-            }
-            var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
-            if (result.Succeeded)
-            {
-                return RedirectToAction("Manage");
-            }
-            return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
+//            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
+//            if (loginInfo == null)
+//            {
+//                return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
+//            }
+//            var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
+//            if (result.Succeeded)
+//            {
+//                return RedirectToAction("Manage");
+//            }
+//            return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
+            throw new NotImplementedException();
         }
 
         //
@@ -248,35 +251,36 @@ namespace Samples.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Manage");
-            }
-
-            if (ModelState.IsValid)
-            {
-                // Get the information about the user from the external login provider
-                var info = await AuthenticationManager.GetExternalLoginInfoAsync();
-                if (info == null)
-                {
-                    return View("ExternalLoginFailure");
-                }
-                var user = new ApplicationUser() { UserName = model.UserName };
-                var result = await UserManager.CreateAsync(user);
-                if (result.Succeeded)
-                {
-                    result = await UserManager.AddLoginAsync(user.Id, info.Login);
-                    if (result.Succeeded)
-                    {
-                        await SignInAsync(user, isPersistent: false);
-                        return RedirectToLocal(returnUrl);
-                    }
-                }
-                AddErrors(result);
-            }
-
-            ViewBag.ReturnUrl = returnUrl;
-            return View(model);
+//            if (User.Identity.IsAuthenticated)
+//            {
+//                return RedirectToAction("Manage");
+//            }
+//
+//            if (ModelState.IsValid)
+//            {
+//                // Get the information about the user from the external login provider
+//                var info = await AuthenticationManager.GetExternalLoginInfoAsync();
+//                if (info == null)
+//                {
+//                    return View("ExternalLoginFailure");
+//                }
+//                var user = new ApplicationUser() { UserName = model.UserName };
+//                var result = await UserManager.CreateAsync(user);
+//                if (result.Succeeded)
+//                {
+//                    result = await UserManager.AddLoginAsync(user.Id, info.Login);
+//                    if (result.Succeeded)
+//                    {
+//                        await SignInAsync(user, isPersistent: false);
+//                        return RedirectToLocal(returnUrl);
+//                    }
+//                }
+//                AddErrors(result);
+//            }
+//
+//            ViewBag.ReturnUrl = returnUrl;
+//            return View(model);
+            throw new NotImplementedException();
         }
 
         //
@@ -285,8 +289,9 @@ namespace Samples.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            throw new NotImplementedException();
+//            AuthenticationManager.SignOut();
+//            return RedirectToAction("Index", "Home");
         }
 
         //
@@ -323,15 +328,17 @@ namespace Samples.Web.Controllers
         {
             get
             {
-                return HttpContext.GetOwinContext().Authentication;
+                throw new NotImplementedException();
+//                return HttpContext.GetOwinContext().Authentication;
             }
         }
 
         private async Task SignInAsync(ApplicationUser user, bool isPersistent)
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-            var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
+//            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+//            var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+//            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
+            throw new NotImplementedException();
         }
 
         private void AddErrors(IdentityResult result)
@@ -391,12 +398,13 @@ namespace Samples.Web.Controllers
 
             public override void ExecuteResult(ControllerContext context)
             {
-                var properties = new AuthenticationProperties() { RedirectUri = RedirectUri };
-                if (UserId != null)
-                {
-                    properties.Dictionary[XsrfKey] = UserId;
-                }
-                context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
+//                var properties = new AuthenticationProperties() { RedirectUri = RedirectUri };
+//                if (UserId != null)
+//                {
+//                    properties.Dictionary[XsrfKey] = UserId;
+//                }
+//                context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
+                throw new NotImplementedException();
             }
         }
         #endregion

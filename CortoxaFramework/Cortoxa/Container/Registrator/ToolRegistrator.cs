@@ -29,7 +29,7 @@ namespace Cortoxa.Container.Registrator
         {
             var configurator = new ServiceConfigurator();
             configurator.Setup(c => c(new ServiceContext {For = types}));
-            configurator.OnBuild(s => this.serviceRegistration.Execute(s));
+            configurator.ConfigureBuild(s => this.serviceRegistration.Execute(s));
             registrationActions.Add(() => configurator.Build());
             return configurator;
         }
@@ -41,7 +41,7 @@ namespace Cortoxa.Container.Registrator
                                                 {
                                                     Assemblies = assemblies
                                                 }));
-            configurator.OnBuild(s => this.typeRegistration.Execute(s));
+            configurator.ConfigureBuild(s => this.typeRegistration.Execute(s));
             registrationActions.Add(() => configurator.Build());
             return configurator;
         } 

@@ -42,7 +42,7 @@ namespace Cortoxa.Web.MVC
             configurator.Configure(c => c.LifeTime = lifeTime);
             configurator.Configure(c => c.ControllerType = controllerType);
             configurator.Configure(c => c.Assemblies = assemblies);
-            configurator.OnBuild(c =>
+            configurator.ConfigureBuild(c =>
             {
                 if (controllerType == null)
                 {

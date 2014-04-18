@@ -51,6 +51,7 @@
     <Compile Include="Common\IModelBuilder.cs" />
     <Compile Include="Components\DataExtentions.cs" />
     <Compile Include="Components\DataSourceContext.cs" />
+    <Compile Include="Components\DataSourceExtentions.cs" />
     <Compile Include="Components\RepositoryContext.cs" />
     <Compile Include="Context\IModelFactory.cs" />
     <Compile Include="Model\Entity.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Repository\Store.cs" />
     <Compile Include="Repository\IStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schema\ModelContext.cs" />
     <Compile Include="Schema\Models\IIdentityModel.cs" />
     <Compile Include="Schema\Models\IManyToManyModel.cs" />
     <Compile Include="Schema\Models\IOneToManyModel.cs" />

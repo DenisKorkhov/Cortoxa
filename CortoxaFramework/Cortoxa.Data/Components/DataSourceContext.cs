@@ -1,7 +1,10 @@
-﻿namespace Cortoxa.Data.Components
+﻿using Cortoxa.Container;
+
+namespace Cortoxa.Data.Components
 {
-    public class DataSourceContext
+    public class DataSourceContext : LifeTimeContext
     {
-         
+        public string ConnectionString { get; set; }
+        
     }
 }

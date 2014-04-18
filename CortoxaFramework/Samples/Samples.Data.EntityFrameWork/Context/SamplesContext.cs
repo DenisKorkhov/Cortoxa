@@ -5,17 +5,20 @@ namespace Samples.Data.EntityFramework.Context
 {
     public class SamplesContext : DbContext
     {
-        public SamplesContext()
+        #region Constructor
+
+        protected SamplesContext()
         {
 
         }
 
-        public SamplesContext(string connectionString) : base(connectionString)
+        #endregion
+
+        public SamplesContext(string connectionString)
+            : base(connectionString)
         {
         }
 
         public DbSet<User> Users { get; set; }
-//
-//        public DbSet<UserProfile> UserProfiles { get; set; }
     }
 }

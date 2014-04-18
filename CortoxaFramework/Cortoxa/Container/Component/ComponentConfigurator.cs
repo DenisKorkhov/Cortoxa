@@ -4,7 +4,7 @@ using Cortoxa.Container.Registrator;
 
 namespace Cortoxa.Container.Component
 {
-    public class ComponentConfigurator<T> : Configurator<T>, IComponentConfigurator<T> where T : class, new()
+    public class ComponentConfigurator<T> : Configurator<T>, IComponentRegistrator<T> where T : class, new()
     {
         private readonly IRegistration container;
 
@@ -14,9 +14,9 @@ namespace Cortoxa.Container.Component
             this.Setup(s => s(new T()));
         }
 
-        public IRegistration Registrator
+        public void Register(Action<IRegistration, T> registrationStrategy)
         {
-            get { return container; }
+            this.ConfigureBuild(c=> registrationStrategy(container, c));
         }
     }
 }

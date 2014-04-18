@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using Cortoxa;
 using Cortoxa.Common.Log;
+using Cortoxa.Container.Component;
 using Cortoxa.Container.Component.Logging;
 using Cortoxa.Container.Extentions;
-using Cortoxa.Container.Life;
 using Cortoxa.Data.Common;
 using Cortoxa.Data.Components;
 using Cortoxa.Data.EntityFramework;
@@ -22,7 +22,7 @@ namespace Samples.Console
             var container = Setup.Container(s => s.UseWindsor())
                 .Register(r => r.For<Test>().To<Test>())
                 .Register(r => r.Logger(c=>c.UseNLog()))
-                .Register(r => r.DataSource(c => c.UseEnitityFramework<SamplesContext>("Database", LifeTime.Singleton)))
+                .Register(r => r.DataSource(c => c.UseEnitityFramework<SamplesContext>().ConnectionString("Database").Singleton()))
                 .Register(r => r.Repository("dataSource"))
                 ;
 

@@ -15,22 +15,22 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using Cortoxa.Data.EntityFramework.Schema;
 using Cortoxa.Data.Schema;
 
 namespace Cortoxa.Data.EntityFramework.Data
 {
     public class EntityContext : DbContext
     {
-        private readonly IModelBuilder modelBuilder;
+        
 
-        protected EntityContext(IModelBuilder modelBuilder = null)
+        protected EntityContext()
         {
-            this.modelBuilder = modelBuilder;
+        
         }
 
-        public EntityContext(string nameOrConnectionString, IModelBuilder modelBuilder = null): base(nameOrConnectionString)
+        public EntityContext(string nameOrConnectionString): base(nameOrConnectionString)
         {
-            this.modelBuilder = modelBuilder;
         }
 
         public IQueryable<TEntity> Query<TEntity>() where TEntity : class
@@ -44,11 +44,12 @@ namespace Cortoxa.Data.EntityFramework.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            var modelConfigurator = new EntityModelBuilder(modelBuilder);
             base.OnModelCreating(modelBuilder);
-            if (this.modelBuilder != null)
-            {
-                this.modelBuilder.Build();
-            }
+//            if (this.modelBuilder != null)
+//            {
+//                this.modelBuilder.Build();
+//            }
         }
 
         public new void SaveChanges()
@@ -56,9 +57,9 @@ namespace Cortoxa.Data.EntityFramework.Data
             base.SaveChanges();
         }
 
-        public new Task SaveChangesAsync()
-        {
-            return Task.Factory.StartNew(SaveChanges);
-        }
+//        public new Task SaveChangesAsync()
+//        {
+//            return Task.Factory.StartNew(SaveChanges);
+//        }
     }
 }

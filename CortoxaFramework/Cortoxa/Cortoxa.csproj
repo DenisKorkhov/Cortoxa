@@ -59,8 +59,10 @@
     <Compile Include="Container\Component\ComponentConfigurator.cs" />
     <Compile Include="Container\Component\ComponentExtentions.cs" />
     <Compile Include="Container\Component\IComponentConfigurator.cs" />
+    <Compile Include="Container\Component\IComponentRegistrator.cs" />
     <Compile Include="Container\Component\Logging\LoggerContext.cs" />
     <Compile Include="Container\Component\Logging\LoggerExtentions.cs" />
+    <Compile Include="Container\Component\LifeTimeContext.cs" />
     <Compile Include="Container\Registrator\IRegistrationConfigurator.cs" />
     <Compile Include="Container\Extentions\RegistrationExtentions.cs" />
     <Compile Include="Container\Registrator\IRegistration.cs" />

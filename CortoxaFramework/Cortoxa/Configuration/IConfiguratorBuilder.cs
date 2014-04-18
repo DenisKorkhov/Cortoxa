@@ -4,7 +4,7 @@ namespace Cortoxa.Configuration
 {
     public interface IConfiguratorBuilder<T>
     {
-        void OnBuild(Action<T> buildStrategy);
+        void ConfigureBuild(Action<T> buildStrategy);
 
         T Build(); 
     }

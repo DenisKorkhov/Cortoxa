@@ -9,7 +9,7 @@ namespace Cortoxa.Data.Components
 {
     public static class DataExtentions
     {
-        public static IRegistration DataSource(this IRegistration registration, Action<IComponentConfigurator<DataSourceContext>> setup)
+        public static IRegistration DataSource(this IRegistration registration, Action<IComponentRegistrator<DataSourceContext>> setup)
         {
             var configurator = new ComponentConfigurator<DataSourceContext>(registration);
             setup(configurator);
@@ -22,7 +22,7 @@ namespace Cortoxa.Data.Components
             var configurator = new ComponentConfigurator<RepositoryContext>(registration);
             configurator.Configure(c => c.LifeTime = lifeTime);
             configurator.Configure(c => c.DataSource = dataSource);
-            configurator.OnBuild((c) => registration.For(new[] { typeof(IStore<>) }).To(typeof(Store<>)).DependsOnComponent<IDataSource>(c.DataSource).LifeTime(c.LifeTime));
+            configurator.ConfigureBuild((c) => registration.For(new[] { typeof(IStore<>) }).To(typeof(Store<>)).DependsOnComponent<IDataSource>(c.DataSource).LifeTime(c.LifeTime));
             configurator.Build();
             return registration;
         }
