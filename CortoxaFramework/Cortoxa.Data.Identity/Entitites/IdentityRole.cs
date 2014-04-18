@@ -24,8 +24,7 @@ namespace Cortoxa.Data.Identity.Entitites
 
         #region Constructor
 
-        public IdentityRole()
-            : this("")
+        public IdentityRole(): this("")
         {
         }
 

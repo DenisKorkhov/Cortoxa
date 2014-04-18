@@ -19,14 +19,8 @@ using Microsoft.AspNet.Identity;
 
 namespace Cortoxa.Data.Identity.Entitites
 {
-    public class IdentityUser : Entity, IUser
+    public class IdentityUser : Entity, IUser<Guid>
     {
-//        string IUser.Id
-//        {
-//            get { return Id.ToString(); }
-//        }
-
-        public string Id { get; private set; }
         public virtual string UserName { get; set; }
 
         public virtual string PasswordHash { get; set; }
@@ -36,15 +30,5 @@ namespace Cortoxa.Data.Identity.Entitites
         public virtual ICollection<IdentityRole> Roles { get; set; }
 
         public virtual ICollection<IdentityUserClaim> Claims { get; set; }
-
-        public IdentityUser() 
-        {
-//            Id = Guid.NewGuid();
-        }
-
-        public IdentityUser(string userName) : this()
-        {
-            UserName = userName;
-        }
     }
 }

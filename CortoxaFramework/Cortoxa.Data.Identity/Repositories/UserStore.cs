@@ -23,7 +23,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Cortoxa.Data.Identity.Repositories
 {
-    public class UserStore<TUser> : IUserLoginStore<TUser>, IUserClaimStore<TUser>, IUserRoleStore<TUser>, IUserPasswordStore<TUser>, IUserSecurityStampStore<TUser> where TUser : IdentityUser
+    public class UserStore<TUser> where TUser : IdentityUser //: IUserLoginStore<TUser, Guid>, IUserClaimStore<TUser, Guid>, IUserRoleStore<TUser, Guid>, IUserPasswordStore<TUser, Guid>, IUserSecurityStampStore<TUser, Guid> where TUser : IdentityUser
     {
         private bool disposed;
         private IStore<TUser> userRepository;

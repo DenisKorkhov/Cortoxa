@@ -15,10 +15,11 @@ using System;
 using System.Reflection;
 using System.Web.Mvc;
 using Cortoxa.Common;
-using Cortoxa.Configuration;
 using Cortoxa.Container;
+using Cortoxa.Container.Component;
 using Cortoxa.Container.Life;
 using Cortoxa.Container.Registrator;
+using Cortoxa.Web.MVC.Controllers;
 using Cortoxa.Web.MVC.Factories;
 
 namespace Cortoxa.Web.MVC
@@ -35,28 +36,45 @@ namespace Cortoxa.Web.MVC
             return container;
         }
 
-        public static void Controllers(this IConfigurator<IRegistration> configurator, LifeTime lifeTime = LifeTime.Transient)
+        public static IRegistration Controllers(this IRegistration registration, Type controllerType, LifeTime lifeTime = LifeTime.PerWebRequest, params Assembly[] assemblies)
         {
-            configurator.Controllers(typeof (Controller), LifeTime.PerWebRequest, null);
-        }
+            var configurator = new ComponentConfigurator<ControllersContext>(registration);
+            configurator.Configure(c => c.LifeTime = lifeTime);
+            configurator.Configure(c => c.ControllerType = controllerType);
+            configurator.Configure(c => c.Assemblies = assemblies);
+            configurator.OnBuild(c =>
+            {
+                if (controllerType == null)
+                {
+                    controllerType = typeof(Controller);
+                }
 
-        public static void Controllers(this IConfigurator<IRegistration> configurator, Type controllerType, LifeTime lifeTime = LifeTime.PerWebRequest, params Assembly[] assemblies)
-        {
-            if (controllerType == null)
-            {
-                controllerType = typeof(Controller);
-            }
-            
-            if (assemblies == null || assemblies.Length == 0)
-            {
-                assemblies = new[]
+                var aaa = Assembly.GetCallingAssembly();
+                var aaa2 = Assembly.GetEntryAssembly();
+                var aaa3 = Assembly.GetExecutingAssembly();
+
+                if (assemblies == null || assemblies.Length == 0)
+                {
+                    assemblies = new[]
                     {
                         Assembly.GetCallingAssembly()
                     };
-            }
+                }
+                registration.Type(assemblies).Where(t => t.BasedOn(controllerType));
+            });
+            configurator.Build();
+            return registration;
 
-            
-            configurator.Configure(r => r.Type(assemblies).Where(t=> t.BasedOn(controllerType) ));
+        }
+
+        public static void Controllers(this IRegistration registrator, Assembly assembly, LifeTime lifeTime = LifeTime.Transient)
+        {
+            registrator.Controllers(typeof(Controller), LifeTime.PerWebRequest, assembly);
+        }
+
+        public static void Controllers(this IRegistration registrator, LifeTime lifeTime = LifeTime.Transient)
+        {
+            registrator.Controllers(typeof(Controller), LifeTime.PerWebRequest, null);
         }
     }
 }

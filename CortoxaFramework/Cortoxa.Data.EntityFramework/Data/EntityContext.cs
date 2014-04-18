@@ -40,7 +40,6 @@ namespace Cortoxa.Data.EntityFramework.Data
 
         public void BuildModel()
         {
-            throw new System.NotImplementedException();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
