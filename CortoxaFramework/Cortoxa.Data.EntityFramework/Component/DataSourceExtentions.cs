@@ -3,7 +3,7 @@ using Cortoxa.Container.Component;
 
 namespace Cortoxa.Data.EntityFramework.Component
 {
-    public static class DataAccessExtentions
+    public static class DataSourceExtentions
     {
         public static IComponentConfigurator<EntityDataContext> Context<T>(this IComponentConfigurator<EntityDataContext> configurator) where T : DbContext
         {

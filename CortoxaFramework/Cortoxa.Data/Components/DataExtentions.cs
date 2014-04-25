@@ -7,11 +7,28 @@ namespace Cortoxa.Data.Components
 {
     public static class DataExtentions
     {
-        public static IRegistration DataAccess(this IRegistration registration, Action<IComponentSetup<DataSourceContext>> setupAction)
+        public static IRegistration DataSource(this IRegistration registration, Action<IComponentSetup<DataSourceContext>> setupAction)
         {
             var setup = new ComponentSetup<DataSourceContext>(registration);
             setupAction(setup);
             setup.Build(); 
+            return registration;
+        }
+
+        public static IComponentConfigurator<StoreContext> DataStore<T>(this IComponentConfigurator<T> configurator) where T : DataSourceContext
+        {
+            return configurator.Child(new StoreContext(), (d, identity) =>
+            {
+//                d.
+                
+            });
+        }
+
+        public static IRegistration DataStore(this IRegistration registration, Action<IComponentSetup<StoreContext>> setupAction)
+        {
+            var setup = new ComponentSetup<StoreContext>(registration);
+            setupAction(setup);
+            setup.Build();
             return registration;
         }
 
@@ -21,15 +38,6 @@ namespace Cortoxa.Data.Components
             return configurator;
         }
 
-        public static void Repository(this IRegistration registration)
-        {
-//            var configurator = new ComponentConfigurator<RepositoryConfig>(registration);
-//            configurator.Configure(c => c.LifeTime = lifeTime);
-//            configurator.Configure(c => c.DataSource = dataSource);
-//            configurator.ConfigureBuild((c) => registration.For(new[] { typeof(IStore<>) }).To(typeof(Store<>)).DependsOnComponent<IDataSource>(c.DataSource).LifeTime(c.LifeTime));
-//            configurator.Build();
-//            return registration;
-            throw new NotImplementedException();
-        }
+        
     }
 }

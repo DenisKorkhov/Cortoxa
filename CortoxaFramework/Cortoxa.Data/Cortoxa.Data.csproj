@@ -51,8 +51,7 @@
     <Compile Include="Common\IModelBuilder.cs" />
     <Compile Include="Components\DataExtentions.cs" />
     <Compile Include="Components\DataSourceContext.cs" />
-    <Compile Include="Components\DataSourceExtentions.cs" />
-    <Compile Include="Components\RepositoryConfig.cs" />
+    <Compile Include="Components\StoreContext.cs" />
     <Compile Include="Context\IModelFactory.cs" />
     <Compile Include="Model\Entity.cs" />
     <Compile Include="Model\IEntity.cs" />

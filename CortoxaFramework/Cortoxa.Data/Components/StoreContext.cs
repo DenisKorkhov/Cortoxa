@@ -2,7 +2,7 @@
 
 namespace Cortoxa.Data.Components
 {
-    public class RepositoryConfig
+    public class StoreContext
     {
         public LifeTime LifeTime { get; set; }
 
