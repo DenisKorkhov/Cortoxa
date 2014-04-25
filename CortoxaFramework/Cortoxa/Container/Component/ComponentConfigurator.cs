@@ -35,7 +35,7 @@ namespace Cortoxa.Container.Component
 
         public IComponentConfigurator<TC> Child<TC>(TC childContext, Action<T, TC> childSetup) where TC : class, new()
         {
-            var childConfigurator = new ChildConfigurator<TC, T>(registration, this, childContext);
+            var childConfigurator = new ComponentConfigurator<TC>(registration, childContext);
             this.builds.Add(c => childConfigurator.Build());
             return childConfigurator;
         }

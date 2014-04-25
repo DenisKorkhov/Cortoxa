@@ -24,7 +24,7 @@ namespace Samples.Console
                 .Register(r => r.For<Test>().To<Test>())
                 .Register(r => r.Logger(c =>c.UseNLog()))
                 .Register(r => r.DataSource(c => c
-                                    .UseEnitityFramework().Context<SamplesContext>().ConnectionString("Database").PerThread()
+                                    .UseEnitityFramework().Context<SamplesContext>().ConnectionString("Database")
                                     .WithIdentity().User<User>().Role<Role>()
                                 )
                         );

@@ -28,11 +28,6 @@ namespace Cortoxa.Data.Identity.Components
         {
             return configurator;
         }
-
-        public static IComponentConfigurator<DataSourceContext> Done(this IComponentConfigurator<IdentityConfig> child)
-        {
-            return ((IChildConfigurator<DataSourceContext>)child).Done();
-        }
     }
 
     public class IdentityConfig

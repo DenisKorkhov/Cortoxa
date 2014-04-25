@@ -15,9 +15,11 @@
 using System.Data.Entity;
 using Cortoxa.Container.Component;
 using Cortoxa.Container.Extentions;
+using Cortoxa.Container.Life;
 using Cortoxa.Data.Common;
 using Cortoxa.Data.Components;
 using Cortoxa.Data.EntityFramework.Component;
+using Cortoxa.Data.EntityFramework.Schema;
 
 namespace Cortoxa.Data.EntityFramework
 {
@@ -27,12 +29,13 @@ namespace Cortoxa.Data.EntityFramework
         {
             var configurator = setup.Setup(() => new EntityDataContext()
             {
-                
             }, 
                 (r, c) =>
                     {
                         c.DbContext = r.For<DbContext>().To(c.ContextType);
                         c.DataSource = r.For<IDataSource, IUnitOfWork>().To<EntityDataSource>();
+                        c.ModelBuilder = r.For<IModelBuilder>().To<EntityModelBuilder>();
+                        c.ModelBuilder.LifeTime(LifeTime.Transient);
                         c.DbContext.Intercept.After<DbContext>("OnModelCreating", context =>
                             {
                                 
