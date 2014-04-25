@@ -56,10 +56,14 @@
     <Compile Include="Common\StingExtentions.cs" />
     <Compile Include="Configuration\IConfigurator.cs" />
     <Compile Include="Configuration\IConfiguratorBuilder.cs" />
+    <Compile Include="Container\Component\ChildConfigurator.cs" />
+    <Compile Include="Container\Component\ComponentConfig.cs" />
     <Compile Include="Container\Component\ComponentConfigurator.cs" />
     <Compile Include="Container\Component\ComponentExtentions.cs" />
+    <Compile Include="Container\Component\ComponentSetup.cs" />
+    <Compile Include="Container\Component\IChildConfigurator.cs" />
     <Compile Include="Container\Component\IComponentConfigurator.cs" />
-    <Compile Include="Container\Component\IComponentRegistrator.cs" />
+    <Compile Include="Container\Component\IComponentSetup.cs" />
     <Compile Include="Container\Component\Logging\LoggerContext.cs" />
     <Compile Include="Container\Component\Logging\LoggerExtentions.cs" />
     <Compile Include="Container\Component\LifeTimeContext.cs" />

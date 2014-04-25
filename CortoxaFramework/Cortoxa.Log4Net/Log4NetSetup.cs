@@ -9,9 +9,9 @@ namespace Cortoxa.Log4Net
 {
     public static class Log4NetSetup
     {
-        public static void UseLog4Net(this IComponentRegistrator<LoggerContext> configurator)
+        public static IComponentConfigurator<LoggerContext> UseLog4Net(this IComponentSetup<LoggerContext> configurator)
         {
-            configurator.Register((r,c)=>r.For<ILogger>()
+            return configurator.Setup(() => new LoggerContext(), (r, c) => r.For<ILogger>()
                .Intercept.Method<ILogger>(m => m.Info(default(string)), context => GetLogger(context.ResolverType.FullName).Info(context.Arguments[0] as string))
                .Intercept.Method<ILogger>(m => m.Trace(default(string)), context => GetLogger(context.ResolverType.FullName).Info(context.Arguments[0] as string))
                .Intercept.Method<ILogger>(m => m.Warn(default(string)), context => GetLogger(context.ResolverType.FullName).Warn(context.Arguments[0] as string))

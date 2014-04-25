@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
+using System.Reflection;
 using Cortoxa.Reflection;
 
 namespace Cortoxa.Container.Services
@@ -62,16 +63,18 @@ namespace Cortoxa.Container.Services
 
         public IServiceConfigurator After<T>(Expression<Action<T>> methodExpr, Func<InterceptionContext, object> action)
         {
-            return
-                configuration.InterceptMethod(new MethodInteception(action, MethodInteceptionType.After,
-                    methodExpr.MethodFromExpression()));
+            return configuration.InterceptMethod(new MethodInteception(action, MethodInteceptionType.After, methodExpr.MethodFromExpression()));
         }
 
         public IServiceConfigurator After<T>(Expression<Action<T>> methodExpr, Action<InterceptionContext> action)
         {
-            return
-                configuration.InterceptMethod(new MethodInteception(action, MethodInteceptionType.After,
-                    methodExpr.MethodFromExpression()));
+            return configuration.InterceptMethod(new MethodInteception(action, MethodInteceptionType.After,methodExpr.MethodFromExpression()));
+        }
+
+        public IServiceConfigurator After<T>(string methodName, Action<InterceptionContext> action)
+        {
+            var methodInfo = typeof(T).GetMethod(methodName, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+            return configuration.InterceptMethod(new MethodInteception(action, MethodInteceptionType.After, methodInfo));
         }
 
         public IServiceConfigurator After(Func<InterceptionContext, object> action)

@@ -23,15 +23,23 @@ namespace Cortoxa.Data.EntityFramework
 {
     public static class EntitySetup
     {
-
-
-        public static IComponentConfigurator<DataSourceContext> UseEnitityFramework<T>(this IComponentRegistrator<DataSourceContext> configurator) where T : DbContext
+        public static IComponentConfigurator<EntityDataContext> UseEnitityFramework(this IComponentSetup<DataSourceContext> setup)
         {
-            configurator.Register((r, c) =>
+            var configurator = setup.Setup(() => new EntityDataContext()
             {
-                r.For<DbContext>().To<T>().DependsOnValue("connectionString", c.ConnectionString).LifeTime(c.LifeTime);
-                r.For<IDataSource, IUnitOfWork>().To<EntityDataSource>().DependsOnComponent<EntityDataSource>("DbContext").LifeTime(c.LifeTime);
-            });
+                
+            }, 
+                (r, c) =>
+                    {
+                        c.DbContext = r.For<DbContext>().To(c.ContextType);
+                        c.DataSource = r.For<IDataSource, IUnitOfWork>().To<EntityDataSource>();
+                        c.DbContext.Intercept.After<DbContext>("OnModelCreating", context =>
+                            {
+                                
+                            })
+                            .DependsOnValue("connectionString", c.ConnectionString).LifeTime(c.LifeTime);
+                        c.DataSource.DependsOnComponent<EntityDataSource>("DbContext").LifeTime(c.LifeTime);
+                    });
             return configurator;
         }
     }

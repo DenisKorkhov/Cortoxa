@@ -60,6 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Component\DataAccessExtentions.cs" />
+    <Compile Include="Component\EntityDataContext.cs" />
     <Compile Include="Component\EntityDataSource.cs" />
     <Compile Include="Context\EntityModelFactory.cs" />
     <Compile Include="Data\EntityContext.cs" />

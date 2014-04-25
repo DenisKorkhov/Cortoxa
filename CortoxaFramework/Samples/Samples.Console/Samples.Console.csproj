@@ -70,6 +70,10 @@
       <Project>{5110928C-CA26-480F-B3B9-B1C07728D8AE}</Project>
       <Name>Cortoxa.Data.EntityFramework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Cortoxa.Data.Identity\Cortoxa.Data.Identity.csproj">
+      <Project>{92912F87-74FC-4F5F-9AF6-00E537BC888E}</Project>
+      <Name>Cortoxa.Data.Identity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Cortoxa.Data\Cortoxa.Data.csproj">
       <Project>{06c7e715-b86c-41e0-8879-cac35c112a8d}</Project>
       <Name>Cortoxa.Data</Name>

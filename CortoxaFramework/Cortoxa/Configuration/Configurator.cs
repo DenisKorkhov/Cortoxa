@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Cortoxa.Configuration
 {
@@ -9,7 +10,7 @@ namespace Cortoxa.Configuration
         
         protected Action<Action<T>> SetupStrategy;
         private readonly IList<Action<T>> configurations = new List<Action<T>>();
-        private Action<T> buildStrategy;
+        private IList<Action<T>> buildStrategies = new List<Action<T>>();
 
         #endregion
 
@@ -27,7 +28,8 @@ namespace Cortoxa.Configuration
 
         public virtual void ConfigureBuild(Action<T> buildStrategy)
         {
-            this.buildStrategy = buildStrategy;
+            buildStrategies.Add(buildStrategy);
+//            this.buildStrategy = buildStrategy;
         }
 
         public virtual T Build()
@@ -46,9 +48,12 @@ namespace Cortoxa.Configuration
                 }
             }
 
-            if (this.buildStrategy != null)
+            if (this.buildStrategies.Any())
             {
-                buildStrategy(context);
+                foreach (var buildStrategy in buildStrategies)
+                {
+                    buildStrategy(context);    
+                }
             }
             return context;
         } 

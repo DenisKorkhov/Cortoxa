@@ -20,15 +20,15 @@ namespace Samples.Web
             var container = Setup.Container(c => c.UseWindsor())
                 .Register(r =>r.Logger(c=>c.UseNLog()))
                 .Register(r => r.Controllers(Assembly.GetExecutingAssembly()))
-                .Register(r => r
-                    .DataAccess(c => c
-                        .UseEnitityFramework<SamplesContext>().PerWebRequest().ConnectionString("DefaultConnection")
+//                .Register(r => r
+//                    .DataAccess(c => c
+//                        .UseEnitityFramework<SamplesContext>().PerWebRequest().ConnectionString("DefaultConnection")
 //                        .WithIdentity().User<IdentityUser>().Role<IdentityRole>()
-                        )
+//                        )
 
 //                    .Repository("", LifeTime.Transient)
 //                    .WithIdentity
-                    )
+//                    )
                 ;
 
             container.SetupControllerFactory();

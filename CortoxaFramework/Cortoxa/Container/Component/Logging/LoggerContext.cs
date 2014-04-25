@@ -1,6 +1,6 @@
 ﻿namespace Cortoxa.Container.Component.Logging
 {
-    public class LoggerContext
+    public class LoggerContext : LifeTimeContext
     {
         public string Name { get; set; }
     }

@@ -51,6 +51,8 @@ namespace Cortoxa.Container.Services
 
         IServiceConfigurator After<T>(Expression<Action<T>> methodExpr, Action<InterceptionContext> action);
 
+        IServiceConfigurator After<T>(string methodName, Action<InterceptionContext> action);
+
         IServiceConfigurator After(Func<InterceptionContext, object> action);
 
         IServiceConfigurator After(Action<InterceptionContext> action);

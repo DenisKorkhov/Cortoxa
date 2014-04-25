@@ -39,20 +39,13 @@ namespace Cortoxa.Web.MVC
         public static IRegistration Controllers(this IRegistration registration, Type controllerType, LifeTime lifeTime = LifeTime.PerWebRequest, params Assembly[] assemblies)
         {
             var configurator = new ComponentConfigurator<ControllersContext>(registration);
-            configurator.Configure(c => c.LifeTime = lifeTime);
-            configurator.Configure(c => c.ControllerType = controllerType);
-            configurator.Configure(c => c.Assemblies = assemblies);
-            configurator.ConfigureBuild(c =>
+            configurator.Register((r, c) =>
             {
                 if (controllerType == null)
                 {
                     controllerType = typeof(Controller);
                 }
-
-                var aaa = Assembly.GetCallingAssembly();
-                var aaa2 = Assembly.GetEntryAssembly();
-                var aaa3 = Assembly.GetExecutingAssembly();
-
+                
                 if (assemblies == null || assemblies.Length == 0)
                 {
                     assemblies = new[]
@@ -60,8 +53,12 @@ namespace Cortoxa.Web.MVC
                         Assembly.GetCallingAssembly()
                     };
                 }
-                registration.Type(assemblies).Where(t => t.BasedOn(controllerType));
+                r.Type(assemblies).Where(t => t.BasedOn(controllerType));
             });
+
+            configurator.Configure(c => c.LifeTime = lifeTime);
+            configurator.Configure(c => c.ControllerType = controllerType);
+            configurator.Configure(c => c.Assemblies = assemblies);
             configurator.Build();
             return registration;
 
