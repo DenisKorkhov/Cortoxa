@@ -31,9 +31,7 @@ namespace Cortoxa.Data.Identity.IoC
         public void Register(IToolContainer container)
         {
 
-            Type userStoreInterface = typeof(IUserStore<>).MakeGenericType(userType);
-            Type userStoreClass = typeof(UserStore<>).MakeGenericType(userType);
-            Type userManagerClass = typeof(UserManager<>).MakeGenericType(userType);
+           
             
 //            container.Register(r => r.For(userStoreInterface).To(userStoreClass).LifeTime(LifeTime.Transient))
 //                .Register(r => r.For(userManagerClass).ToSelf().LifeTime(LifeTime.Transient));

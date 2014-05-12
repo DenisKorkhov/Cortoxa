@@ -54,7 +54,7 @@ namespace Cortoxa.Data.NHibernate.Data
 
         public async Task SaveChangesAsync()
         {
-            await Task.Run(() => session.Flush());
+            await Task.Run(() => session.Flush()).ConfigureAwait(false);
         } 
 
         public ISession Session

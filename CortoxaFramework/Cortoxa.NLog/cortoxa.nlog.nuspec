@@ -15,10 +15,6 @@ Cortoxa Framework is a Powerful Framework for faster and easier building .Net ap
         <copyright>Copyright© Denis Korkhov at Oxagile 2014</copyright>
         <tags>logger log logging nlog</tags>
         <dependencies>
-            <group targetFramework=".NETFramework3.5">
-                <dependency id="NLog" version="2.1.0" />
-                <dependency id="Cortoxa" version="1.0.4" />
-            </group>
             <group targetFramework=".NETFramework4.0">
                 <dependency id="NLog" version="2.1.0" />
                 <dependency id="Cortoxa" version="1.0.4" />
@@ -34,7 +30,6 @@ Cortoxa Framework is a Powerful Framework for faster and easier building .Net ap
         </dependencies>
     </metadata>
     <files>
-        <file src="bin\NET35\Release\Cortoxa.NLog.dll" target="lib\net35\Cortoxa.NLog.dll" />
         <file src="bin\NET40\Release\Cortoxa.NLog.dll" target="lib\net40\Cortoxa.NLog.dll" />
         <file src="bin\NET45\Release\Cortoxa.NLog.dll" target="lib\net45\Cortoxa.NLog.dll" />
         <file src="bin\NET451\Release\Cortoxa.NLog.dll" target="lib\net451\Cortoxa.NLog.dll" />

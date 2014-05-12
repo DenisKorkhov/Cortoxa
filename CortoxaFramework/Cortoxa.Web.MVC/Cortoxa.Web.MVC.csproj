@@ -69,6 +69,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Container\ControllerConfigurator.cs" />
+    <Compile Include="Controllers\ControllerExtentions.cs" />
     <Compile Include="Controllers\ControllersContext.cs" />
     <Compile Include="Factories\ControllerFactory.cs" />
     <Compile Include="Factories\DependencyWebServiceHandlerFactory.cs" />

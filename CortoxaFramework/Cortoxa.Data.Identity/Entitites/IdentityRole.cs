@@ -19,9 +19,8 @@ using Microsoft.AspNet.Identity;
 
 namespace Cortoxa.Data.Identity.Entitites
 {
-    public class IdentityRole //: Entity, IRole
+    public class IdentityRole<TUser> : Entity, IRole<Guid> //where TUser : IUser<Guid>
     {
-
         #region Constructor
 
         public IdentityRole(): this("")
@@ -30,18 +29,13 @@ namespace Cortoxa.Data.Identity.Entitites
 
         public IdentityRole(string roleName)
         {
-//            this.Id = Guid.NewGuid();
-//            this.Name = roleName;
+            this.Name = roleName;
         }
 
         #endregion
-//
-//        string IRole.Id
-//        {
-//            get { return Id.ToString(); }
-//        }
-//        public virtual string Name { get; set; }
-//
-//        public virtual ICollection<IdentityUser> Users { get; set; }
+
+        public virtual string Name { get; set; }
+
+        public virtual ICollection<TUser> Users { get; set; }
     }
 }

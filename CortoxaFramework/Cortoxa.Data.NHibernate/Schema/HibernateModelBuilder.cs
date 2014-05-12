@@ -13,11 +13,10 @@
 #endregion
 
 using System;
-using Cortoxa.Data.Common;
 using Cortoxa.Data.Model;
 using Cortoxa.Data.Schema;
 using Cortoxa.Data.Schema.Models;
-using IModelBuilder = Cortoxa.Data.Schema.IModelBuilder;
+
 
 namespace Cortoxa.Data.NHibernate.Schema
 {

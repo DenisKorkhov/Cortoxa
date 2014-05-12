@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Linq;
-using Castle.Windsor;
+using Castle.Core;
+using Castle.MicroKernel;
 using Cortoxa.Container.Registrator;
 
 namespace Cortoxa.Windsor.Tool
 {
     public class WindsorResolver : IResolver
     {
-        private readonly IWindsorContainer container;
+        private readonly IKernel container;
 
-        public WindsorResolver(IWindsorContainer container)
+        public WindsorResolver(IKernel container)
         {
             this.container = container;
         }
@@ -32,7 +33,8 @@ namespace Cortoxa.Windsor.Tool
 
         public T Resolve<T>(string key, object arguments = null)
         {
-            return arguments != null ? container.Resolve<T>(key, arguments) : container.Resolve<T>(key);
+            object result = arguments != null ? (T)container.Resolve(key, typeof(T), new ReflectionBasedDictionaryAdapter(arguments)) : container.Resolve(key, typeof(T));
+            return (T)result;
         }
 
         public T[] ResolveAll<T>(object arguments = null)
@@ -52,18 +54,18 @@ namespace Cortoxa.Windsor.Tool
             return result.Cast<T>().ToArray();
         }
 
-        public void Release(Type type)
-        {
-            var instance = Resolve(type);
-            if (instance != null)
-            {
-                Release(instance);
-            }
-        }
+//        public void Release(Type type)
+//        {
+//            var instance = Resolve(type);
+//            if (instance != null)
+//            {
+//                Release(instance);
+//            }
+//        }
 
-        public void Release(object instance)
-        {
-            container.Release(instance);
-        }
+//        public void Release(object instance)
+//        {
+//            container.Release(instance);
+//        }
     }
 }

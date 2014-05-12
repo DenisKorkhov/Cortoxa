@@ -56,6 +56,8 @@
     <Compile Include="Common\StingExtentions.cs" />
     <Compile Include="Configuration\IConfigurator.cs" />
     <Compile Include="Configuration\IConfiguratorBuilder.cs" />
+    <Compile Include="Configuration\IRegistrationConfigurator.cs" />
+    <Compile Include="Configuration\RegistrationConfigurator.cs" />
     <Compile Include="Container\Component\ChildConfigurator.cs" />
     <Compile Include="Container\Component\ComponentConfig.cs" />
     <Compile Include="Container\Component\ComponentConfigurator.cs" />
@@ -64,9 +66,9 @@
     <Compile Include="Container\Component\IChildConfigurator.cs" />
     <Compile Include="Container\Component\IComponentConfigurator.cs" />
     <Compile Include="Container\Component\IComponentSetup.cs" />
+    <Compile Include="Container\Component\ILifeTimeContext.cs" />
     <Compile Include="Container\Component\Logging\LoggerContext.cs" />
     <Compile Include="Container\Component\Logging\LoggerExtentions.cs" />
-    <Compile Include="Container\Component\LifeTimeContext.cs" />
     <Compile Include="Container\Registrator\IRegistrationConfigurator.cs" />
     <Compile Include="Container\Extentions\RegistrationExtentions.cs" />
     <Compile Include="Container\Registrator\IRegistration.cs" />
@@ -75,6 +77,7 @@
     <Compile Include="Container\Services\IServiceConfigurator.cs" />
     <Compile Include="Container\Services\IServiceContext.cs" />
     <Compile Include="Container\Services\ServiceConfigurator.cs" />
+    <Compile Include="Container\Types\IAssemblyTypeConfigurator.cs" />
     <Compile Include="Container\Types\ITypeConfigurator.cs" />
     <Compile Include="Container\Types\TypeConfigurator.cs" />
     <Compile Include="Container\Types\TypeContext.cs" />
@@ -108,7 +111,7 @@
   -->
   <Target Name="AfterBuild" Condition=" '$(ChildBuild)' == 'True' ">
     <!-- Build NET35 -->
-    <MSBuild Condition=" '$(TargetFrameworkVersion)' != 'v3.5' " Projects="$(MSBuildProjectFile)" ToolsVersion="3.5" Properties="TargetFrameworkVersion=v3.5; ChildBuild=False" RunEachTargetSeparately="true" />
+    <!--<MSBuild Condition=" '$(TargetFrameworkVersion)' != 'v3.5' " Projects="$(MSBuildProjectFile)" ToolsVersion="3.5" Properties="TargetFrameworkVersion=v3.5; ChildBuild=False" RunEachTargetSeparately="true" />-->
     <!-- Build NET40 -->
     <MSBuild Condition=" '$(TargetFrameworkVersion)' != 'v4.0' " Projects="$(MSBuildProjectFile)" ToolsVersion="4.0" Properties="TargetFrameworkVersion=v4.0; ChildBuild=False" RunEachTargetSeparately="true" />
     <!-- Build NET45 -->

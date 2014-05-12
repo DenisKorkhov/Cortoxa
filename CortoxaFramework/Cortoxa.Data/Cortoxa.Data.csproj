@@ -53,6 +53,7 @@
     <Compile Include="Components\DataSourceContext.cs" />
     <Compile Include="Components\StoreContext.cs" />
     <Compile Include="Context\IModelFactory.cs" />
+    <Compile Include="Enums\RoleEnum.cs" />
     <Compile Include="Model\Entity.cs" />
     <Compile Include="Model\IEntity.cs" />
     <Compile Include="Common\IUnitOfWork.cs" />

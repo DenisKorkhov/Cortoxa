@@ -39,7 +39,7 @@ namespace Cortoxa.Container.Component
             this.builds.Add(c => childConfigurator.Build());
             return childConfigurator;
         }
-        
+
 
         public void Build()
         {

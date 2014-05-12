@@ -1,15 +1,12 @@
 ﻿using System.Reflection;
+using System.Web.Mvc;
 using Cortoxa;
-using Cortoxa.Container.Component;
+
 using Cortoxa.Container.Component.Logging;
-using Cortoxa.Container.Life;
-using Cortoxa.Data.Components;
-using Cortoxa.Data.EntityFramework;
-using Cortoxa.Data.Identity.Components;
-using Cortoxa.NLog;
-using Cortoxa.Windsor;
+using Cortoxa.NLogger;
 using Cortoxa.Web.MVC;
-using Samples.Data.EntityFramework.Context;
+using Cortoxa.Web.MVC.Controllers;
+using Cortoxa.Windsor;
 
 namespace Samples.Web
 {
@@ -18,8 +15,8 @@ namespace Samples.Web
         public static void SetupContainer()
         {
             var container = Setup.Container(c => c.UseWindsor())
-                .Register(r =>r.Logger(c=>c.UseNLog()))
-                .Register(r => r.Controllers(Assembly.GetExecutingAssembly()))
+                .Register(r =>r.NLog())
+                .Register(r => r.Controllers<Controller>().AssemblyCalling())
 //                .Register(r => r
 //                    .DataAccess(c => c
 //                        .UseEnitityFramework<SamplesContext>().PerWebRequest().ConnectionString("DefaultConnection")
@@ -31,7 +28,7 @@ namespace Samples.Web
 //                    )
                 ;
 
-            container.SetupControllerFactory();
+            container.InstallControllerFactory();
         }
     }
 }

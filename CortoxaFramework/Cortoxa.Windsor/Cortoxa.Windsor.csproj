@@ -39,10 +39,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.3.2.0\lib\net35\Castle.Core.dll</HintPath>
+      <HintPath>..\packages\Castle.Core.3.2.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Windsor">
-      <HintPath>..\packages\Castle.Windsor.3.2.1\lib\net35\Castle.Windsor.dll</HintPath>
+      <HintPath>..\packages\Castle.Windsor.3.2.1\lib\net45\Castle.Windsor.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -68,6 +69,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="cortoxa.windsor.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -81,9 +83,7 @@
   -->
   <Target Name="AfterBuild" Condition=" '$(ChildBuild)' == 'True' ">
     <!-- Build NET35 -->
-    <MSBuild Condition=" '$(TargetFrameworkVersion)' != 'v3.5' " Projects="$(MSBuildProjectFile)" ToolsVersion="3.5" Properties="TargetFrameworkVersion=v3.5; ChildBuild=False" RunEachTargetSeparately="true" />
-    <!-- Build NET40 -->
-    <MSBuild Condition=" '$(TargetFrameworkVersion)' != 'v4.0' " Projects="$(MSBuildProjectFile)" ToolsVersion="4.0" Properties="TargetFrameworkVersion=v4.0; ChildBuild=False" RunEachTargetSeparately="true" />
+    <!--    <MSBuild Condition=" '$(TargetFrameworkVersion)' != 'v3.5' " Projects="$(MSBuildProjectFile)" ToolsVersion="3.5" Properties="TargetFrameworkVersion=v3.5; ChildBuild=False" RunEachTargetSeparately="true" />-->
     <!-- Build NET45 -->
     <MSBuild Condition=" '$(TargetFrameworkVersion)' != 'v4.5' " Projects="$(MSBuildProjectFile)" ToolsVersion="4.0" Properties="TargetFrameworkVersion=v4.5; ChildBuild=False" RunEachTargetSeparately="true" />
     <!-- Build NET451 -->

@@ -23,11 +23,11 @@ namespace Cortoxa.Data.Repository
 {
     public class Store<T> : IStore<T> where T : class, IEntity
     {
-        private IDataSource session;
+        private IDataSource dataSource;
 
-        public Store(IDataSource session)
+        public Store(IDataSource dataSource)
         {
-            this.session = session;
+            this.dataSource = dataSource;
         }
 
         public void Dispose()
@@ -40,17 +40,17 @@ namespace Cortoxa.Data.Repository
         {
             if (disposing)
             {
-                if (session != null)
+                if (dataSource != null)
                 {
-                    session.Dispose();
-                    session = null;
+                    dataSource.Dispose();
+                    dataSource = null;
                 }
             }
         }
 
         public virtual IQueryable<T> GetQuery()
         {
-            return session.Query<T>();
+            return dataSource.Query<T>();
         }
 
         public virtual T First(Expression<Func<T, bool>> predicate)
@@ -90,7 +90,7 @@ namespace Cortoxa.Data.Repository
 
         public virtual void Add(T entity)
         {
-            session.Add(entity);
+            dataSource.Add(entity);
         }
 
         public Task AddAsync(T entity)
@@ -104,7 +104,7 @@ namespace Cortoxa.Data.Repository
 
         public virtual void Update(T entity)
         {
-            session.Update(entity);
+            dataSource.Update(entity);
         }
 
         public virtual Task UpdateAsync(T entity)
@@ -118,7 +118,7 @@ namespace Cortoxa.Data.Repository
 
         public virtual void Delete(T entity)
         {
-            session.Delete(entity);
+            dataSource.Delete(entity);
         }
 
         public Task DeleteAsync(T entity)
@@ -152,12 +152,12 @@ namespace Cortoxa.Data.Repository
 
         public void SaveChanges()
         {
-            this.session.SaveChanges();
+            this.dataSource.SaveChanges();
         }
 
         public Task SaveChangesAsync()
         {
-            return this.session.SaveChangesAsync();
+            return this.dataSource.SaveChangesAsync();
         }
     }
 }

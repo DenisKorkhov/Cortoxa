@@ -18,15 +18,18 @@ using Cortoxa.Common.Log;
 using Cortoxa.Container.Component;
 using Cortoxa.Container.Component.Logging;
 using Cortoxa.Container.Extentions;
+using Cortoxa.Container.Registrator;
 using NLog;
 
-namespace Cortoxa.NLog
+namespace Cortoxa.NLogger
 {
+
     public static class NLogSetup
     {
-        public static IComponentConfigurator<LoggerContext> UseNLog(this IComponentSetup<LoggerContext> configurator)
+        public static IComponentConfigurator<LoggerContext> NLog(this IRegistration registration)
         {
-            return configurator.Setup(() => new LoggerContext(), (r, c) => r.For<ILogger>()
+            var configurator = new ComponentConfigurator<LoggerContext>(registration);
+            configurator.Register((r, c) => r.For<ILogger>()
                 .Intercept.Method<ILogger>(m => m.Info(default(string)), context => GetLogger(context.ResolverType.FullName).Info(context.Arguments[0] as string))
                 .Intercept.Method<ILogger>(m => m.Trace(default(string)), context => GetLogger(context.ResolverType.FullName).Trace(context.Arguments[0] as string))
                 .Intercept.Method<ILogger>(m => m.Warn(default(string)), context => GetLogger(context.ResolverType.FullName).Warn(context.Arguments[0] as string))
@@ -38,9 +41,8 @@ namespace Cortoxa.NLog
                 .Intercept.Method<ILogger>(m => m.Debug(default(string), default(string[])), context => GetLogger(context.ResolverType.FullName).Debug(context.Arguments[0] as string, context.Arguments[1] as object[]))
                 .Intercept.Method<ILogger>(m => m.Error(default(string), default(string[])), context => GetLogger(context.ResolverType.FullName).Error(context.Arguments[0] as string, context.Arguments[1] as object[]))
                 .Intercept.Method<ILogger>(m => m.Error(default(string), default(Exception)), context => GetLogger(context.ResolverType.FullName).ErrorException(context.Arguments[0] as string, context.Arguments[1] as Exception)));
+            return configurator;
         }
-
-        
 
         private static Logger GetLogger(string name)
         {

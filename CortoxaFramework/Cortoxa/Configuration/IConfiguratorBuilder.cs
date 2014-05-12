@@ -6,6 +6,6 @@ namespace Cortoxa.Configuration
     {
         void ConfigureBuild(Action<T> buildStrategy);
 
-        T Build(); 
+        T Build();
     }
 }

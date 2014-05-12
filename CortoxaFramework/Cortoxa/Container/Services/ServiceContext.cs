@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cortoxa.Container.Life;
+using Cortoxa.Container.Registrator;
 
 namespace Cortoxa.Container.Services
 {
@@ -16,6 +17,8 @@ namespace Cortoxa.Container.Services
         public Type To { get; set; }
 
         public Func<FactoryContext, object> ToFactory { get; set; }
+
+        public Func<FactoryContext, IResolver, object> ToFactoryResolver { get; set; }
 
         public string Name { get; set; }
 

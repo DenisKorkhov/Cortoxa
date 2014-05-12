@@ -15,21 +15,22 @@ using System;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Cortoxa.Container;
 using Cortoxa.Container.Registrator;
 
 namespace Cortoxa.Web.MVC.Factories
 {
     public class ControllerFactory : DefaultControllerFactory
     {
-        private readonly IResolver resolver;
+        private readonly IToolContainer container;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="resolver"></param>
-        public ControllerFactory(IResolver resolver)
+        public ControllerFactory(IToolContainer container)
         {
-            this.resolver = resolver;
+            this.container = container;
         }
 
         /// <summary>
@@ -37,8 +38,8 @@ namespace Cortoxa.Web.MVC.Factories
         /// </summary>
         /// <param name="controller">The Interface to an MVC controller</param>
         public override void ReleaseController(IController controller)
-        {
-            resolver.Release(controller);
+        { 
+            container.Release(controller);
         }
 
         protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
@@ -48,7 +49,7 @@ namespace Cortoxa.Web.MVC.Factories
                 throw new HttpException(404, string.Format("The controller for path '{0}' could not be found.", requestContext.HttpContext.Request.Path));
             }
 
-            return (Controller)resolver.Resolve(controllerType);
+            return (Controller)container.Resolver.Resolve(controllerType);
         }
     }
 }

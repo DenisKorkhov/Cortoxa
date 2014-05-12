@@ -10,6 +10,8 @@ namespace Cortoxa.Container.Component
         void Register(Action<IRegistration, T> registrationStrategy);
 
         IComponentConfigurator<TC> Child<TC>(TC childContext, Action<T, TC> childSetup) where TC : class, new();
+
+        void Build();
     }
 
 }

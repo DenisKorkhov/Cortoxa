@@ -32,16 +32,16 @@ namespace Cortoxa.Data.EntityFramework
             }, 
                 (r, c) =>
                     {
-                        c.DbContext = r.For<DbContext>().To(c.ContextType);
-                        c.DataSource = r.For<IDataSource, IUnitOfWork>().To<EntityDataSource>();
-                        c.ModelBuilder = r.For<IModelBuilder>().To<EntityModelBuilder>();
-                        c.ModelBuilder.LifeTime(LifeTime.Transient);
-                        c.DbContext.Intercept.After<DbContext>("OnModelCreating", context =>
-                            {
-                                
-                            })
-                            .DependsOnValue("connectionString", c.ConnectionString).LifeTime(c.LifeTime);
-                        c.DataSource.DependsOnComponent<EntityDataSource>("DbContext").LifeTime(c.LifeTime);
+//                        c.DbContext = r.For<DbContext>().To(c.ContextType);
+//                        c.DataSource = r.For<IDataSource, IUnitOfWork>().To<EntityDataSource>();
+//                        c.ModelBuilder = r.For<IModelBuilder>().To<EntityModelBuilder>();
+//                        c.ModelBuilder.LifeTime(LifeTime.Transient);
+//                        c.DbContext.Intercept.After<DbContext>("OnModelCreating", context =>
+//                            {
+//                                
+//                            })
+//                            .DependsOnValue("connectionString", c.ConnectionString).LifeTime(c.LifeTime);
+//                        c.DataSource.DependsOnComponent<EntityDataSource>("DbContext").LifeTime(c.LifeTime);
                     });
             return configurator;
         }

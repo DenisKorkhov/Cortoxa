@@ -6,6 +6,7 @@ using Cortoxa.Configuration;
 using Cortoxa.Container.Services;
 using Cortoxa.Windsor.Helpers;
 using Cortoxa.Windsor.Interceptions;
+using Cortoxa.Windsor.Tool;
 
 namespace Cortoxa.Windsor.Registrators
 {
@@ -30,23 +31,23 @@ namespace Cortoxa.Windsor.Registrators
                     RequestedType = c.RequestedType,
                     Arguments = c.HasAdditionalArguments ? c.AdditionalArguments.Values.Cast<object>().ToArray() : null
                 }), true);
+            } else if (context.ToFactoryResolver != null)
+            {
+                ServiceContext ctx = context;
+                component = component.UsingFactoryMethod((k, cm, c) => ctx.ToFactoryResolver(new FactoryContext
+                {
+                    RequestedType = c.RequestedType,
+                    Arguments = c.HasAdditionalArguments ? c.AdditionalArguments.Values.Cast<object>().ToArray() : null
+                }, new WindsorResolver(k)), true);
             }
             else
             {
                 component = component.ImplementedBy(context.To);
             }
 
-            component = component.ToWindsorLifeTime(context.Lifetime);
-
-            if (!string.IsNullOrEmpty(context.Name))
-            {
-                component = component.Named(context.Name);
-            }
-
             if (context.ComponentDependencies.Any())
             {
-                var allDependencies = context.ComponentDependencies.Select(dependency => Dependency.OnComponent(dependency.Key, dependency.Value)).ToArray();
-                component = component.DependsOn(allDependencies);
+                component = context.ComponentDependencies.Aggregate(component, (current, componentDependency) => current.DependsOn(Dependency.OnComponent(componentDependency.Key, componentDependency.Value)));
             }
 
             if (context.ValueDependencies.Any())
@@ -72,6 +73,14 @@ namespace Cortoxa.Windsor.Registrators
                     );
                 component.Interceptors(interceptorName);
             }
+
+            if (!string.IsNullOrEmpty(context.Name))
+            {
+                component = component.Named(context.Name);
+            }
+
+            component = component.ToWindsorLifeTime(context.Lifetime);
+
             container.Register(component);
         }
     }

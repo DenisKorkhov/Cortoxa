@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Cortoxa.Configuration;
 using Cortoxa.Container.Life;
 using Cortoxa.Container.Registrator;
@@ -22,6 +23,12 @@ namespace Cortoxa.Container.Types
         public ITypeConfigurator Where(Func<Type, bool> action)
         {
             this.Configure(x => x.Where = action);
+            return this;
+        }
+
+        public ITypeConfigurator Assemblies(Assembly[] assemblies)
+        {
+            this.Configure(x => x.Assemblies = assemblies);
             return this;
         }
     }

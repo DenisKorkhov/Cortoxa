@@ -10,7 +10,7 @@ namespace Cortoxa.Configuration
         
         protected Action<Action<T>> SetupStrategy;
         private readonly IList<Action<T>> configurations = new List<Action<T>>();
-        private IList<Action<T>> buildStrategies = new List<Action<T>>();
+        private readonly IList<Action<T>> buildStrategies = new List<Action<T>>();
 
         #endregion
 
@@ -26,10 +26,9 @@ namespace Cortoxa.Configuration
             configurations.Add(action);
         }
 
-        public virtual void ConfigureBuild(Action<T> buildStrategy)
+        public void ConfigureBuild(Action<T> buildStrategy)
         {
             buildStrategies.Add(buildStrategy);
-//            this.buildStrategy = buildStrategy;
         }
 
         public virtual T Build()

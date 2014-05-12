@@ -3,7 +3,7 @@ using Cortoxa.Container.Registrator;
 
 namespace Cortoxa.Container.Types
 {
-    public interface ITypeConfigurator : IRegistrationConfigurator
+    public interface ITypeConfigurator : IAssemblyTypeConfigurator, IRegistrationConfigurator
     {
         ITypeConfigurator Where(Func<Type, bool> action); 
     }

@@ -18,8 +18,8 @@ namespace Cortoxa.Container.Registrator
 
         T[] ResolveAll<T>(Type type, object arguments = null);
 
-        void Release(Type type);
+//        void Release(Type type);
 
-        void Release(object instance);
+//        void Release(object instance);
     }
 }

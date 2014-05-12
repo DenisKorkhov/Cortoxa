@@ -19,7 +19,6 @@ namespace Cortoxa.Data.Components
         {
             return configurator.Child(new StoreContext(), (d, identity) =>
             {
-//                d.
                 
             });
         }
@@ -38,6 +37,10 @@ namespace Cortoxa.Data.Components
             return configurator;
         }
 
-        
+//        public static IComponentConfigurator<T> ConnectionString<T>(this IComponentConfigurator<T> configurator, string connectionString) where T : DataSourceContext
+//        {
+//            configurator.Configure(c => c.ConnectionString = connectionString);
+//            return configurator;
+//        }
     }
 }

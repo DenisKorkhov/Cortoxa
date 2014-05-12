@@ -7,7 +7,7 @@
     <ProjectGuid>{9041BABE-E6B7-4CEE-BF08-EE56C4DC43E7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cortoxa.NLog</RootNamespace>
+    <RootNamespace>Cortoxa.NLogger</RootNamespace>
     <AssemblyName>Cortoxa.NLog</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <Framework>$(TargetFrameworkVersion.Replace("v", "NET").Replace(".", ""))</Framework>
@@ -39,7 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NLog">
-      <HintPath>..\packages\NLog.2.1.0\lib\net35\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.2.1.0\lib\net40\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -72,8 +72,6 @@
   </Target>
   -->
   <Target Name="AfterBuild" Condition=" '$(ChildBuild)' == 'True' ">
-    <!-- Build NET35 -->
-    <MSBuild Condition=" '$(TargetFrameworkVersion)' != 'v3.5' " Projects="$(MSBuildProjectFile)" ToolsVersion="3.5" Properties="TargetFrameworkVersion=v3.5; ChildBuild=False" RunEachTargetSeparately="true" />
     <!-- Build NET40 -->
     <MSBuild Condition=" '$(TargetFrameworkVersion)' != 'v4.0' " Projects="$(MSBuildProjectFile)" ToolsVersion="4.0" Properties="TargetFrameworkVersion=v4.0; ChildBuild=False" RunEachTargetSeparately="true" />
     <!-- Build NET45 -->

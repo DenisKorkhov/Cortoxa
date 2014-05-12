@@ -19,16 +19,26 @@ using Microsoft.AspNet.Identity;
 
 namespace Cortoxa.Data.Identity.Entitites
 {
-    public class IdentityUser : Entity, IUser<Guid>
+    public class IdentityUser<TRole, TClaim> : Entity, IUser<Guid>
     {
         public virtual string UserName { get; set; }
+
+        public virtual string Email { get; set; }
+
+        public virtual string PhoneNumber { get; set; }
 
         public virtual string PasswordHash { get; set; }
 
         public virtual string SecurityStamp { get; set; }
 
-        public virtual ICollection<IdentityRole> Roles { get; set; }
+        public virtual DateTime? LockoutEndDate { get; set; }
 
-        public virtual ICollection<IdentityUserClaim> Claims { get; set; }
+        public virtual bool LockoutEnabled { get; set; }
+
+        public virtual int AccessFailedCount { get; set; }
+
+        public virtual ICollection<TRole> Roles { get; set; }
+
+        public virtual ICollection<TClaim> Claims { get; set; }
     }
 }

@@ -12,16 +12,20 @@
 //  */
 #endregion
 
+using System;
 using Cortoxa.Data.Model;
+using Microsoft.AspNet.Identity;
 
 namespace Cortoxa.Data.Identity.Entitites
 {
-    public class IdentityUserClaim : Entity
+    public class IdentityUserClaim<TUser> : Entity where TUser : IUser<Guid>
     {
         public virtual string ClaimType { get; set; }
 
         public virtual string ClaimValue { get; set; }
-        
-        public virtual IdentityUser User { get; set; }
+
+//        public virtual Guid UserId { get; set; }
+
+        public virtual TUser User { get; set; }
     }
 }

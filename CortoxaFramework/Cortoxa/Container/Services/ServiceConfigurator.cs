@@ -64,6 +64,12 @@ namespace Cortoxa.Container.Services
             return this;
         }
 
+        public IServiceConfigurator ToFactory(Func<FactoryContext, IResolver, object> factoryAction)
+        {
+            this.Configure(x => x.ToFactoryResolver = factoryAction);
+            return this;
+        }
+
         public IServiceConfigurator DependsOnComponent<T>(string componentName)
         {
             this.Configure(x => x.ComponentDependencies.Add(new KeyValuePair<Type, string>(typeof(T), componentName)));

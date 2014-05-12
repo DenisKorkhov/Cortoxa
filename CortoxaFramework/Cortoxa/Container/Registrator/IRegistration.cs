@@ -9,6 +9,6 @@ namespace Cortoxa.Container.Registrator
     {
         IServiceConfigurator For(Type[] types);
 
-        ITypeConfigurator Type(Assembly[] assemblies);
+        IAssemblyTypeConfigurator Type();
     }
 }

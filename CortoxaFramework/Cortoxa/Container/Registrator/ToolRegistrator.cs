@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using Cortoxa.Configuration;
 using Cortoxa.Container.Services;
 using Cortoxa.Container.Types;
@@ -34,17 +33,14 @@ namespace Cortoxa.Container.Registrator
             return configurator;
         }
 
-        public ITypeConfigurator Type(Assembly[] assemblies)
+        public IAssemblyTypeConfigurator Type()
         {
             var configurator = new TypeConfigurator();
-            configurator.Setup(c => c(new TypeContext
-                                                {
-                                                    Assemblies = assemblies
-                                                }));
+            configurator.Setup(c => c(new TypeContext()));
             configurator.ConfigureBuild(s => this.typeRegistration.Execute(s));
             registrationActions.Add(() => configurator.Build());
             return configurator;
-        } 
+        }
 
         #endregion
 

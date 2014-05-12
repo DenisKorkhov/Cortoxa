@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using Cortoxa.Container.Registrator;
 
 namespace Cortoxa.Container.Component.Logging
@@ -12,11 +12,10 @@ namespace Cortoxa.Container.Component.Logging
 //            configurator.Build();
 //        }
 
-        public static void Logger(this IRegistration registration, Action<IComponentSetup<LoggerContext>> setupAction)
+        public static IComponentConfigurator<LoggerContext> Logger<T>(this IRegistration registration)
         {
-            var setup = new ComponentSetup<LoggerContext>(registration);
-            setupAction(setup);
-            setup.Build();
+            var configurator = new ComponentConfigurator<LoggerContext>(registration);
+            return configurator;
         }
     }
 }
