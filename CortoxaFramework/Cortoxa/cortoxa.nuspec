@@ -10,7 +10,8 @@
         <projectUrl>https://github.com/DenisKorkhov/Cortoxa</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Core features for Cortoxa Framework.Contains interfaces for common "Design Patterns".
-Cortoxa Framework is a Powerful Framework for faster and easier building .Net applications based on Dependency Injection patterns. Contains implementation of common "Design Patterns".
+Cortoxa Framework is a Powerful Framework for faster and easier building .Net applications based on Dependency Injection patterns. 
+Contains implementation of common "Design Patterns".
         </description>
         <summary>
           Core features for Cortoxa Framework.
