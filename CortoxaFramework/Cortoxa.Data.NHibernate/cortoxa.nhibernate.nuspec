@@ -3,7 +3,7 @@
     <metadata>
         <id>Cortoxa.Data.NHibernate</id>
         <version>1.0.9</version>
-        <title>Cortoxa Data</title>
+        <title>Cortoxa Data NHibernate</title>
         <authors>Denis Korkhov</authors>
         <owners>Denis Korkhov</owners>
         <licenseUrl>http://opensource.org/licenses/LGPL-3.0</licenseUrl>
