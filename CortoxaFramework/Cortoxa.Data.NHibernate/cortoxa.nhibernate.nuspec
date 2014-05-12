@@ -16,16 +16,6 @@ Contains implementation of common "Design Patterns".</description>
         <copyright>Copyright© Denis Korkhov at Oxagile 2014</copyright>
         <tags>logger log logging nlog</tags>
         <dependencies>
-            <group targetFramework=".NETFramework4.0">
-                <dependency id="Cortoxa" version="1.0.6" />
-                <dependency id="Cortoxa.Data" version="1.0.8" />
-                <dependency id="NHibernate" version="3.3.3.4001" />
-            </group>
-            <group targetFramework=".NETFramework4.5">
-                <dependency id="Cortoxa" version="1.0.6" />
-                <dependency id="Cortoxa.Data" version="1.0.8" />
-                <dependency id="NHibernate" version="3.3.3.4001" />
-            </group>
             <group targetFramework=".NETFramework4.5.1">
                 <dependency id="Cortoxa" version="1.0.6" />
                 <dependency id="Cortoxa.Data" version="1.0.8" />
@@ -34,8 +24,6 @@ Contains implementation of common "Design Patterns".</description>
         </dependencies>
     </metadata>
     <files>
-        <file src="bin\NET40\Release\Cortoxa.Data.dll" target="lib\net40\Cortoxa.Data.dll" />
-        <file src="bin\NET45\Release\Cortoxa.Data.dll" target="lib\net45\Cortoxa.Data.dll" />
-        <file src="bin\NET451\Release\Cortoxa.Data.dll" target="lib\net451\Cortoxa.Data.dll" />
+        <file src="bin\NET451\Release\Cortoxa.Data.NHibernate.dll" target="lib\net451\Cortoxa.Data.NHibernate.dll" />
     </files>
 </package>
