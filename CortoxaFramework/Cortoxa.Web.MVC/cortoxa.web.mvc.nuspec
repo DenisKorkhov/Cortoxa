@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>Cortoxa.Web.Mvc</id>
+        <version>1.0.12</version>
+        <title>Cortoxa Web Mvc</title>
+        <authors>Denis Korkhov</authors>
+        <owners>Denis Korkhov</owners>
+        <licenseUrl>http://opensource.org/licenses/LGPL-3.0</licenseUrl>
+        <projectUrl>https://github.com/DenisKorkhov/Cortoxa</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Asp.Net Mvc factories for Cortoxa Framework</description>
+        <summary>Data Patterns for Cortoxa Framework</summary>
+        <copyright>Copyright© Denis Korkhov at Oxagile 2014</copyright>
+        <tags>Cortoxa IoC MVC</tags>
+        <dependencies>
+            <group targetFramework=".NETFramework4.5.1">
+                <dependency id="Cortoxa" version="1.0.6" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\NET451\Release\Cortoxa.Web.Mvc.dll" target="lib\net451\Cortoxa.Web.Mvc.dll" />
+    </files>
+</package>
