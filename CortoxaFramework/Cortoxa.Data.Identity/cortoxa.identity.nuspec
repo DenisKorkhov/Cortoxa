@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
-        <id>Cortoxa.Data</id>
+        <id>Cortoxa.Data.Identity</id>
         <version>1.0.7</version>
         <title>Cortoxa Data</title>
         <authors>Denis Korkhov</authors>
@@ -16,20 +16,17 @@
         <dependencies>
             <group targetFramework=".NETFramework4.0">
                 <dependency id="Cortoxa" version="1.0.6" />
-                <dependency id="Cortoxa.Data" version="1.0.7" />
-                <dependency id="NHibernate" version="2.0.1" />
+                <dependency id="Cortoxa.Data" version="1.0.8" />
                 <dependency id="Microsoft.AspNet.Identity.Core" version="3.3.3.4001" />
             </group>
             <group targetFramework=".NETFramework4.5">
                 <dependency id="Cortoxa" version="1.0.6" />
-                <dependency id="Cortoxa.Data" version="1.0.7" />
-                <dependency id="NHibernate" version="3.3.3.4001" />
+                <dependency id="Cortoxa.Data" version="1.0.8" />
                 <dependency id="Microsoft.AspNet.Identity.Core" version="3.3.3.4001" />
             </group>
             <group targetFramework=".NETFramework4.5.1">
                 <dependency id="Cortoxa" version="1.0.6" />
-                <dependency id="Cortoxa.Data" version="1.0.7" />
-                <dependency id="NHibernate" version="3.3.3.4001" />
+                <dependency id="Cortoxa.Data" version="1.0.8" />
                 <dependency id="Microsoft.AspNet.Identity.Core" version="3.3.3.4001" />
             </group>
         </dependencies>
