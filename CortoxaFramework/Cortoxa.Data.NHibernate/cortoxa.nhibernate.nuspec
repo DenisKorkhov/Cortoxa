@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Cortoxa.Data.NHibernate</id>
-        <version>1.0.9</version>
+        <version>1.0.10</version>
         <title>Cortoxa Data NHibernate</title>
         <authors>Denis Korkhov</authors>
         <owners>Denis Korkhov</owners>
@@ -18,7 +18,7 @@ Contains implementation of common "Design Patterns".</description>
         <dependencies>
             <group targetFramework=".NETFramework4.5.1">
                 <dependency id="Cortoxa" version="1.0.6" />
-                <dependency id="Cortoxa.Data" version="1.0.8" />
+                <dependency id="Cortoxa.Data" version="1.0.9" />
                 <dependency id="NHibernate" version="3.3.3.4001" />
             </group>
         </dependencies>
