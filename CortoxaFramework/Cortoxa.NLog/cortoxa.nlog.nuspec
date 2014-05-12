@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Cortoxa.NLog</id>
-        <version>1.0.0.0</version>
+        <version>1.0.6</version>
         <title>Cortoxa NLog</title>
         <authors>Denis Korkhov</authors>
         <owners>Denis Korkhov</owners>
@@ -17,15 +17,15 @@ Cortoxa Framework is a Powerful Framework for faster and easier building .Net ap
         <dependencies>
             <group targetFramework=".NETFramework4.0">
                 <dependency id="NLog" version="2.1.0" />
-                <dependency id="Cortoxa" version="1.0.4" />
+                <dependency id="Cortoxa" version="1.0.6" />
             </group>
             <group targetFramework=".NETFramework4.5">
                 <dependency id="NLog" version="2.1.0" />
-                <dependency id="Cortoxa" version="1.0.4" />
+                <dependency id="Cortoxa" version="1.0.6" />
             </group>
             <group targetFramework=".NETFramework4.5.1">
                 <dependency id="NLog" version="2.1.0" />
-                <dependency id="Cortoxa" version="1.0.4" />
+                <dependency id="Cortoxa" version="1.0.6" />
             </group>
         </dependencies>
     </metadata>

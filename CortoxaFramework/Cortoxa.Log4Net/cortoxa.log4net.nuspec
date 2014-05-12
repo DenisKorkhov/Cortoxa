@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Cortoxa.Log4Net</id>
-        <version>1.0.0.0</version>
+        <version>1.0.6</version>
         <title>Cortoxa Log4Net</title>
         <authors>Denis Korkhov</authors>
         <owners>Denis Korkhov</owners>
@@ -15,26 +15,21 @@ Cortoxa Framework is a Powerful Framework for faster and easier building .Net ap
         <copyright>Copyright© Denis Korkhov at Oxagile 2014</copyright>
         <tags>logger log logging log4net</tags>
         <dependencies>
-            <group targetFramework=".NETFramework3.5">
-                <dependency id="Cortoxa" version="1.0.4" />
-                <dependency id="log4net" version="2.0.3" />
-            </group>
             <group targetFramework=".NETFramework4.0">
-                <dependency id="Cortoxa" version="1.0.4" />
+                <dependency id="Cortoxa" version="1.0.6" />
                 <dependency id="log4net" version="2.0.3" />
             </group>
             <group targetFramework=".NETFramework4.5">
-                <dependency id="Cortoxa" version="1.0.4" />
+                <dependency id="Cortoxa" version="1.0.6" />
                 <dependency id="log4net" version="2.0.3" />
             </group>
             <group targetFramework=".NETFramework4.5.1">
-                <dependency id="Cortoxa" version="1.0.4" />
+                <dependency id="Cortoxa" version="1.0.6" />
                 <dependency id="log4net" version="2.0.3" />
             </group>
         </dependencies>
     </metadata>
     <files>
-        <file src="bin\NET35\Release\Cortoxa.Log4Net.dll" target="lib\net35\Cortoxa.Log4Net.dll" />
         <file src="bin\NET40\Release\Cortoxa.Log4Net.dll" target="lib\net40\Cortoxa.Log4Net.dll" />
         <file src="bin\NET45\Release\Cortoxa.Log4Net.dll" target="lib\net45\Cortoxa.Log4Net.dll" />
         <file src="bin\NET451\Release\Cortoxa.Log4Net.dll" target="lib\net451\Cortoxa.Log4Net.dll" />
