@@ -70,17 +70,14 @@
     <Compile Include="StoreSetup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="cortoxa.nlog.nuspec">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Cortoxa\Cortoxa.csproj">
       <Project>{5F54C462-7E84-40C3-B045-92589FE9FEA4}</Project>
       <Name>Cortoxa</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="cortoxa.data.nuspec" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
