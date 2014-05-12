@@ -10,7 +10,9 @@
         <projectUrl>https://github.com/DenisKorkhov/Cortoxa</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Nlog integration for Cortoxa Framework.
-Cortoxa Framework is a Powerful Framework for faster and easier building .Net applications based on Dependency Injection patterns. Contains implementation of common "Design Patterns".</description>
+Cortoxa Framework is a Powerful Framework for faster and easier building.
+Net applications based on Dependency Injection patterns. 
+Contains implementation of common "Design Patterns".</description>
         <summary>Nlog integration for Cortoxa Framework</summary>
         <copyright>Copyright© Denis Korkhov at Oxagile 2014</copyright>
         <tags>logger log logging nlog</tags>
