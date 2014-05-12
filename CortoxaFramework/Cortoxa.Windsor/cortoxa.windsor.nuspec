@@ -15,10 +15,6 @@ Cortoxa Framework is a Powerful Framework for faster and easier building .Net ap
         <copyright>Copyright© Denis Korkhov at Oxagile 2014</copyright>
         <tags>Cortoxa Windsor</tags>
         <dependencies>
-            <group targetFramework=".NETFramework4.0">
-                <dependency id="Castle.Windsor" version="3.2.1" />
-                <dependency id="Cortoxa" version="1.0.6" />
-            </group>
             <group targetFramework=".NETFramework4.5">
                 <dependency id="Castle.Windsor" version="3.2.1" />
                 <dependency id="Cortoxa" version="1.0.6" />
@@ -30,7 +26,6 @@ Cortoxa Framework is a Powerful Framework for faster and easier building .Net ap
         </dependencies>
     </metadata>
     <files>
-        <file src="bin\NET40\Release\Cortoxa.Windsor.dll" target="lib\net40\Cortoxa.Windsor.dll" />
         <file src="bin\NET45\Release\Cortoxa.Windsor.dll" target="lib\net45\Cortoxa.Windsor.dll" />
         <file src="bin\NET451\Release\Cortoxa.Windsor.dll" target="lib\net451\Cortoxa.Windsor.dll" />
     </files>
