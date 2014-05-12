@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Cortoxa.Data</id>
-        <version>1.0.7</version>
+        <version>1.0.8</version>
         <title>Cortoxa Data</title>
         <authors>Denis Korkhov</authors>
         <owners>Denis Korkhov</owners>
@@ -15,9 +15,6 @@ Cortoxa Framework is a Powerful Framework for faster and easier building .Net ap
         <copyright>Copyright© Denis Korkhov at Oxagile 2014</copyright>
         <tags>logger log logging nlog</tags>
         <dependencies>
-            <group targetFramework=".NETFramework3.5">
-                <dependency id="Cortoxa" version="1.0.6" />
-            </group>
             <group targetFramework=".NETFramework4.0">
                 <dependency id="Cortoxa" version="1.0.6" />
             </group>
