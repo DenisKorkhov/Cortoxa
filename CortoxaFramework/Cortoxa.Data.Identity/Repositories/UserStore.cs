@@ -26,7 +26,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Cortoxa.Data.Identity.Repositories
 {
-    public class UserStore<TUser, TRole, TClaim> : IUserLoginStore<TUser, Guid>, IUserRoleStore<TUser, Guid>, IUserPasswordStore<TUser, Guid>, IUserClaimStore<TUser, Guid>, IUserSecurityStampStore<TUser, Guid> where TUser : IdentityUser<TRole, TClaim> where TRole : IdentityRole<TUser>
+    public class UserStore<TUser, TRole, TClaim> : IUserLoginStore<TUser, Guid>, IUserRoleStore<TUser, Guid>, IUserEmailStore<TUser, Guid>, IUserPasswordStore<TUser, Guid>, IUserClaimStore<TUser, Guid>, IUserSecurityStampStore<TUser, Guid> where TUser : IdentityUser<TRole, TClaim> where TRole : IdentityRole<TUser>
     {
         #region Fields
 
@@ -361,6 +361,42 @@ namespace Cortoxa.Data.Identity.Repositories
 
         #endregion
 
+        #region Email
+
+        public Task SetEmailAsync(TUser user, string email)
+        {
+            ThrowIfDisposed();
+            user.Email = email;
+            return userRepository.SaveChangesAsync();
+        }
+
+        public Task<string> GetEmailAsync(TUser user)
+        {
+            ThrowIfDisposed();
+            return Task.FromResult(user.Email);
+        }
+
+        public Task<bool> GetEmailConfirmedAsync(TUser user)
+        {
+            ThrowIfDisposed();
+            return Task.FromResult(true);
+        }
+
+        public Task SetEmailConfirmedAsync(TUser user, bool confirmed)
+        {
+            ThrowIfDisposed();
+            return Task.FromResult(true);
+        }
+
+        public async Task<TUser> FindByEmailAsync(string email)
+        {
+            ThrowIfDisposed();
+            email = email.ToLower();
+            return await Task.FromResult(userRepository.First(x => x.Email == email)).ConfigureAwait(false);
+        }
+
+        #endregion
+
         #region Disposing 
 
         public void Dispose()
@@ -394,5 +430,6 @@ namespace Cortoxa.Data.Identity.Repositories
             }
         } 
         #endregion
+        
     }
 };
