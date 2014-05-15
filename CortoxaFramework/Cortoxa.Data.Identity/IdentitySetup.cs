@@ -32,6 +32,7 @@ namespace Cortoxa.Data.Identity
             configurator.Configure(c =>
             {
                 c.ClaimType = typeof (IdentityUserClaim<>);
+                c.UserManagerType = typeof (UserManager<,>);
             });
 
             configurator.Register((r, c) =>
@@ -41,7 +42,7 @@ namespace Cortoxa.Data.Identity
                 Type userStoreInterface = typeof(IUserStore<,>).MakeGenericType(c.UserType, typeof(Guid));
 
                 Type userStoreClass = typeof(UserStore<,,>).MakeGenericType(c.UserType, c.RoleType, userClaimType);
-                Type userManagerClass = typeof(UserManager<,>).MakeGenericType(c.UserType, typeof(Guid));
+                Type userManagerClass = c.UserManagerType.MakeGenericType(c.UserType, typeof(Guid));
                 
                 r.For(userStoreInterface).To(userStoreClass).LifeTime(c.LifeTime);
                 r.For(userManagerClass).To(userManagerClass).LifeTime(c.LifeTime);
@@ -61,32 +62,10 @@ namespace Cortoxa.Data.Identity
             return configurator;
         }
 
-
-//        public static IComponentConfigurator<IdentityContext> WithIdentity()
-//        {
-//             Type userStoreInterface = typeof(IUserStore<>).MakeGenericType(userType);
-//            Type userStoreClass = typeof(UserStore<>).MakeGenericType(userType);
-//            Type userManagerClass = typeof(UserManager<>).MakeGenericType(userType);
-//        }
-
-//        public static IDataConfig WithIdentityModel(this IDataConfig config)
-//        {
-//            IModelBuilder modelBuilder = null;
-//            ITableModel<IdentityUser> userModel = modelBuilder.ForEntity<IdentityUser>("User")
-//                .Id(x => x.Id)
-//                .Property(x => x.UserName)
-//                .Property(x => x.PasswordHash)
-//                .Property(x => x.SecurityStamp)
-//                .OneToMany(x => x.Claims, null)
-//                .ManyToMany(x => x.Roles, null);
-//
-//            ITableModel<IdentityRole> roleModel = modelBuilder.ForEntity<IdentityRole>("Role")
-//                .Id(x => x.Id)
-//                .Property(x => x.Name)
-//                .ManyToMany(x => x.Users, null);
-//
-//            config.Configure(new IdentityConfig(typeof (IdentityUser)));
-//            return config;
-//        }
+        public static IComponentConfigurator<IdentityContext> UserManager<T>(this IComponentConfigurator<IdentityContext> configurator)
+        {
+            configurator.Configure(c => c.UserManagerType = typeof(T));
+            return configurator;
+        }
     }
 }

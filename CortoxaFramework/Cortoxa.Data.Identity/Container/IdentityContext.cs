@@ -10,6 +10,8 @@ namespace Cortoxa.Data.Identity.Container
 
         public Type RoleType { get; set; }
 
+        public Type UserManagerType { get; set; }
+
         public Type ClaimType { get; set; }
 
         public string DataSource { get; set; }
