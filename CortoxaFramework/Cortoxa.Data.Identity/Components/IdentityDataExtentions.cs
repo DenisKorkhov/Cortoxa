@@ -1,8 +1,4 @@
-﻿using System;
-using Cortoxa.Container.Component;
-using Cortoxa.Data.Components;
-
-namespace Cortoxa.Data.Identity.Components
+﻿namespace Cortoxa.Data.Identity.Components
 {
     public static class IdentityDataExtentions
     {
@@ -11,9 +7,7 @@ namespace Cortoxa.Data.Identity.Components
 //            configurator.Register((r, c) =>
 //            {
 //                return null;
-//
 //            });
-//
 //            throw new NotImplementedException();
 //        }
     }
