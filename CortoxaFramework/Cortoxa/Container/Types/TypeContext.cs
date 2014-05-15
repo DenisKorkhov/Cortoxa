@@ -14,5 +14,13 @@ namespace Cortoxa.Container.Types
         public string Name { get; set; }
 
         public LifeTime LifeTime { get; set; }
+
+        public TypeServiceSourceEnum ServiceSource { get; set; }
+    }
+
+    public enum TypeServiceSourceEnum
+    {
+        Class,
+        Interface
     }
 }

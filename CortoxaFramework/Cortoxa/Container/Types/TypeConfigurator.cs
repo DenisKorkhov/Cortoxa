@@ -26,6 +26,12 @@ namespace Cortoxa.Container.Types
             return this;
         }
 
+        public ITypeConfigurator ServiceSource(TypeServiceSourceEnum serviceSource)
+        {
+            this.Configure(x => x.ServiceSource = serviceSource);
+            return this;
+        }
+
         public ITypeConfigurator Assemblies(Assembly[] assemblies)
         {
             this.Configure(x => x.Assemblies = assemblies);

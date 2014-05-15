@@ -81,7 +81,6 @@
     <Compile Include="Container\Types\ITypeConfigurator.cs" />
     <Compile Include="Container\Types\TypeConfigurator.cs" />
     <Compile Include="Container\Types\TypeContext.cs" />
-    <Compile Include="Container\Types\TypeExtentions.cs" />
     <Compile Include="Container\Services\ServiceContext.cs" />
     <Compile Include="Container\Services\IServiceInterception.cs" />
     <Compile Include="Container\IToolContainer.cs" />

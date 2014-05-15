@@ -23,7 +23,12 @@ namespace Cortoxa.Windsor.Registrators
                 foreach (var assembly in context.Assemblies)
                 {
                     var types = Types.FromAssembly(assembly).Where(t => context.Where(t));
-                    types.ToWindsorLifeTime(context.LifeTime);
+                    types = types.ToWindsorLifeTime(context.LifeTime);
+                    if (context.ServiceSource == TypeServiceSourceEnum.Interface)
+                    {
+                        types = types.WithServiceFirstInterface();
+
+                    }
                     container.Register(types);
                 }
             }
