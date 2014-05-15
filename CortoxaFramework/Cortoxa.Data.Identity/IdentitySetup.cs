@@ -41,10 +41,12 @@ namespace Cortoxa.Data.Identity
                 Type userStoreInterface = typeof(IUserStore<,>).MakeGenericType(c.UserType, typeof(Guid));
 
                 Type userStoreClass = typeof(UserStore<,,>).MakeGenericType(c.UserType, c.RoleType, userClaimType);
+
+                Type userManagerBase = typeof(UserManager<,>).MakeGenericType(c.UserType, typeof(Guid));
                 Type userManagerClass = c.UserManagerType ?? typeof (UserManager<,>).MakeGenericType(c.UserType, typeof(Guid));
                 
                 r.For(userStoreInterface).To(userStoreClass).LifeTime(c.LifeTime);
-                r.For(userManagerClass).To(userManagerClass).LifeTime(c.LifeTime);
+                r.For(userManagerBase).To(userManagerClass).LifeTime(c.LifeTime);
             });
             return configurator;
         }
