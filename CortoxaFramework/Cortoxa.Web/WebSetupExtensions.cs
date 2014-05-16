@@ -23,29 +23,9 @@ namespace Cortoxa.Web
 {
     public static class WebSetupExtensions
     {
-        public static IToolContainer InstallApiControllers(this IToolContainer container, LifeTime lifeTime = LifeTime.Transient)
-        {
-            return container.InstallApiControllers(typeof(ApiController), lifeTime, Assembly.GetCallingAssembly());
-        }
-
-        public static IToolContainer InstallApiControllers(this IToolContainer container, Type controllerType, LifeTime lifeTime = LifeTime.PerWebRequest, params Assembly[] assemblies)
+        public static IToolContainer InstallApiControllerFactory(this IToolContainer container)
         {
             GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator), new WebCompositionRoot(container));
-
-            if (controllerType == null)
-            {
-                controllerType = typeof(ApiController);
-            }
-            
-            if (assemblies == null || assemblies.Length == 0)
-            {
-                assemblies = new[]
-                {
-                    Assembly.GetCallingAssembly()
-                };
-            }
-            
-//            container.Register(r => r.From(assemblies).BasedOn(controllerType).LifeTime(lifeTime));
             return container;
         }
     }
