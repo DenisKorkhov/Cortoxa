@@ -9,7 +9,7 @@
         <licenseUrl>http://opensource.org/licenses/LGPL-3.0</licenseUrl>
         <projectUrl>https://github.com/DenisKorkhov/Cortoxa</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Asp.Net Mvc factories for Cortoxa Framework</description>
+        <description>Asp.Net factories for Cortoxa Framework</description>
         <summary>Data Patterns for Cortoxa Framework</summary>
         <copyright>Copyright© Denis Korkhov at Oxagile 2014</copyright>
         <tags>Cortoxa IoC WebApi</tags>
