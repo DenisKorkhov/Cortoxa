@@ -19,32 +19,31 @@ using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Cortoxa.Data.Common;
 using Cortoxa.Data.Identity.Entitites;
 using Cortoxa.Data.Repository;
 using Microsoft.AspNet.Identity;
 
 namespace Cortoxa.Data.Identity.Repositories
 {
-    public class UserStore<TUser, TRole, TClaim> : IUserLoginStore<TUser, Guid>, IUserRoleStore<TUser, Guid>, IUserEmailStore<TUser, Guid>, IUserPasswordStore<TUser, Guid>, IUserClaimStore<TUser, Guid>, IUserSecurityStampStore<TUser, Guid> where TUser : IdentityUser<TRole, TClaim> where TRole : IdentityRole<TUser>
+    public class UserStore<TUser, TRole, TClaim> : IUserLoginStore<TUser, Guid>, IUserRoleStore<TUser, Guid>, IUserEmailStore<TUser, Guid>, IUserPasswordStore<TUser, Guid>, IUserClaimStore<TUser, Guid>, IUserSecurityStampStore<TUser, Guid> where TUser : IdentityUser<TRole, TClaim> where TRole : IdentityRole<TUser> where TClaim : IdentityUserClaim<TUser>, new()
     {
         #region Fields
 
         private bool disposed;
         private readonly IStore<TUser> userRepository;
         private readonly IStore<TRole> roleRepository;
+        private readonly IStore<IdentityUserClaim<TUser>> claimsRepository;
 //        private readonly IUnitOfWork unitOfWork; 
 
         #endregion
 
         #region Constructor
 
-        public UserStore(IStore<TUser> userRepository, IStore<TRole> roleRepository/*, IStore<IdentityUserClaim> claimsRepository,, IUnitOfWork unitOfWork*/)
+        public UserStore(IStore<TUser> userRepository, IStore<TRole> roleRepository, IStore<IdentityUserClaim<TUser>> claimsRepository)
         {
             this.userRepository = userRepository;
             this.roleRepository = roleRepository;
-//            this.claimsRepository = claimsRepository;
-//            this.unitOfWork = unitOfWork;
+            this.claimsRepository = claimsRepository;
             AutoSaveChanges = true;
         } 
 
@@ -64,7 +63,7 @@ namespace Cortoxa.Data.Identity.Repositories
             {
                 throw new ArgumentNullException("user");
             }
-            IList<Claim> list = /*user.Claims != null ? user.Claims.Select(x => new Claim(x.ClaimType, x.ClaimValue)).ToList() :*/ new List<Claim>();
+            IList<Claim> list = user.Claims != null ? user.Claims.Select(x => new Claim(x.ClaimType, x.ClaimValue)).ToList() : new List<Claim>();
             return Task.FromResult(list);
         }
 
@@ -79,12 +78,12 @@ namespace Cortoxa.Data.Identity.Repositories
             {
                 throw new ArgumentNullException("claim");
             }
-            //            user.Claims.Add(new IdentityUserClaim
-            //            {
-            //                User = user,
-            //                ClaimType = claim.Type,
-            //                ClaimValue = claim.Value
-            //            });
+            user.Claims.Add(new TClaim
+                        {
+                            User = user,
+                            ClaimType = claim.Type,
+                            ClaimValue = claim.Value
+                        });
             return Task.FromResult(0);
         }
 
@@ -99,13 +98,13 @@ namespace Cortoxa.Data.Identity.Repositories
             {
                 throw new ArgumentNullException("claim");
             }
-            //            var claims = user.Claims.Where(x => x.ClaimValue == claim.Value && x.ClaimType == claim.Type).ToList();
-            //
-            //            foreach (var userClaim in claims)
-            //            {
-            //                user.Claims.Remove(userClaim);
-            //                claimsRepository.Delete(userClaim);
-            //            }
+            var claims = user.Claims.Where(x => x.ClaimValue == claim.Value && x.ClaimType == claim.Type).ToList();
+            
+            foreach (var userClaim in claims)
+            {
+                user.Claims.Remove(userClaim);
+                claimsRepository.Delete(userClaim);
+            }
             return Task.FromResult(0);
         } 
         #endregion
