@@ -70,10 +70,15 @@ namespace Cortoxa.Container.Services
             return this;
         }
 
+        public IServiceConfigurator DependsOnComponent(Type type, string componentName)
+        {
+            this.Configure(x => x.ComponentDependencies.Add(new KeyValuePair<Type, string>(type, componentName)));
+            return this;
+        }
+
         public IServiceConfigurator DependsOnComponent<T>(string componentName)
         {
-            this.Configure(x => x.ComponentDependencies.Add(new KeyValuePair<Type, string>(typeof(T), componentName)));
-            return this;
+            return DependsOnComponent(typeof(T), componentName);
         }
 
         public IServiceConfigurator DependsOnValue(string name, object value)

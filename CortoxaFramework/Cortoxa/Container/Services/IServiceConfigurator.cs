@@ -17,6 +17,8 @@ namespace Cortoxa.Container.Services
 
         IServiceConfigurator ToFactory(Func<FactoryContext, IResolver, object> action);
 
+        IServiceConfigurator DependsOnComponent(Type type, string componentName);
+
         IServiceConfigurator DependsOnComponent<T>(string componentName);
 
         IServiceConfigurator DependsOnValue(string name, object value);
