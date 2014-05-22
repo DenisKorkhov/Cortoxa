@@ -37,15 +37,18 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.2\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -71,20 +74,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Navigation\Contracts\ISiteMap.cs" />
+    <Compile Include="Components\Navigation\Contracts\ISitemapManager.cs" />
+    <Compile Include="Components\Navigation\Contracts\ISitemapManagerFactory.cs" />
+    <Compile Include="Components\Navigation\Contracts\ISitemapReader.cs" />
+    <Compile Include="Components\Navigation\MvcSitemapProvider.cs" />
+    <Compile Include="Components\Navigation\SitemapContext.cs" />
+    <Compile Include="Components\Navigation\SitemapExtentions.cs" />
+    <Compile Include="Components\Navigation\SitemapManagerFactory.cs" />
     <Compile Include="Container\ControllerConfigurator.cs" />
     <Compile Include="Controllers\ControllerExtentions.cs" />
     <Compile Include="Controllers\ControllersContext.cs" />
     <Compile Include="Factories\ControllerFactory.cs" />
     <Compile Include="Factories\DependencyWebServiceHandlerFactory.cs" />
     <Compile Include="Factories\WebPageHandlerFactory.cs" />
+    <Compile Include="Components\Navigation\Model\Sitemap.cs" />
+    <Compile Include="Components\Navigation\Model\SitemapNode.cs" />
+    <Compile Include="Components\Navigation\Model\SitemapRoute.cs" />
+    <Compile Include="Components\Navigation\SitemapManager.cs" />
+    <Compile Include="Components\Navigation\SitemapFileReader.cs" />
+    <Compile Include="Helpers\UrlExtentions.cs" />
     <Compile Include="MvcSetupExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Cortoxa\Cortoxa.csproj">
-      <Project>{5f54c462-7e84-40c3-b045-92589fe9fea4}</Project>
-      <Name>Cortoxa</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -92,6 +103,12 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cortoxa\Cortoxa.csproj">
+      <Project>{5f54c462-7e84-40c3-b045-92589fe9fea4}</Project>
+      <Name>Cortoxa</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
