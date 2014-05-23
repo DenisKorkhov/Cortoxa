@@ -98,8 +98,17 @@ namespace Cortoxa.Data.NHibernate
             MapModels(mapper, cotnext.DbContext);
             cfg.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
             var result =  cfg.BuildSessionFactory();
-            //BuildSchema(cfg);
+            if (cotnext.BuildSchema)
+            {
+                BuildSchema(cfg);
+            }
             return result;
+        }
+
+        public static IComponentConfigurator<HibernateDataContext> BuildSchema(this IComponentConfigurator<HibernateDataContext> configurator)
+        {
+            configurator.Configure(c => c.BuildSchema = true);
+            return configurator;
         }
 
         private static void BuildSchema(global::NHibernate.Cfg.Configuration cfg)
