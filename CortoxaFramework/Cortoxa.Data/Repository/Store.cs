@@ -75,7 +75,12 @@ namespace Cortoxa.Data.Repository
 
         public virtual IEnumerable<T> FindAll(Expression<Func<T, bool>> predicate)
         {
-            return GetQuery().Where(predicate).ToList();
+            var query = GetQuery();
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+            return query.ToList();
         }
 
         public virtual Task<IEnumerable<T>> FindAllAsync(Expression<Func<T, bool>> predicate = null)
@@ -83,7 +88,7 @@ namespace Cortoxa.Data.Repository
             return new Task<IEnumerable<T>>(() => FindAll(predicate));
         }
 
-        public virtual IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> All()
         {
             return GetQuery().ToList();
         }
