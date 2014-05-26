@@ -24,26 +24,17 @@ namespace Cortoxa.Common
 
         T First(Expression<Func<T, bool>> predicate);
 
-//        Task<T> FirstAsync(Expression<Func<T, bool>> predicate);
 
         T Single(Expression<Func<T, bool>> predicate);
 
-//        Task<T> SingleAsync(Expression<Func<T, bool>> predicate);
+        IEnumerable<T> All();
 
         IEnumerable<T> FindAll(Expression<Func<T, bool>> predicate = null);
 
-//        Task<IEnumerable<T>> FindAllAsync(Expression<Func<T, bool>> predicate = null);
-
         void Add(T entity);
-
-//        Task AddAsync(T entity);
 
         void Update(T entity);
 
-//        Task UpdateAsync(T entity);
-
         void Delete(T entity);
-
-//        Task DeleteAsync(T entity);
     }
 }
