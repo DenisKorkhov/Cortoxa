@@ -23,7 +23,7 @@ namespace Samples.Console
 //                                    .WithIdentity().User<User>().Role<Role>()
 //                                )
                         ;
-
+            container.TraceDependencies();
             var test = container.Resolver.Resolve<Test>();
             test.DoSomthing();
         }

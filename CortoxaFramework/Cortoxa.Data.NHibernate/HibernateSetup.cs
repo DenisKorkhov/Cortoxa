@@ -115,11 +115,6 @@ namespace Cortoxa.Data.NHibernate
         {
             var export = new SchemaExport(cfg);
             export.Create(false, true);
-//            if (!string.IsNullOrEmpty(exportPath))
-//            {
-//                export.SetOutputFile(exportPath);
-//            }
-//            export.Execute(false, true, false);
         }
 
         private static void MapModels(ModelMapper mapper, Type contextType)

@@ -94,6 +94,7 @@
     <Compile Include="Components\Navigation\SitemapManager.cs" />
     <Compile Include="Components\Navigation\SitemapFileReader.cs" />
     <Compile Include="Helpers\UrlExtentions.cs" />
+    <Compile Include="Identity\ClaimsAuthorizeAttribute.cs" />
     <Compile Include="MvcSetupExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
