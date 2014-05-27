@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
+using Castle.Core;
 using Castle.Windsor;
+using Cortoxa.Common.Log;
 using Cortoxa.Configuration;
 using Cortoxa.Container;
 using Cortoxa.Container.Component;
@@ -54,6 +57,33 @@ namespace Cortoxa.Windsor.Tool
         public void Release(object instance)
         {
             container.Release(instance);
+        }
+
+        public void TraceDependencies()
+        {
+            var logger = this.container.Resolve<ILogger>();
+            if (logger != null)
+            {
+                logger.Info("Trace Dependencies:");
+                foreach (var graphNode in this.container.Kernel.GraphNodes)
+                {
+                    TraceNode(graphNode as ComponentModel, logger);
+                }
+                logger.Info("Trace Dependencies Finished!");
+            }
+        }
+
+        private void TraceNode(ComponentModel component, ILogger logger, string indent = "")
+        {
+            var services = component.Services.Aggregate("", (current, service) => current + (service.FullName + ";"));
+            logger.Info(string.Format("{3} {0} {1} {2}", component.Name, services, component.Implementation, indent));
+
+            foreach (var depend in component.Dependents)
+            {
+                indent += "-";
+                TraceNode(depend as ComponentModel, logger, indent);
+            }
+            
         }
     }
 }

@@ -29,6 +29,10 @@ namespace Cortoxa.Windsor.Registrators
                         types = types.WithServiceFirstInterface();
 
                     }
+                    else
+                    {
+                        types = types.WithServiceSelf();
+                    }
                     container.Register(types);
                 }
             }
