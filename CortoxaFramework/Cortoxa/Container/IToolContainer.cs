@@ -30,5 +30,8 @@ namespace Cortoxa.Container
         IResolver Resolver { get; }
 
         void Release(object instance);
+
+        void TraceDependencies();
+
     }
 }
