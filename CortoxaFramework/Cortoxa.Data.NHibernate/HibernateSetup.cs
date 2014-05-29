@@ -86,7 +86,6 @@ namespace Cortoxa.Data.NHibernate
                 }
                 
                 #if DEBUG
-//                c.LogSqlInConsole = true;
                 c.LogFormattedSql = true;
                 #endif
                 c.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
@@ -102,6 +101,11 @@ namespace Cortoxa.Data.NHibernate
             {
                 BuildSchema(cfg);
             }
+
+            if (cotnext.UpdateSchema)
+            {
+                UpdateSchema(cfg);
+            }
             return result;
         }
 
@@ -111,10 +115,22 @@ namespace Cortoxa.Data.NHibernate
             return configurator;
         }
 
+        public static IComponentConfigurator<HibernateDataContext> UpdateSchema(this IComponentConfigurator<HibernateDataContext> configurator)
+        {
+            configurator.Configure(c => c.UpdateSchema = true);
+            return configurator;
+        }
+
         private static void BuildSchema(global::NHibernate.Cfg.Configuration cfg)
         {
             var export = new SchemaExport(cfg);
             export.Create(false, true);
+        }
+
+        private static void UpdateSchema(global::NHibernate.Cfg.Configuration cfg)
+        {
+            var update = new SchemaUpdate(cfg);
+            update.Execute(false, true);
         }
 
         private static void MapModels(ModelMapper mapper, Type contextType)
