@@ -275,7 +275,7 @@ namespace Cortoxa.Data.Identity.Repositories
                 throw new ArgumentNullException("user");
             }
             role = role.ToUpper();
-            var userRole = roleRepository.First(x => x.Name == role);
+            var userRole = roleRepository.First(x => x.Name.ToUpper() == role);
             if (userRole != null)
             {
                 user.Roles.Remove(userRole);
