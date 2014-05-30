@@ -280,7 +280,7 @@ namespace Cortoxa.Data.Identity.Repositories
             {
                 user.Roles.Remove(userRole);
             }
-            return Task.FromResult(0);
+            return userRepository.SaveChangesAsync();
         }
 
         public Task<IList<string>> GetRolesAsync(TUser user)
