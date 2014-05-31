@@ -275,12 +275,14 @@ namespace Cortoxa.Data.Identity.Repositories
                 throw new ArgumentNullException("user");
             }
             role = role.ToUpper();
-            var userRole = roleRepository.First(x => x.Name.ToUpper() == role);
+
+            var userRole = user.Roles.First(x => x.Name.ToUpper() == role);
             if (userRole != null)
             {
+            
                 user.Roles.Remove(userRole);
             }
-            return userRepository.SaveChangesAsync();
+            return Task.FromResult(0);
         }
 
         public Task<IList<string>> GetRolesAsync(TUser user)
