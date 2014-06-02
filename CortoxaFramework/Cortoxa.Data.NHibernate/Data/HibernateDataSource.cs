@@ -50,5 +50,10 @@ namespace Cortoxa.Data.NHibernate.Data
         {
             this.session.Delete(value);
         }
+
+        public ISession Session
+        {
+            get { return session; }
+        }
     }
 }

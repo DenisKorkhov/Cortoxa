@@ -164,5 +164,10 @@ namespace Cortoxa.Data.Repository
         {
             return this.dataSource.SaveChangesAsync();
         }
+
+        public IDataSource DataSource
+        {
+            get { return dataSource; }
+        }
     }
 }
