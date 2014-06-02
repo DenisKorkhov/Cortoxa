@@ -21,6 +21,8 @@ namespace Cortoxa.Container.Types
     public enum TypeServiceSourceEnum
     {
         Class,
-        Interface
+        Interface,
+        FirstInterface,
+        AllInterfaces
     }
 }
