@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Cortoxa.Windsor</id>
-        <version>1.0.20</version>
+        <version>1.0.25</version>
         <title>Cortoxa Windsor</title>
         <authors>Denis Korkhov</authors>
         <owners>Denis Korkhov</owners>

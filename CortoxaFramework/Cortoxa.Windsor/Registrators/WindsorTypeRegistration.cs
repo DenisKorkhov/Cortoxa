@@ -24,14 +24,21 @@ namespace Cortoxa.Windsor.Registrators
                 {
                     var types = Types.FromAssembly(assembly).Where(t => context.Where(t));
                     types = types.ToWindsorLifeTime(context.LifeTime);
-                    if (context.ServiceSource == TypeServiceSourceEnum.Interface)
-                    {
-                        types = types.WithServiceFirstInterface();
 
-                    }
-                    else
+                    switch (context.ServiceSource)
                     {
-                        types = types.WithServiceSelf();
+                        case TypeServiceSourceEnum.Interface:
+                            types = types.WithServiceFromInterface();
+                            break;
+                        case TypeServiceSourceEnum.FirstInterface:
+                            types = types.WithServiceFromInterface();
+                            break;
+                        case TypeServiceSourceEnum.AllInterfaces:
+                            types = types.WithServiceFromInterface();
+                            break;
+                        default:
+                            types = types.WithServiceSelf();
+                            break;
                     }
                     container.Register(types);
                 }
