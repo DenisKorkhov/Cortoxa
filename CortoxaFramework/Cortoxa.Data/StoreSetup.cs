@@ -2,6 +2,7 @@
 using Cortoxa.Container.Component;
 using Cortoxa.Container.Extentions;
 using Cortoxa.Container.Registrator;
+using Cortoxa.Container.Services;
 using Cortoxa.Data.Common;
 using Cortoxa.Data.Components;
 using Cortoxa.Data.Repository;
@@ -21,8 +22,21 @@ namespace Cortoxa.Data
                 {
                     name = Guid.NewGuid().ToString();
                 }
-                r.For(typeof(IStore<>)).To(c.StoreClass).DependsOnComponent<IDataSource>(c.DataSource).Name(name).LifeTime(c.LifeTime);
+
+                var registrating = r.For(typeof (IStore<>)).To(c.StoreClass);
+                if (c.Interceptor != null)
+                {
+                    c.Interceptor(registrating.Intercept);
+                }
+                registrating.DependsOnComponent<IDataSource>(c.DataSource).Name(name).LifeTime(c.LifeTime);
             });
+            return configurator;
+        }
+
+
+        public static IComponentConfigurator<StoreContext> Intercept(this IComponentConfigurator<StoreContext> configurator, Action<IServiceInterception> interceptioAction)
+        {
+            configurator.Configure(c=>c.Interceptor = interceptioAction);
             return configurator;
         }
 
