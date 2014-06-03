@@ -31,10 +31,10 @@ namespace Cortoxa.Windsor.Registrators
                             types = types.WithServiceFromInterface();
                             break;
                         case TypeServiceSourceEnum.FirstInterface:
-                            types = types.WithServiceFromInterface();
+                            types = types.WithServiceFirstInterface();
                             break;
                         case TypeServiceSourceEnum.AllInterfaces:
-                            types = types.WithServiceFromInterface();
+                            types = types.WithServiceAllInterfaces();
                             break;
                         default:
                             types = types.WithServiceSelf();
