@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Cortoxa.Data</id>
-        <version>1.0.27</version>
+        <version>1.0.28</version>
         <title>Cortoxa Data</title>
         <authors>Denis Korkhov</authors>
         <owners>Denis Korkhov</owners>
