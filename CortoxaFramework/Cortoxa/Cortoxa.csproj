@@ -75,6 +75,7 @@
     <Compile Include="Container\Registrator\IRegistration.cs" />
     <Compile Include="Container\Registrator\IResolver.cs" />
     <Compile Include="Container\Registrator\ToolRegistrator.cs" />
+    <Compile Include="Container\Services\IBaseInterceptor.cs" />
     <Compile Include="Container\Services\IServiceConfigurator.cs" />
     <Compile Include="Container\Services\IServiceContext.cs" />
     <Compile Include="Container\Services\ServiceConfigurator.cs" />
