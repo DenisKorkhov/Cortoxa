@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
@@ -54,7 +55,7 @@ namespace Cortoxa.Windsor.Registrators
             {
                 component = context.ValueDependencies.Aggregate(component, (current, dependency) => current.DependsOn(Property.ForKey(dependency.Key).Eq(dependency.Value)));
             }
-
+            var interceptors = new List<string>();
             if (context.Interceptors.Any())
             {
                 var interceptorName = string.Format("interceptor_{0}_{1}", context.For.First().Name, Guid.NewGuid().ToString().Replace("-", string.Empty));
@@ -71,7 +72,17 @@ namespace Cortoxa.Windsor.Registrators
                         Dependency.OnValue("context", null)
                     ).LifestyleTransient()
                     );
-                component.Interceptors(interceptorName);
+                interceptors.Add(interceptorName);
+            }
+
+            if (context.InterceptorsByName.Any())
+            {
+                interceptors.AddRange(context.InterceptorsByName);
+            }
+
+            if (interceptors.Any())
+            {
+                component.Interceptors(interceptors.ToArray());
             }
 
             if (!string.IsNullOrEmpty(context.Name))

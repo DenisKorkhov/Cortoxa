@@ -12,6 +12,8 @@ namespace Cortoxa.Container.Services
 
         private readonly IList<MethodInteception> interceptors = new List<MethodInteception>();
 
+        private readonly IList<string> interceptorsByName = new List<string>();
+
         public Type[] For { get; set; }
 
         public Type To { get; set; }
@@ -37,6 +39,11 @@ namespace Cortoxa.Container.Services
         public IList<MethodInteception> Interceptors
         {
             get { return interceptors; }
+        }
+
+        public IList<string> InterceptorsByName
+        {
+            get { return interceptorsByName; }
         }
     }
 }

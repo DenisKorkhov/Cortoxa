@@ -13,6 +13,8 @@ namespace Cortoxa.Container.Services
 
         IServiceConfigurator InterceptMethod(MethodInteception methodInteception);
 
+        IServiceConfigurator InterceptWith(string name);
+
         IServiceConfigurator ToFactory(Func<FactoryContext, object> action);
 
         IServiceConfigurator ToFactory(Func<FactoryContext, IResolver, object> action);

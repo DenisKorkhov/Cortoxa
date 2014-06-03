@@ -58,5 +58,7 @@ namespace Cortoxa.Container.Services
         IServiceConfigurator After(Action<InterceptionContext> action);
 
         #endregion
+
+        IServiceConfigurator ByName(Action<InterceptionContext> action, string interceptorName);
     }
 }

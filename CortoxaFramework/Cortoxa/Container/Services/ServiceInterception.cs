@@ -86,5 +86,11 @@ namespace Cortoxa.Container.Services
         {
             return configuration.InterceptMethod(new MethodInteception(action, MethodInteceptionType.After));
         }
+
+        public IServiceConfigurator ByName(Action<InterceptionContext> action, string interceptorName)
+        {
+            return configuration.InterceptWith(interceptorName);
+
+        }
     }
 }

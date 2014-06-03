@@ -58,6 +58,12 @@ namespace Cortoxa.Container.Services
             return this;
         }
 
+        public IServiceConfigurator InterceptWith(string name)
+        {
+            this.Configure(x => x.InterceptorsByName.Add(name));
+            return this;
+        }
+
         public IServiceConfigurator ToFactory(Func<FactoryContext, object> factoryAction)
         {
             this.Configure(x => x.ToFactory = factoryAction);
