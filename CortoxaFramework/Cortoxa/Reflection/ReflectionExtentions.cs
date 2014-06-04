@@ -59,5 +59,12 @@ namespace Cortoxa.Reflection
             second = second.ReflectedType == second.DeclaringType ? second : second.DeclaringType.GetMethod(second.Name, second.GetParameters().Select(p => p.ParameterType).ToArray());
             return first == second;
         }
+        public static bool EqualTo<T>(this MethodInfo first, Expression<Action<T>> method)
+        {
+            var second = method.MethodFromExpression();
+            first = first.ReflectedType == first.DeclaringType ? first : first.DeclaringType.GetMethod(first.Name, first.GetParameters().Select(p => p.ParameterType).ToArray());
+            second = second.ReflectedType == second.DeclaringType ? second : second.DeclaringType.GetMethod(second.Name, second.GetParameters().Select(p => p.ParameterType).ToArray());
+            return first == second;
+        }
     }
 }
