@@ -58,5 +58,20 @@ namespace Cortoxa.Data.EntityFramework.Component
             return Task.Run(() => SaveChanges());
             #endif
         }
+
+        public void BeginTransaction()
+        {
+            
+        }
+
+        public void Commit()
+        {
+
+        }
+
+        public void Rollback()
+        {
+
+        }
     }
 }

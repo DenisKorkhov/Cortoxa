@@ -39,6 +39,7 @@ namespace Cortoxa.Data.Repository
         Task<T> GetAsync(Guid id);
 
         Task<T[]> GetAsync(params Guid[] ids);
+
         IDataSource DataSource { get; }
     }
 }

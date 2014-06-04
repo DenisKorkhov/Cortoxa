@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Common\IDataSource.cs" />
     <Compile Include="Common\IModelBuilder.cs" />
+    <Compile Include="Common\IDataTransaction.cs" />
     <Compile Include="Components\DataExtentions.cs" />
     <Compile Include="Components\DataSourceContext.cs" />
     <Compile Include="Components\StoreContext.cs" />

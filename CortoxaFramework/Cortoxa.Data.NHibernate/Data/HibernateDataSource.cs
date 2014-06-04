@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Cortoxa.Data.Common;
 using Cortoxa.Data.Model;
@@ -9,16 +10,57 @@ namespace Cortoxa.Data.NHibernate.Data
 {
     public class HibernateDataSource : IDataSource
     {
+        #region Fields
         private readonly ISession session;
+        private ITransaction transaction; 
+        #endregion
 
         public HibernateDataSource(ISession session)
         {
             this.session = session;
         }
 
+        public void BeginTransaction()
+        {
+            if (transaction != null)
+            {
+                throw new Exception("Transaction already initialized");
+            }
+            transaction = this.session.BeginTransaction();
+        }
+
+        public void Commit()
+        {
+            if (transaction != null)
+            {
+                transaction.Commit();
+            }
+        }
+
+        public void Rollback()
+        {
+            if (transaction != null)
+            {
+                transaction.Rollback();
+            }
+        }
+
         public void SaveChanges()
         {
-            session.Flush();
+            try
+            {
+                session.Flush();
+                this.Commit();
+
+            }
+            catch (Exception e)
+            {
+                this.Rollback();
+            }
+            finally
+            {
+                transaction = null;
+            }
         }
 
         public async Task SaveChangesAsync()
