@@ -18,6 +18,7 @@ using System.Reflection;
 using Castle.DynamicProxy;
 using Castle.MicroKernel.Context;
 using Cortoxa.Container.Services;
+using Cortoxa.Reflection;
 
 namespace Cortoxa.Windsor.Interceptions
 {
@@ -70,7 +71,7 @@ namespace Cortoxa.Windsor.Interceptions
 
         private Action GetProceedActions(Action rootAction, MethodInfo method, InterceptionContext interceptionContext)
         {
-            var interceptors = interceptions.Where(x => x.Mode == MethodInteceptionType.Process && (x.Method == null || AreMethodsEqual(x.Method, method))).ToArray();
+            var interceptors = interceptions.Where(x => x.Mode == MethodInteceptionType.Process && (x.Method == null || x.Method.EqualTo(method))).ToArray();
             Action result = rootAction;
             for (int i = interceptors.Length - 1; i >= 0; i--)
             {
@@ -88,19 +89,13 @@ namespace Cortoxa.Windsor.Interceptions
 
         private IEnumerable<Delegate> GetBeforeActions(MethodInfo method)
         {
-            return interceptions.Where(x => x.Mode == MethodInteceptionType.Before && (x.Method == null || AreMethodsEqual(x.Method, method))).Select(x => x.Action).ToArray();
+            return interceptions.Where(x => x.Mode == MethodInteceptionType.Before && (x.Method == null || x.Method.EqualTo(method))).Select(x => x.Action).ToArray();
         }
 
         private IEnumerable<Delegate> GetAfterActions(MethodInfo method)
         {
-            return interceptions.Where(x => x.Mode == MethodInteceptionType.After && (x.Method == null || AreMethodsEqual(x.Method, method))).Select(x => x.Action).ToArray();
+            return interceptions.Where(x => x.Mode == MethodInteceptionType.After && (x.Method == null || x.Method.EqualTo(method))).Select(x => x.Action).ToArray();
         }
-
-        public bool AreMethodsEqual(MethodInfo first, MethodInfo second)
-        {
-            first = first.ReflectedType == first.DeclaringType ? first : first.DeclaringType.GetMethod(first.Name, first.GetParameters().Select(p => p.ParameterType).ToArray());
-            second = second.ReflectedType == second.DeclaringType ? second : second.DeclaringType.GetMethod(second.Name, second.GetParameters().Select(p => p.ParameterType).ToArray());
-            return first == second;
-        }
+        
     }
 }

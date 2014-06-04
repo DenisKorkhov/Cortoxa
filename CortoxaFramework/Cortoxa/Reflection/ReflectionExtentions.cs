@@ -13,6 +13,7 @@
 // //  */
 #endregion
 using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -50,6 +51,13 @@ namespace Cortoxa.Reflection
                 default:
                     throw new ArgumentException("method");
             }
+        }
+
+        public static bool EqualTo(this MethodInfo first, MethodInfo second)
+        {
+            first = first.ReflectedType == first.DeclaringType ? first : first.DeclaringType.GetMethod(first.Name, first.GetParameters().Select(p => p.ParameterType).ToArray());
+            second = second.ReflectedType == second.DeclaringType ? second : second.DeclaringType.GetMethod(second.Name, second.GetParameters().Select(p => p.ParameterType).ToArray());
+            return first == second;
         }
     }
 }

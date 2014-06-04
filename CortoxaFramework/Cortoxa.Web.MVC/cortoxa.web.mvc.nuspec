@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Cortoxa.Web.Mvc</id>
-        <version>1.0.31</version>
+        <version>1.0.32</version>
         <title>Cortoxa Web Mvc</title>
         <authors>Denis Korkhov</authors>
         <owners>Denis Korkhov</owners>
@@ -15,7 +15,7 @@
         <tags>Cortoxa IoC MVC</tags>
         <dependencies>
             <group targetFramework=".NETFramework4.5.1">
-                <dependency id="Cortoxa" version="1.0.31" />
+                <dependency id="Cortoxa" version="1.0.32" />
                 <dependency id="Microsoft.AspNet.Mvc" version="5.1.2" />
             </group>
         </dependencies>
