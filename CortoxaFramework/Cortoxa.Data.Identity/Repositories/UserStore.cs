@@ -78,13 +78,15 @@ namespace Cortoxa.Data.Identity.Repositories
             {
                 throw new ArgumentNullException("claim");
             }
-            user.Claims.Add(new TClaim
-                        {
-                            User = user,
-                            ClaimType = claim.Type,
-                            ClaimValue = claim.Value
-                        });
-            return Task.FromResult(0);
+            var forSave = new TClaim()
+            {
+                ClaimType = claim.Type,
+                ClaimValue = claim.Value,
+                User = user
+            };
+
+            claimsRepository.Add(forSave);
+            return claimsRepository.SaveChangesAsync();
         }
 
         public virtual Task RemoveClaimAsync(TUser user, Claim claim)
