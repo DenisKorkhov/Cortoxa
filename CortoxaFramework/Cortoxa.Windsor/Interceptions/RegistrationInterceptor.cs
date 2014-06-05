@@ -52,13 +52,13 @@ namespace Cortoxa.Windsor.Interceptions
 
             interceptionContext.Procced = invocation.Proceed;
 
-            var proccedAction = GetProceedActions(() =>
+            var proccedAction = GetProceedActions((ctx) =>
             {
                 invocation.Proceed();
-                interceptionContext.Result = invocation.ReturnValue;
-            }, invocation.Method, interceptionContext);
+                ctx.Result = invocation.ReturnValue;
+            }, invocation.Method);
 
-            proccedAction();
+            proccedAction(interceptionContext);
             invocation.ReturnValue = interceptionContext.Result;
 
             interceptionContext.Procced = null;
@@ -69,19 +69,19 @@ namespace Cortoxa.Windsor.Interceptions
             }
         }
 
-        private Action GetProceedActions(Action rootAction, MethodInfo method, InterceptionContext interceptionContext)
+        private Action<InterceptionContext> GetProceedActions(Action<InterceptionContext> rootAction, MethodInfo method)
         {
             var interceptors = interceptions.Where(x => x.Mode == MethodInteceptionType.Process && (x.Method == null || x.Method.EqualTo(method))).ToArray();
-            Action result = rootAction;
+            Action<InterceptionContext> result = rootAction;
             for (int i = interceptors.Length - 1; i >= 0; i--)
             {
                 var interceptor = interceptors[i];
                 var prevAction = result;
-                result = () =>
+                result = (ctx) =>
                 {
                     var clousureAction = prevAction;
-                    interceptionContext.Procced = clousureAction;
-                    interceptionContext.Result = interceptor.Action.DynamicInvoke(new object[] { interceptionContext });
+                    ctx.Procced = ()=>clousureAction(ctx);
+                    interceptor.Action.DynamicInvoke(new object[] { ctx });
                 };
             }
             return result;
