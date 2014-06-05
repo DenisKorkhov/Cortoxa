@@ -82,7 +82,7 @@ namespace Cortoxa.Data.NHibernate
                 else
                 {
                     c.Driver<SqlClientDriver>();
-                    c.Dialect<MsSql2012Dialect>();
+                    c.Dialect<MsSql2008Dialect>();
                 }
                 
                 #if DEBUG
