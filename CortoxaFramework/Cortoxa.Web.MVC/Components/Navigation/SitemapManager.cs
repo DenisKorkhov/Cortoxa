@@ -18,9 +18,38 @@ namespace Cortoxa.Web.MVC.Components.Navigation
             this.reader = reader;
         }
 
+
+        protected void NormalizeFields(SitemapNode node, SitemapRoute route = null, string[] roles = null)
+        {
+            if (route != null)
+            {
+                if (node.Route == null)
+                {
+                    node.Route = route;
+                }
+                else if (string.IsNullOrEmpty(node.Route.Controller))
+                {
+                    node.Route.Controller = route.Controller;
+                }
+            }
+
+            if (node.Roles == null)
+            {
+                node.Roles = roles;
+            }
+
+
+            foreach (var child in node.Children)
+            {
+                NormalizeFields(child, node.Route, node.Roles);
+            }
+        }
+
         protected TNode BuildSitemap()
         {
-            return reader.LoadMap();
+            TNode result = reader.LoadMap();
+            NormalizeFields(result);
+            return result;
         }
 
         public TNode FindNode(string controller, string action)
