@@ -39,9 +39,12 @@ namespace Cortoxa.Web.MVC.Components.Navigation
             }
 
 
-            foreach (var child in node.Children)
+            if (node.Children != null)
             {
-                NormalizeFields(child, node.Route, node.Roles);
+                foreach (var child in node.Children)
+                {
+                    NormalizeFields(child, node.Route, node.Roles);
+                }
             }
         }
 

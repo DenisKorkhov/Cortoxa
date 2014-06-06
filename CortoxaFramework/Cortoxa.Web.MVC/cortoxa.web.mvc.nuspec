@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Cortoxa.Web.Mvc</id>
-        <version>1.0.37</version>
+        <version>1.0.38</version>
         <title>Cortoxa Web Mvc</title>
         <authors>Denis Korkhov</authors>
         <owners>Denis Korkhov</owners>
