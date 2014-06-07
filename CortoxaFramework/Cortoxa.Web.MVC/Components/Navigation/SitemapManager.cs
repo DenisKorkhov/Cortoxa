@@ -10,7 +10,7 @@ namespace Cortoxa.Web.MVC.Components.Navigation
     {
         #region Fields
         private readonly ISitemapReader<TNode> reader;
-        private TNode root = null;
+//        private TNode root = null;
         #endregion
 
         public SitemapManager(ISitemapReader<TNode> reader)
@@ -62,7 +62,7 @@ namespace Cortoxa.Web.MVC.Components.Navigation
 
         public TNode GetSitemap()
         {
-            return root ?? (root = BuildSitemap());
+            return BuildSitemap();
         }
 
         public TNode Current
