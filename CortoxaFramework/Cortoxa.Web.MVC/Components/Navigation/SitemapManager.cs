@@ -33,7 +33,7 @@ namespace Cortoxa.Web.MVC.Components.Navigation
                 }
             }
 
-            if (node.Roles == null)
+            if (node.Roles == null && roles != null)
             {
                 node.Roles = roles;
             }

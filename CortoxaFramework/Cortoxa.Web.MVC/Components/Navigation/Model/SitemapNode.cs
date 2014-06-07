@@ -12,9 +12,6 @@ namespace Cortoxa.Web.MVC.Components.Navigation.Model
         [XmlAttribute("key")]
         public string Key { get; set; }
 
-//        [XmlAttribute("url")]
-//        public string RawUrl { get; set; }
-
         [XmlAttribute("clickable")]
         public bool Clickable { get; set; }
 
