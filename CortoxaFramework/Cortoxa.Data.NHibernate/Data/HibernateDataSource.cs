@@ -11,13 +11,16 @@ namespace Cortoxa.Data.NHibernate.Data
     public class HibernateDataSource : IDataSource
     {
         #region Fields
+
         private readonly ISession session;
-        private ITransaction transaction; 
+        private ITransaction transaction;
+        private bool disposed;
         #endregion
 
         public HibernateDataSource(ISession session)
         {
             this.session = session;
+            this.BeginTransaction();
         }
 
         public void BeginTransaction()
@@ -31,9 +34,19 @@ namespace Cortoxa.Data.NHibernate.Data
 
         public void Commit()
         {
-            if (transaction != null)
+            if (transaction != null && transaction.IsActive)
             {
-                transaction.Commit();
+                try
+                {
+                    transaction.Commit();
+                    
+                }
+                catch (Exception e)
+                {
+                    this.Rollback();
+                    throw;
+                }
+                
             }
         }
 
@@ -47,20 +60,7 @@ namespace Cortoxa.Data.NHibernate.Data
 
         public void SaveChanges()
         {
-            try
-            {
-                session.Flush();
-                this.Commit();
-
-            }
-            catch (Exception e)
-            {
-                this.Rollback();
-            }
-            finally
-            {
-                transaction = null;
-            }
+            session.Flush();
         }
 
         public async Task SaveChangesAsync()
@@ -70,7 +70,18 @@ namespace Cortoxa.Data.NHibernate.Data
 
         public void Dispose()
         {
-            this.session.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (disposing && !disposed)
+            {
+                SaveChanges();
+                Commit();
+                disposed = true;
+            }
         }
 
         public IQueryable<TEntity> Query<TEntity>() where TEntity : class, IEntity
