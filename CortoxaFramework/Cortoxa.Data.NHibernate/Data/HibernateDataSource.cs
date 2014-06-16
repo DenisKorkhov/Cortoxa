@@ -52,7 +52,7 @@ namespace Cortoxa.Data.NHibernate.Data
 
         public void Rollback()
         {
-            if (transaction != null)
+            if (transaction != null && transaction.IsActive)
             {
                 transaction.Rollback();
             }
@@ -60,12 +60,19 @@ namespace Cortoxa.Data.NHibernate.Data
 
         public void SaveChanges()
         {
-            session.Flush();
+            try
+            {
+                session.Flush();
+            }
+            catch (Exception)
+            {
+                Rollback();
+            }
         }
 
         public async Task SaveChangesAsync()
         {
-            await Task.Run(() => session.Flush()).ConfigureAwait(false);
+            await Task.Run(() => SaveChanges()).ConfigureAwait(false);
         }
 
         public void Dispose()
