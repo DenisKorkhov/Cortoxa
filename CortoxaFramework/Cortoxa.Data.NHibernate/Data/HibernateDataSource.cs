@@ -67,6 +67,7 @@ namespace Cortoxa.Data.NHibernate.Data
             catch (Exception)
             {
                 Rollback();
+                throw;
             }
         }
 
