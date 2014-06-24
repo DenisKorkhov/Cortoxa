@@ -88,9 +88,8 @@ namespace Cortoxa.Data.NHibernate
                 #if DEBUG
                 c.LogFormattedSql = true;
                 #endif
-                c.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
+//                c.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
                 c.SchemaAction = SchemaAutoAction.Update;
-
             });
 
             var mapper = new ModelMapper();
