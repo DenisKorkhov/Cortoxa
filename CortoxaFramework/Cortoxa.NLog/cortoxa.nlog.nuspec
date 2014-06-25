@@ -24,8 +24,6 @@ Contains implementation of common "Design Patterns".</description>
         </dependencies>
     </metadata>
     <files>
-        <file src="bin\NET40\Release\Cortoxa.NLog.dll" target="lib\net40\Cortoxa.NLog.dll" />
-        <file src="bin\NET45\Release\Cortoxa.NLog.dll" target="lib\net45\Cortoxa.NLog.dll" />
         <file src="bin\NET451\Release\Cortoxa.NLog.dll" target="lib\net451\Cortoxa.NLog.dll" />
     </files>
 </package>
