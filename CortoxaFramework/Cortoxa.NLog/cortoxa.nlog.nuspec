@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Cortoxa.NLog</id>
-        <version>1.0.35</version>
+        <version>1.0.46</version>
         <title>Cortoxa NLog</title>
         <authors>Denis Korkhov</authors>
         <owners>Denis Korkhov</owners>
@@ -17,16 +17,12 @@ Contains implementation of common "Design Patterns".</description>
         <copyright>Copyright© Denis Korkhov at Oxagile 2014</copyright>
         <tags>logger log logging nlog</tags>
         <dependencies>
-            <group targetFramework=".NETFramework4.0">
-                <dependency id="NLog" version="2.1.0" />
-                <dependency id="Cortoxa" version="1.0.35" />
-            </group>
             <group targetFramework=".NETFramework4.5">
                 <dependency id="NLog" version="2.1.0" />
                 <dependency id="Cortoxa" version="1.0.35" />
             </group>
             <group targetFramework=".NETFramework4.5.1">
-                <dependency id="NLog" version="2.1.0" />
+                <dependency id="NLog" version="3.1.0.0" />
                 <dependency id="Cortoxa" version="1.0.35" />
             </group>
         </dependencies>
