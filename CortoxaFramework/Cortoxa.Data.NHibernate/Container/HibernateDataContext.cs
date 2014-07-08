@@ -1,6 +1,7 @@
 ﻿using System;
 using Cortoxa.Container.Component;
 using Cortoxa.Data.Components;
+using NHibernate.Cfg.Loquacious;
 
 namespace Cortoxa.Data.NHibernate.Container
 {
@@ -8,5 +9,6 @@ namespace Cortoxa.Data.NHibernate.Container
     {
         public bool BuildSchema { get; set; }
         public bool UpdateSchema { get; set; }
+        public Action<IDbIntegrationConfigurationProperties> ConfigurationAction { get; set; }
     }
 }

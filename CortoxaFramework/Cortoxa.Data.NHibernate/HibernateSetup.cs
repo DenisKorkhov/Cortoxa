@@ -24,6 +24,7 @@ using Cortoxa.Data.NHibernate.Container;
 using Cortoxa.Data.NHibernate.Data;
 using NHibernate;
 using NHibernate.Cfg;
+using NHibernate.Cfg.Loquacious;
 using NHibernate.Dialect;
 using NHibernate.Driver;
 using NHibernate.Mapping.ByCode;
@@ -90,6 +91,11 @@ namespace Cortoxa.Data.NHibernate
                 #endif
 //                c.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
                 c.SchemaAction = SchemaAutoAction.Update;
+
+                if (cotnext.ConfigurationAction != null)
+                {
+                    cotnext.ConfigurationAction(c);
+                }
             });
 
             var mapper = new ModelMapper();
@@ -111,6 +117,16 @@ namespace Cortoxa.Data.NHibernate
         public static IComponentConfigurator<HibernateDataContext> BuildSchema(this IComponentConfigurator<HibernateDataContext> configurator)
         {
             configurator.Configure(c => c.BuildSchema = true);
+            return configurator;
+        }
+
+
+        public static IComponentConfigurator<HibernateDataContext> Configure(this IComponentConfigurator<HibernateDataContext> configurator, Action<IDbIntegrationConfigurationProperties> configurationAction)
+        {
+            configurator.Configure(c =>
+            {
+                c.ConfigurationAction = configurationAction;
+            });
             return configurator;
         }
 
