@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Cortoxa.Windsor</id>
-        <version>1.0.35</version>
+        <version>1.0.40</version>
         <title>Cortoxa Windsor</title>
         <authors>Denis Korkhov</authors>
         <owners>Denis Korkhov</owners>
@@ -12,18 +12,18 @@
         <description>Windsor Implementation of the "Dependency Injection" pattern for Cortoxa Framework. 
 Cortoxa Framework is a Powerful Framework for faster and easier building .Net applications based on Dependency Injection patterns. Contains implementation of common "Design Patterns".</description>
         <summary>Windsor Implementation of the "Dependency Injection" pattern for Cortoxa Framework.</summary>
-        <copyright>Copyright© Denis Korkhov at Oxagile 2014</copyright>
+        <copyright>Copyright© Denis Korkhov 2014</copyright>
         <tags>Cortoxa Windsor</tags>
         <dependencies>
             <group targetFramework=".NETFramework4.5">
                 <dependency id="Castle.Core" version="3.3.0" />
                 <dependency id="Castle.Windsor" version="3.3.0" />
-                <dependency id="Cortoxa" version="1.0.35" />
+                <dependency id="Cortoxa" version="1.0.40" />
             </group>
             <group targetFramework=".NETFramework4.5.1">
                 <dependency id="Castle.Core" version="3.3.0" />
                 <dependency id="Castle.Windsor" version="3.3.0" />
-                <dependency id="Cortoxa" version="1.0.35" />
+                <dependency id="Cortoxa" version="1.0.40" />
             </group>
         </dependencies>
     </metadata>
