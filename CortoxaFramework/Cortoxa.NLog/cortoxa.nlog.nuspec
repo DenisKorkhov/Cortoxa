@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Cortoxa.NLog</id>
-        <version>1.0.46</version>
+        <version>1.0.50</version>
         <title>Cortoxa NLog</title>
         <authors>Denis Korkhov</authors>
         <owners>Denis Korkhov</owners>
@@ -14,12 +14,12 @@ Cortoxa Framework is a Powerful Framework for faster and easier building.
 Net applications based on Dependency Injection patterns. 
 Contains implementation of common "Design Patterns".</description>
         <summary>Nlog integration for Cortoxa Framework</summary>
-        <copyright>Copyright© Denis Korkhov at Oxagile 2014</copyright>
+        <copyright>Copyright© Denis Korkhov Korkhov 2014</copyright>
         <tags>logger log logging nlog</tags>
         <dependencies>
             <group targetFramework=".NETFramework4.5.1">
                 <dependency id="NLog" version="3.1.0.0" />
-                <dependency id="Cortoxa" version="1.0.35" />
+                <dependency id="Cortoxa" version="1.0.40" />
             </group>
         </dependencies>
     </metadata>
