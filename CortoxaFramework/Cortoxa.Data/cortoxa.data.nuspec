@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Cortoxa.Data</id>
-        <version>1.0.35</version>
+        <version>1.0.40</version>
         <title>Cortoxa Data</title>
         <authors>Denis Korkhov</authors>
         <owners>Denis Korkhov</owners>
@@ -12,17 +12,17 @@
         <description>Data Patterns for Cortoxa Framework. 
 Cortoxa Framework is a Powerful Framework for faster and easier building .Net applications based on Dependency Injection patterns. Contains implementation of common "Design Patterns".</description>
         <summary>Data Patterns for Cortoxa Framework</summary>
-        <copyright>Copyright© Denis Korkhov at Oxagile 2014</copyright>
+        <copyright>Copyright© Denis Korkhov  2014</copyright>
         <tags>logger log logging nlog</tags>
         <dependencies>
             <group targetFramework=".NETFramework4.0">
-                <dependency id="Cortoxa" version="1.0.35" />
+                <dependency id="Cortoxa" version="1.0.40" />
             </group>
             <group targetFramework=".NETFramework4.5">
-                <dependency id="Cortoxa" version="1.0.35" />
+                <dependency id="Cortoxa" version="1.0.40" />
             </group>
             <group targetFramework=".NETFramework4.5.1">
-                <dependency id="Cortoxa" version="1.0.35" />
+                <dependency id="Cortoxa" version="1.0.40" />
             </group>
         </dependencies>
     </metadata>
