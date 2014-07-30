@@ -1,4 +1,4 @@
-﻿#region Copyright © 2014 Denis Korkhov, Oxagile (http://www.oxagile.com/)
+﻿#region Copyright © 2014 
 // 
 // // /*
 // //  * All rights reserved. This program and the accompanying materials
@@ -22,9 +22,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Cortoxa")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Oxagile")]
+[assembly: AssemblyCompany("Korkhov")]
 [assembly: AssemblyProduct("Cortoxa")]
-[assembly: AssemblyCopyright("Copyright Oxagile Denis Korkhov©  2013")]
+[assembly: AssemblyCopyright("Copyright Denis Korkhov©  2013")]
 [assembly: AssemblyTrademark("Cortoxa Framework")]
 [assembly: AssemblyCulture("")]
 

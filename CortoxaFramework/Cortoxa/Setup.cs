@@ -1,4 +1,4 @@
-﻿#region Copyright © 2014 Denis Korkhov, Oxagile (http://www.oxagile.com/)
+﻿#region Copyright © 2014 
 // 
 // // /*
 // //  * All rights reserved. This program and the accompanying materials
